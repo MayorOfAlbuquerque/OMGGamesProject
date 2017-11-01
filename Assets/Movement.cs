@@ -14,17 +14,14 @@ public class Movement : MonoBehaviour {
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
 
-        Vector3 targetDirection = new Vector3(h, transform.position.y, v);
+       Vector3 targetDirection = new Vector3(h, 0f, v); // Initialised the inital targetDirection 
 
-        //Vector3 targetDirection = transform.position;
+        //Vector3 targetDirection = transform.position; // Causes jittering in the motion
 
-        targetDirection = Camera.main.transform.TransformDirection(targetDirection);
-        targetDirection.x += (h* 0.1f);
-        targetDirection.z += (v* 0.1f);
-
-        
-
-        //targetDirection += Camera.main.transform.TransformDirection(h * 0.1f, 0f, v * 0.1f);
+        targetDirection = Camera.main.transform.TransformDirection(targetDirection);  // Transforming the direction to the Camera's
+        targetDirection.x += (h* 0.1f); // Moving it horizontally 
+        targetDirection.z += (v* 0.1f); // Moving it vertically 
+        targetDirection.y = transform.position.y; // Keeping y constant (without this, the object seems to fall constantly?)
 
         transform.position = targetDirection;
     }
