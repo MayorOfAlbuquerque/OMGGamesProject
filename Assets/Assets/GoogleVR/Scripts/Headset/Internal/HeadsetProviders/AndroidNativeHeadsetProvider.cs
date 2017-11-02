@@ -23,7 +23,7 @@ using UnityEngine.VR;
 /// @cond
 namespace Gvr.Internal {
   class AndroidNativeHeadsetProvider : IHeadsetProvider {
-    private IntPtr gvrContextPtr = VRDevice.GetNativePtr();
+    private IntPtr gvrContextPtr = UnityEngine.XR.XRDevice.GetNativePtr();
     private GvrValue gvrValue = new GvrValue();
     private gvr_event_header gvrEventHeader = new gvr_event_header();
     private gvr_recenter_event_data gvrRecenterEventData = new gvr_recenter_event_data();
