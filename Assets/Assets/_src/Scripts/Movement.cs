@@ -14,18 +14,20 @@ public class Movement : MonoBehaviour {
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
 
+        h = -1 * h;
+
         Vector3 newPos;
         
-        if (h != 0)
+        if (h != 0 || v!= 0)
         {
-            newPos = transform.position + Camera.main.transform.right * h;
-            newPos.y = 1f; // this is to avoid flying
-        }
-        else if (v != 0)
-        {
-            newPos = transform.position + Camera.main.transform.forward * v;
+            newPos = transform.position + (Camera.main.transform.right * h * 0.1f);
+            newPos = newPos + Camera.main.transform.forward * v * 0.1f;
             newPos.y = 1f; // This is to avoid flying
         }
+       // else if (v != 0)
+        //{
+          
+        //}
         else newPos = transform.position;
  
         transform.position = newPos;
