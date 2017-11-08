@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	
-	public float Speed;
-	public Movement Movement;
+	public float speed;
+	public Movement movement;
 
 	void Start () {
-		Movement = new Movement (Speed);
+		movement = new Movement (speed);
 	}
 
 	void Update () {
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
         {
 			Vector3 right = Camera.main.transform.right;
 			Vector3 forward = Camera.main.transform.forward;
-			newPos = Movement.Calculate (transform.position,h,v,right,forward);
+			newPos = movement.calculate (transform.position,h,v,right,forward);
         }
         else newPos = transform.position;
  
