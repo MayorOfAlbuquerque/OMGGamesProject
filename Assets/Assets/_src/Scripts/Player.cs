@@ -20,7 +20,11 @@ public class Player : MonoBehaviour {
         if (h != 0 || v!= 0)
         {
 			Vector3 right = Camera.main.transform.right;
+			Debug.Log ("Right: ");
+			Debug.Log (right);
 			Vector3 forward = Camera.main.transform.forward;
+			Debug.Log ("Forward: ");
+			Debug.Log (forward);
 			newPos = movement.calculate (transform.position,h,v,right,forward);
         }
         else newPos = transform.position;
