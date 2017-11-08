@@ -29,8 +29,8 @@ public class MovementTests {
 		Vector3 r = new Vector3 (1f, 0f, 0f);
 		Vector3 f = new Vector3 (0.5f, 0f, 2f);
 
-		Vector3 expected = new Vector3 (2f, 1f, 2f);
+		Vector3 expected = new Vector3 (3f, 1f, 2f);
 
-		Assert.AreEqual (expected, new Movement (1).calculate (pos, 1, 1, r, f));
+		Assert.AreEqual (expected, new Movement (1).calculate (pos, 2, 1, r, f));
 	}
 }
