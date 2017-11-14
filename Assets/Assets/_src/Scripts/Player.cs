@@ -9,14 +9,14 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		movement = new Movement (speed);
-	}
+    }
 
 	void Update () {
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
 
         Vector3 newPos;
-        
+
         if (h != 0 || v!= 0)
         {
 			Vector3 right = Camera.main.transform.right;
@@ -27,5 +27,5 @@ public class Player : MonoBehaviour {
  
         transform.position = newPos;
     }
-		
+
 }
