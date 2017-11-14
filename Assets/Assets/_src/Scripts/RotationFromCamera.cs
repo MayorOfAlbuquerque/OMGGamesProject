@@ -10,17 +10,20 @@ public class RotationFromCamera : MonoBehaviour {
     // Use this for initialization
     void Start () {
         cameraTransform = Camera.main.transform;
-        newRotation = cameraTransform.localEulerAngles;
+        newRotation = cameraTransform.eulerAngles;
         oldRotation = newRotation;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        newRotation = cameraTransform.localEulerAngles;
+        newRotation = cameraTransform.eulerAngles;
         if (newRotation != oldRotation)
         {
-            transform.Rotate(newRotation.x, newRotation.y, newRotation.z, Space.World);
+            float diffX = Mathf.DeltaAngle(oldRotation.x, newRotation.x);
+            float diffY = Mathf.DeltaAngle(oldRotation.y, newRotation.y);
+            float diffZ = 0.0f; //Mathf.DeltaAngle(oldRotation.z, newRotation.z);
+            transform.Rotate(diffX, diffY, diffZ, Space.World);
             oldRotation = newRotation;
         }
     }
