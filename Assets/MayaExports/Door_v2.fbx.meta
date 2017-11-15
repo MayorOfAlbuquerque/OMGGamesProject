@@ -1,45 +1,33 @@
 fileFormatVersion: 2
-guid: 9e3aa941be1c04df7a5d3fea4b1446c8
-timeCreated: 1510706385
+guid: 5a4076b84630d406d9120d6ea32ee33f
+timeCreated: 1510764478
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: door
-    100002: door 1
-    100004: door_frame
-    100006: //RootNode
-    100008: handle
-    100010: handle1
+    100002: door_frame
+    100004: //RootNode
     400000: door
-    400002: door 1
-    400004: door_frame
-    400006: //RootNode
-    400008: handle
-    400010: handle1
-    2300000: door 1
+    400002: door_frame
+    400004: //RootNode
+    2300000: door
     2300002: door_frame
-    2300004: handle
-    2300006: handle1
-    3300000: door 1
+    3300000: door
     3300002: door_frame
-    3300004: handle
-    3300006: handle1
-    4300000: handle
+    4300000: door_frame
     4300002: door
-    4300004: handle1
-    4300006: door_frame
-    7400000: openAnim
-    7400002: closeAnim
-    7400004: idleOpened
-    7400006: idleClosed
+    7400000: doorOpenAnim
+    7400002: doorCloseAnim
+    7400004: doorIdleOpened
+    7400006: doorIdleClosed
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 7823310d1fbc6414198af09870400bbe, type: 2}
+    second: {fileID: 2100000, guid: 6aedaecd0544a42df9aa75f10369f558, type: 2}
   materials:
     importMaterials: 0
     materialName: 0
@@ -67,7 +55,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: openAnim
+      name: doorOpenAnim
       takeName: Take 001
       firstFrame: 0
       lastFrame: 42
@@ -95,10 +83,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: closeAnim
+      name: doorCloseAnim
       takeName: Take 001
       firstFrame: 43
-      lastFrame: 84
+      lastFrame: 85
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -123,7 +111,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: idleOpened
+      name: doorIdleOpened
       takeName: Take 001
       firstFrame: 42
       lastFrame: 43
@@ -151,7 +139,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: idleClosed
+      name: doorIdleClosed
       takeName: Take 001
       firstFrame: 0
       lastFrame: 1

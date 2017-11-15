@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public interface IDoor
 {
@@ -16,7 +17,7 @@ public interface IDoor
 /// the current state of the door. (open/close)
 /// </summary>
 [RequireComponent(typeof(Animator))]
-public class DoorController : InteractableObjectController, IDoor{
+public class DoorController : InteractableObjectController, IDoor, IGvrPointerHoverHandler{
 
     public bool openInitially;
     private bool isOpen;
@@ -25,6 +26,9 @@ public class DoorController : InteractableObjectController, IDoor{
 	void Start () {
         anim = GetComponent<Animator>();
         isOpen = openInitially;
+        if(isOpen) {
+            Open();
+        }
 	}
 	
     public void Open() {
@@ -76,4 +80,10 @@ public class DoorController : InteractableObjectController, IDoor{
             o.SetNormal();
         }
     }
+
+    public void OnGvrPointerHover(PointerEventData eventData)
+    {
+        
+    }
+
 }
