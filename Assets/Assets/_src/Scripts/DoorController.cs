@@ -12,7 +12,7 @@ public interface IDoor
 }
 
 [RequireComponent(typeof(Animator))]
-public class DoorController : MonoBehaviour, IDoor {
+public class DoorController : MonoBehaviour, IControllerInteractable, IDoor{
 
     public bool openInitially = false;
     private bool isOpen;
@@ -40,6 +40,11 @@ public class DoorController : MonoBehaviour, IDoor {
         else {
             Open();
         }
+    }
+
+    public void OnClick()
+    {
+        Toggle();
     }
 
     public bool IsOpen {
