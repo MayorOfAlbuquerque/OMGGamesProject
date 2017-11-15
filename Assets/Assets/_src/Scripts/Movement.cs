@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement{
+public class Movement : MonoBehaviour{
 	private float speed;
 
 	public Movement(float spd){
@@ -10,8 +10,8 @@ public class Movement{
 	}
 
 	public Vector3 calculate(Vector3 position, float h, float v, Vector3 right, Vector3 forward){
-		Vector3 newPos = position + (right * h * speed);
-		newPos = newPos + (forward * v * speed);
+		Vector3 newPos = position + (right * h * speed * Time.deltaTime);
+		newPos = newPos + (forward * v * speed * Time.deltaTime);
 		newPos.y = 1f;
 		return newPos;
 	}

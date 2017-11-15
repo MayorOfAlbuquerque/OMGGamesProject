@@ -1,5 +1,4 @@
-	public float speed;
-	public Movement movement;
+
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,17 +11,19 @@ public class Player : NetworkBehaviour {
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
 
-        [SerializeField] ToggleEvent onToggleShared;
-        [SerializeField] ToggleEvent onToggleRemote;
-        [SerializeField] ToggleEvent onToggleLocal;
-        GameObject mainCamera;
+    [SerializeField] ToggleEvent onToggleShared;
+    [SerializeField] ToggleEvent onToggleRemote;
+    [SerializeField] ToggleEvent onToggleLocal;
+    GameObject mainCamera;
 
+    public float speed;
+    public Movement movement;
 
-        private void Start()
+    private void Start()
         {
             mainCamera = Camera.main.gameObject;
+            movement = new Movement(speed);
             EnablePlayer();
-
         }
 
         private void EnablePlayer()
@@ -53,7 +54,7 @@ public class Player : NetworkBehaviour {
             }
         }
 
-    }
+
 
 	void Update () {
 		float h = Input.GetAxis ("Horizontal");
@@ -73,4 +74,3 @@ public class Player : NetworkBehaviour {
     }
 		
 }
-		movement = new Movement (speed);
