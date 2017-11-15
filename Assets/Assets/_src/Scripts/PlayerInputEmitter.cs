@@ -13,13 +13,17 @@ public class PlayerInputEmitter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(GvrControllerInput.ClickButtonDown) {
-            RaycastResult result = GvrPointerInputModule.CurrentRaycastResult;
+        RaycastResult result = GvrPointerInputModule.CurrentRaycastResult;
             var interactable = result
-                .gameObject
+                .gameObject?
                 .GetComponent<InteractableObjectController>() 
                     as InteractableObjectController;
+        if(Input.GetMouseButtonUp(0)) {
             interactable?.OnClick();
+        } else if(Input.GetMouseButtonDown(1)) {
+            interactable?.OnKeyDown(KeyCode.Mouse1);
+        } else if(Input.GetMouseButtonUp(1)) {
+            interactable?.OnKeyUp(KeyCode.Mouse1);
         }
 	}
 }

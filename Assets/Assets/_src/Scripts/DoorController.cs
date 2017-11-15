@@ -45,11 +45,14 @@ public class DoorController : InteractableObjectController, IDoor{
             Open();
         }
     }
-
+    #region Controller button handlers
     public override void OnClick()
     {
         Toggle();
     }
+    public override void OnKeyDown(KeyCode code) {}
+    public override void OnKeyUp(KeyCode code) {}
+    #endregion
 
     public bool IsOpen {
         get {
