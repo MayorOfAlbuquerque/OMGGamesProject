@@ -17,10 +17,9 @@ public class PlayerInputEmitter : MonoBehaviour {
             RaycastResult result = GvrPointerInputModule.CurrentRaycastResult;
             var interactable = result
                 .gameObject
-                .GetComponent<DoorController>() as DoorController;
+                .GetComponent<InteractableObjectController>() 
+                    as InteractableObjectController;
             interactable?.OnClick();
-            Debug.Log(result);
-            Debug.Log(interactable);
         }
 	}
 }
