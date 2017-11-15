@@ -663,8 +663,8 @@ GameObject:
   - component: {fileID: 1519547207}
   - component: {fileID: 1519547209}
   - component: {fileID: 1519547208}
-  - component: {fileID: 1519547211}
   - component: {fileID: 1519547210}
+  - component: {fileID: 1519547211}
   m_Layer: 0
   m_Name: door
   m_TagString: Interactable
@@ -742,23 +742,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 85.13095, y: 96.593376, z: 352.97235}
   m_Center: {x: -42.56546, y: 48.296688, z: -45.38374}
---- !u!95 &1519547211
-Animator:
-  serializedVersion: 3
+--- !u!114 &1519547211
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1519547206}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9e3aa941be1c04df7a5d3fea4b1446c8, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7b062691294334039adb60713f04fcb0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923c4beefdb384843a5917eb2f61f82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowingMaterial: {fileID: 2100000, guid: b8c646cd9466c4b05b625e235236930d, type: 2}
 --- !u!1 &1546027857
 GameObject:
   m_ObjectHideFlags: 0

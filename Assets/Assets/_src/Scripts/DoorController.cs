@@ -11,10 +11,14 @@ public interface IDoor
 
 }
 
+/// <summary>
+/// Door controller will play the correct open/close animation and the store 
+/// the current state of the door. (open/close)
+/// </summary>
 [RequireComponent(typeof(Animator))]
 public class DoorController : InteractableObjectController, IDoor{
 
-    public bool openInitially = false;
+    public bool openInitially;
     private bool isOpen;
     public Animator anim;
 	// Use this for initialization
@@ -51,5 +55,22 @@ public class DoorController : InteractableObjectController, IDoor{
         get {
             return isOpen;
         }   
+    }
+
+    private void OnMouseEnter()
+    {
+        GlowingInteractable[] glowingObj = GetComponentsInChildren<GlowingInteractable>();
+        foreach(var o in glowingObj) {
+            o.SetGlowing();
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        GlowingInteractable[] glowingObj = GetComponentsInChildren<GlowingInteractable>();
+        foreach (var o in glowingObj)
+        {
+            o.SetNormal();
+        }
     }
 }
