@@ -61,7 +61,7 @@ public class Player : NetworkBehaviour {
 		float v = Input.GetAxis ("Vertical");
 
         Vector3 newPos;
-        
+
         if (h != 0 || v!= 0)
         {
 			Vector3 forward = Camera.main.transform.forward;
@@ -72,5 +72,5 @@ public class Player : NetworkBehaviour {
  
         transform.position = newPos;
     }
-		
+
 }
