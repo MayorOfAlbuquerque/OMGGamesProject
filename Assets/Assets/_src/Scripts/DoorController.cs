@@ -35,10 +35,10 @@ public class DoorController : MonoBehaviour, IDoor {
 
     public void Toggle() {
         if(isOpen) {
-            Open();
+            Close();
         }
         else {
-            Close();
+            Open();
         }
     }
 
