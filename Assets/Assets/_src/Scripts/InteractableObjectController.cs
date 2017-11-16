@@ -7,4 +7,6 @@ using System.Collections;
 public abstract class InteractableObjectController : MonoBehaviour, IControllerInteractable
 {
     public abstract void OnClick();
+    public abstract void OnKeyDown(KeyCode code);
+    public abstract void OnKeyUp(KeyCode code);
 }

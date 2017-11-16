@@ -9,4 +9,6 @@ public interface IControllerInteractable {
     /// Standard main button click.
     /// </summary>
     void OnClick();
+    void OnKeyDown(KeyCode code);
+    void OnKeyUp(KeyCode code);
 }
