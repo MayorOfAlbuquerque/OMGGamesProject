@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour{
+public class Movement {
 	private float speed;
 
 	public Movement(float spd){
