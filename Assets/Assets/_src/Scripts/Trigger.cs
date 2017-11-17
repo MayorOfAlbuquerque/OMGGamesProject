@@ -10,7 +10,7 @@ public class LoadLevelTrigger : MonoBehaviour {
     //triggers when another object enters its area.
     private void OnTriggerEnter(Collider other) {
 
-        Debug.Log("adf");
+        Debug.Log("so triggered right now");
         //if object is player then load scene
         if(other.gameObject.tag == "Player") {
             SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
