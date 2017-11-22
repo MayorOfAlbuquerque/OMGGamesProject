@@ -56,6 +56,17 @@ public class PlayerVoiceChat : MonoBehaviour {
                 }
                 else { Debug.Log("Was not recording before trying to stop recording"); }
             }
+
+            if (VoiceChatRecorder.Instance.AutoDetectSpeech)
+            {
+                Debug.Log("The Auto Detect Speech is enabled");
+                VoiceChatRecorder.Instance.StartRecording();
+            }
+            if (VoiceChatRecorder.Instance.AutoDetectSpeech == false)
+            {
+                Debug.Log("The Auto Detect Speech is Disabled");
+                VoiceChatRecorder.Instance.StopRecording();
+            }
             else
             {
                 if (VoiceChatRecorder.Instance.IsTransmitting)
