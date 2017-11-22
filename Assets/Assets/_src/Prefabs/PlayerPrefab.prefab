@@ -38,8 +38,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4696603540618322}
   - component: {fileID: 114432387862002536}
-  - component: {fileID: 114801350399657972}
   - component: {fileID: 114402016594110506}
+  - component: {fileID: 114325534915793858}
   - component: {fileID: 114695291186880990}
   m_Layer: 0
   m_Name: PlayerPrefab
@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 33253548808365912}
   - component: {fileID: 65337520935607562}
   - component: {fileID: 23619124114837708}
+  - component: {fileID: 114062274863837340}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -202,6 +203,29 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1321087448446380}
   m_Enabled: 1
+--- !u!114 &114062274863837340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379774146024006}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2178f465abb464f8cab6a96251ceae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114325534915793858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376468861992814}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d691d9f64875b14b89ca4a1352f6e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!114 &114402016594110506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,21 +314,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114325534915793858}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114062274863837340}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  speed: 5
-  movement: {fileID: 0}
---- !u!114 &114801350399657972
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1376468861992814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f2a86effd3cb4ba5856230c1264f6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!124 &124959515241874906
 Behaviour:
   m_ObjectHideFlags: 1

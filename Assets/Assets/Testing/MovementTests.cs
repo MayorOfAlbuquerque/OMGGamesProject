@@ -5,7 +5,7 @@ using System.Collections;
 
 public class MovementTests {
 
-	[Test]
+	/*[Test]
 	public void movesAlongXAxisForHorizontalInput() {
 		Vector3 pos = new Vector3 (0f, 0f, 0f);
 		Vector3 r = new Vector3 (1f, 1f, 2f);
@@ -32,5 +32,5 @@ public class MovementTests {
 		Vector3 expected = new Vector3 (3f, 1f, 2f);
 
 		Assert.AreEqual (expected, new Movement (1).calculate (pos, 2, 1, r, f));
-	}
+	}*/
 }

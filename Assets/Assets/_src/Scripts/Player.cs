@@ -17,12 +17,10 @@ public class Player : NetworkBehaviour {
     GameObject mainCamera;
 
     public float speed;
-    public Movement movement;
 
     private void Start()
         {
             mainCamera = Camera.main.gameObject;
-            movement = new Movement(speed);
             EnablePlayer();
         }
 
@@ -54,23 +52,5 @@ public class Player : NetworkBehaviour {
             }
         }
 
-
-
-	void Update () {
-		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
-
-        Vector3 newPos;
-
-        if (h != 0 || v!= 0)
-        {
-			Vector3 forward = Camera.main.transform.forward;
-			Vector3 right = Camera.main.transform.right;
-			newPos = movement.calculate (transform.position,h,v,right,forward);
-        }
-        else newPos = transform.position;
- 
-        transform.position = newPos;
-    }
-
+    
 }
