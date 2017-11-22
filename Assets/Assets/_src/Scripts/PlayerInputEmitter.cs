@@ -20,7 +20,7 @@ public class PlayerInputEmitter : MonoBehaviour {
                     as InteractableObjectController;
         if(Input.GetMouseButtonUp(0)) {
             interactable?.OnClick();
-			Player player = gameObject.GetComponent<Player> ();
+			Player player = gameObject.GetComponent<Player> (); //Get the player that clicked
 			interactable?.OnClick(player);
         } else if(Input.GetMouseButtonDown(1)) {
             interactable?.OnKeyDown(KeyCode.Mouse1);

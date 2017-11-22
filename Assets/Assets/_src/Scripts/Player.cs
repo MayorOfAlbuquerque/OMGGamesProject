@@ -54,47 +54,37 @@ public class Player : NetworkBehaviour {
         }
 
 
-
+	/*
+	 * Wrapper function for the open door command
+	*/
 	public void PlayerOpenDoor(GameObject door)
 	{
 		CmdOpenDoor (door);
 	}
 
+	/*
+	 * Wrapper function for the close door command
+	*/
 	public void PlayerCloseDoor(GameObject door)
 	{
 		CmdCloseDoor (door);
 	}
 
+	/*
+	 * Forces the server to open the door, this calls the RPC so animation is synced for all clients
+	*/
 	[Command]
 	public void CmdOpenDoor(GameObject door){
 		door.GetComponent<DoorController>().RpcOpenDoor (); //Synchronise this change for all other clients
 	}
 		
 
+	/*
+	 * Forces the server to close the door, this calls the RPC so animation is synced for all clients
+	*/
 	[Command]
 	public void CmdCloseDoor(GameObject door){
 		door.GetComponent<DoorController>().RpcCloseDoor ();
 	}
-		
-
-
-	/*[ClientRpc]
-	public void RpcCloseDoor()
-	{
-		if (isLocalPlayer)
-			return;
-		DoorController.Close(); //Animate the door
-		Debug.Log ("Closed the door for all other clients");
-	}
-
-	[ClientRpc]
-	public void RpcOpenDoor()
-	{
-		if (isLocalPlayer)
-			return;
-		DoorController.Open(); //Animate the door
-		Debug.Log ("Closed the door for all other clients");
-	}
-	*/
 		
 }

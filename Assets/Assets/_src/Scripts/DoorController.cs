@@ -52,26 +52,13 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		anim.Play("Closing", -1);
 		isOpen = false;
 	}
+
+
 	/*
-	[Command]
-	public void CmdOpenDoor(){
-	//	anim.Play("Opening", -1); //Opens the door for the current player
-	//	isOpen = true;
-		RpcOpenDoor (); //Synchronise this change for all other clients
-			
-	}
-
-
-
-	[Command]
-	public void CmdCloseDoor(){
-		//anim.Play("Closing", -1);
-		//isOpen = false;
-		RpcOpenDoor ();
-
-	}
-*/
-	[ClientRpc]
+	 * Runs on the server, opens the door for all the clients, syncing the animation
+	 * across the network.
+	*/
+	[ClientRpc] 
 	public void RpcOpenDoor()
 	{
 		anim.Play("Opening", -1);
@@ -79,6 +66,10 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		Debug.Log("Opened the door for all other clients");
 	}
 
+	/*
+	 * Runs on the server, closes the door for all the clients, syncing the animation
+	 * across the network.
+	*/
 	[ClientRpc]
 	public void RpcCloseDoor()
 	{
@@ -88,20 +79,21 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	}
 
 
+	/*
+	 * This is temporarily redundant code
+	*/
     public void Toggle() {
         if(isOpen) {
-			//Play animation here?
-			//.PlayerOpenDoor ();
-
         }
         else {
-			//Play animation here?
-			//Player.PlayerCloseDoor ();
 
         }
     }
 
 
+	/*
+	 * Calls the methods on the player script, this has local authority so can call commands
+	 */ 
 	public void PlayerToggle(Player player)
 	{
 		if(isOpen) {
