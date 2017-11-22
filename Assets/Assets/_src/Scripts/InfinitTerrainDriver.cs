@@ -1,21 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Infinit terrain driver.
+/// Moves terrains attached to the script with constant acceleration.
+/// Constant acceleration is accurate because a train is physically 
+/// heavy in real life. 
+/// </summary>
 public class InfinitTerrainDriver : MonoBehaviour {
+    
+    /// <summary>
+    /// Set this object to train.
+    /// </summary>
     public GameObject relativeToObject;
-    // m/s
+
+    /// <summary>
+    /// Maximum speed the train can reach in m/s
+    /// </summary>
     public float maxSpeed;
 
-    // 10 m/s => 36km/hour
+    /// <summary>
+    /// The current speed.
+    /// </summary>
+    private float currentSpeed = 0;
+
+    /// <summary>
+    /// Lower limit for maximum speed, 10 m/s => 36km/hour
+    /// </summary>
     private const float MIN_MAX_SPEED = 10.0f;
-    // m/s^2
+
+    /// <summary>
+    /// Acceleration of the train in m/s^2
+    /// </summary>
     public float acceleration;
 
+    /// <summary>
+    /// terrain wrapped in GameObject.
+    /// the ordering is important.
+    /// Object on 0th index is assumed to be where the train is positioned at
+    /// the start of the game.
+    /// </summary>
     public GameObject[] terrains;
+
+    /// <summary>
+    /// starting index.
+    /// </summary>
     private int currentTerrainIndex = 0;
 
-    private float currentSpeed = 0;
+
     private Vector3 direction = new Vector3(0.0f, 0.0f, 1.0f);
     // Use this for initialization
     void Start()
@@ -36,6 +68,12 @@ public class InfinitTerrainDriver : MonoBehaviour {
 
         WrapTerrainTiles(relativeToObject, terrains);
     }
+    /// <summary>
+    /// Checkes if the reference object is pasted the current terrain tile,
+    /// if so, wrap the tile at the end to the beginning.
+    /// </summary>
+    /// <param name="relativeCenter">Relative center.</param>
+    /// <param name="terrains">Terrains.</param>
     public void WrapTerrainTiles(GameObject relativeCenter, GameObject[] terrains) {
         GameObject currentTerrain = terrains[currentTerrainIndex];
         Vector3 displacement = currentTerrain.transform.position
@@ -49,6 +87,13 @@ public class InfinitTerrainDriver : MonoBehaviour {
             currentTerrainIndex = currentTerrainIndex % terrains.Length;
         }
     }
+    /// <summary>
+    /// Updates the speed and position of terrains.
+    /// </summary>
+    /// <param name="speed">Speed.</param>
+    /// <param name="maxSpeed">Max speed.</param>
+    /// <param name="deltaTime">Delta time.</param>
+    /// <param name="objects">Objects.</param>
     private void UpdateSpeedAndPosition(ref float speed,
                                         float maxSpeed,
                                         float deltaTime,
