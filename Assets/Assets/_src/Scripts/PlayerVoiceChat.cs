@@ -5,16 +5,21 @@ using VoiceChat;
 
 public class PlayerVoiceChat : MonoBehaviour {
 
-    
+    public VoiceChatRecorder instance;
 
 	// Use this for initialization
-	void Start () {
+	void Start(){
 
+        if (instance == null)
+        {
+            Debug.Log("Instance was null");
+            instance = FindObjectOfType(typeof(VoiceChatRecorder)) as VoiceChatRecorder;
+        }
         Application.RequestUserAuthorization(UserAuthorization.Microphone);
-        foreach (string device in VoiceChatRecorder.Instance.AvailableDevices)
+        foreach (string device in instance.AvailableDevices)
         {
             Debug.Log(device);
-            VoiceChatRecorder.Instance.Device = device; // Setting the device being used
+            instance.Device = device; // Setting the device being used
         }
 
         
@@ -22,7 +27,10 @@ public class PlayerVoiceChat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(VoiceChatRecorder.Instance == null)
+        {
+            Debug.Log("Instance is null");
+        }
         if (VoiceChatRecorder.Instance.Device == null)
         {
             Debug.Log("Everyone Panic. No audio recorder!");
@@ -50,6 +58,10 @@ public class PlayerVoiceChat : MonoBehaviour {
             }
             else
             {
+                if (VoiceChatRecorder.Instance.IsTransmitting)
+                {
+                    Debug.Log("Transmitting to somewhere");
+                }
                 Debug.Log("Neither GetKeyUp or GetKeyDown returned True");
             }
         }
