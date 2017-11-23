@@ -6,14 +6,12 @@ using UnityEngine.Networking;
 
 public class PickupController : InteractableObjectController , IGvrPointerHoverHandler{
 
+    [SerializeField]
+    private Weapon currentWeapon;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        SetWeaponModel(currentWeapon);
 	}
 
     public override void OnKeyDown(KeyCode code) { }
@@ -29,11 +27,27 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
         Player player = obj as Player;
         //Get camera child, then box child of that. Set it active.
         player.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
+
+        if (player.GetPlayerCurrentWeapon() == Weapon.NONE) {
+            this.gameObject.SetActive(false);
+        }
+        /*
+        Transform tr = this.gameObject.transform;
+
+        foreach(Transform child in tr)
+        {
+            child.gameObject.SetActive(false);
+        }*/
+        
     }
 
     public void OnGvrPointerHover(PointerEventData eventData)
     {
         Debug.Log("Hover over object");
+    }
+
+    private void SetWeaponModel(Weapon weapon)
+    {
+
     }
 }

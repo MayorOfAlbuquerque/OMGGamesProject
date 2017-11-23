@@ -6,8 +6,14 @@ using UnityEngine.Networking;
 using UnityEngine.Events;
 //using DoorController;
 
+public enum Weapon{
+    SPANNER, CANDLESTICK, NONE
+}
+
 
 public class Player : NetworkBehaviour {
+
+    private Weapon weapon;
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -23,6 +29,7 @@ public class Player : NetworkBehaviour {
         {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
+            weapon = Weapon.NONE;
         }
 
         private void EnablePlayer()
@@ -86,5 +93,14 @@ public class Player : NetworkBehaviour {
 	public void CmdCloseDoor(GameObject door){
 		door.GetComponent<DoorController>().RpcCloseDoor ();
 	}
-		
+
+    public Weapon GetPlayerCurrentWeapon()
+    {
+        return weapon;
+    }
+    
+    public void setPlayerWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+    }
 }
