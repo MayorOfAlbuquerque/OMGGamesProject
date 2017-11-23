@@ -27,7 +27,8 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
     {
         Debug.Log("Player Clicked Object");
         Player player = obj as Player;
-        player.transform.GetChild(0).gameObject.SetActive(true);
+        //Get camera child, then box child of that. Set it active.
+        player.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
