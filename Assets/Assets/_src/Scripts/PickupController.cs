@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
+
 public class PickupController : InteractableObjectController , IGvrPointerHoverHandler{
 
     [SerializeField]
     private Weapon currentWeapon;
+    private GameObject currentModel;
 
 	// Use this for initialization
 	void Start () {
         SetWeaponModel(currentWeapon);
-	}
+    }
 
     public override void OnKeyDown(KeyCode code) { }
     public override void OnKeyUp(KeyCode code) { }
@@ -25,20 +27,13 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
     {
         Debug.Log("Player Clicked Object");
         Player player = obj as Player;
-        //Get camera child, then box child of that. Set it active.
-        player.transform.GetChild(1).gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-        if (player.GetPlayerCurrentWeapon() == Weapon.NONE) {
-            this.gameObject.SetActive(false);
-        }
-        /*
-        Transform tr = this.gameObject.transform;
-
-        foreach(Transform child in tr)
+        if (player.GetPlayerCurrentWeapon() == Weapon.NONE)
         {
-            child.gameObject.SetActive(false);
-        }*/
-        
+            Resources.UnloadAsset(currentModel);
+        }
+        player.SetPlayerWeapon(currentWeapon);
+
     }
 
     public void OnGvrPointerHover(PointerEventData eventData)
@@ -48,6 +43,12 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
 
     private void SetWeaponModel(Weapon weapon)
     {
+        this.currentWeapon = weapon;
+        //load object from resources folder
+        currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+
+        //set pickup spawner as parent. false flag sets transform relative to parent.
+        currentModel.transform.SetParent(this.gameObject.transform, false);
 
     }
 }

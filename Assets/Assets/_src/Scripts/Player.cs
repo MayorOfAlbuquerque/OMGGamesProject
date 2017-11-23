@@ -7,13 +7,14 @@ using UnityEngine.Events;
 //using DoorController;
 
 public enum Weapon{
-    SPANNER, CANDLESTICK, NONE
+    Spanner, Candlestick, NONE
 }
 
 
 public class Player : NetworkBehaviour {
 
     private Weapon weapon;
+    private GameObject weaponModel;
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -99,8 +100,15 @@ public class Player : NetworkBehaviour {
         return weapon;
     }
     
-    public void setPlayerWeapon(Weapon weapon)
+    public void SetPlayerWeapon(Weapon weapon)
     {
         this.weapon = weapon;
+
+        if(weapon != Weapon.NONE)
+        {
+            Destroy(weaponModel);
+        }
+        weaponModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+        weaponModel.transform.SetParent(this.gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).transform, false);
     }
 }
