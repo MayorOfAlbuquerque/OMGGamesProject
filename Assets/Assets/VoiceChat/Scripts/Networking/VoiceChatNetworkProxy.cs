@@ -90,7 +90,7 @@ namespace VoiceChat.Networking
 
 
 
-        void SetNetworkId(int networkId)
+        void SetNetworkId(int networkId) // Sunny : Found where networkId is set if not already a host or client.
         {
             var netIdentity = GetComponent<NetworkIdentity>();
             if (netIdentity.isServer || netIdentity.isClient)
@@ -171,9 +171,9 @@ namespace VoiceChat.Networking
 
         #region Network Message Handlers
 
-        private static void OnProxyRequested(NetworkMessage netMsg)
+        private static void OnProxyRequested(NetworkMessage netMsg) 
         {
-            var id = netMsg.conn.connectionId;
+            var id = netMsg.conn.connectionId; // Sunny: Extract NetworkId here and set for the instance using the function below
 
             if (LogFilter.logDebug)
             {
