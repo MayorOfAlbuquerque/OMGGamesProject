@@ -13,7 +13,7 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
 
 	// Use this for initialization
 	void Start () {
-        SetWeaponModel(currentWeapon);
+        SetSpawnWeaponModel(currentWeapon);
     }
 
     public override void OnKeyDown(KeyCode code) { }
@@ -28,12 +28,12 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
         Debug.Log("Player Clicked Object");
         Player player = obj as Player;
 
-        if (player.GetPlayerCurrentWeapon() == Weapon.NONE)
+        if(currentWeapon != Weapon.NONE)
         {
-            Resources.UnloadAsset(currentModel);
+            Weapon weaponToBe = player.GetPlayerCurrentWeapon();
+            player.SetPlayerWeapon(currentWeapon);
+            SetSpawnWeaponModel(weaponToBe);
         }
-        player.SetPlayerWeapon(currentWeapon);
-
     }
 
     public void OnGvrPointerHover(PointerEventData eventData)
@@ -41,14 +41,23 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
         Debug.Log("Hover over object");
     }
 
-    private void SetWeaponModel(Weapon weapon)
+    private void SetSpawnWeaponModel(Weapon weapon)
     {
         this.currentWeapon = weapon;
-        //load object from resources folder
-        currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
 
-        //set pickup spawner as parent. false flag sets transform relative to parent.
-        currentModel.transform.SetParent(this.gameObject.transform, false);
+        Destroy(currentModel);
+        currentModel = null;
+        Debug.Log(currentModel);
+
+        if(weapon != Weapon.NONE)
+        {
+            Debug.Log("new model loading");
+            //load object from resources folder
+            currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+
+            //set pickup spawner as parent. false flag sets transform relative to parent.
+            currentModel.transform.SetParent(this.gameObject.transform, false);
+        }
 
     }
 }
