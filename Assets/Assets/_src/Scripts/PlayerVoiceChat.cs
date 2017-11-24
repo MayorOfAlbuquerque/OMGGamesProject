@@ -6,6 +6,7 @@ using VoiceChat;
 public class PlayerVoiceChat : MonoBehaviour {
 
     public VoiceChatRecorder instance;
+    
 
 	// Use this for initialization
 	void Start(){
@@ -24,6 +25,15 @@ public class PlayerVoiceChat : MonoBehaviour {
 
         
     }
+
+
+    /**
+     *  Some notes on trying to set up networkID for the instances
+     *  Maybe extract it from the NetworkIdentity class.
+     *  Documentation on Unity says that this is assigned by the server / network manager.
+     *  could be a good way to extract and set networkIds.
+     *  
+     * **/
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,7 +45,11 @@ public class PlayerVoiceChat : MonoBehaviour {
         {
             Debug.Log("Everyone Panic. No audio recorder!");
         }
-        else
+        if(VoiceChatRecorder.Instance.NetworkId == 0)
+        {
+            Debug.LogError("NetworkId not set");
+        }
+        else// Setup is correct
         {
             if (Input.GetKeyDown(VoiceChatRecorder.Instance.PushToTalkKey)) // Down = Start Recording
             {
@@ -56,16 +70,9 @@ public class PlayerVoiceChat : MonoBehaviour {
                 }
                 else { Debug.Log("Was not recording before trying to stop recording"); }
             }
-
-            if (VoiceChatRecorder.Instance.AutoDetectSpeech)
+            if (VoiceChatRecorder.Instance.AutoDetectSpeech && VoiceChatRecorder.Instance.IsRecording == false)
             {
-                Debug.Log("The Auto Detect Speech is enabled");
                 VoiceChatRecorder.Instance.StartRecording();
-            }
-            if (VoiceChatRecorder.Instance.AutoDetectSpeech == false)
-            {
-                Debug.Log("The Auto Detect Speech is Disabled");
-                VoiceChatRecorder.Instance.StopRecording();
             }
             else
             {
