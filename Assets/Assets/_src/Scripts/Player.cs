@@ -99,7 +99,13 @@ public class Player : NetworkBehaviour {
     {
         return weapon;
     }
-    
+
+    [Command]
+    public void CmdChangeSpawnWeapon(GameObject spawner, Weapon weapon)
+    {
+        spawner.GetComponent<PickupController>().RpcSetSpawnWeaponModel(weapon);
+    }
+
     public void SetPlayerWeapon(Weapon weapon)
     {
         this.weapon = weapon;

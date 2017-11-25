@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
 
-public class PickupController : InteractableObjectController , IGvrPointerHoverHandler{
+public class PickupController : InteractableObjectController, IGvrPointerHoverHandler{
 
     [SerializeField]
     private Weapon currentWeapon;
@@ -13,7 +13,7 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
 
 	// Use this for initialization
 	void Start () {
-        SetSpawnWeaponModel(currentWeapon);
+        AddModel(currentWeapon);
     }
 
     public override void OnKeyDown(KeyCode code) { }
@@ -31,8 +31,9 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
         if(currentWeapon != Weapon.NONE)
         {
             Weapon weaponToBe = player.GetPlayerCurrentWeapon();
+            //Needs altering for networking use
             player.SetPlayerWeapon(currentWeapon);
-            SetSpawnWeaponModel(weaponToBe);
+            player.CmdChangeSpawnWeapon(this.gameObject, weaponToBe);
         }
     }
 
@@ -41,23 +42,34 @@ public class PickupController : InteractableObjectController , IGvrPointerHoverH
         Debug.Log("Hover over object");
     }
 
-    private void SetSpawnWeaponModel(Weapon weapon)
+    [ClientRpc]
+    public void RpcSetSpawnWeaponModel(Weapon weaponToBe)
     {
-        this.currentWeapon = weapon;
-
-        Destroy(currentModel);
-        currentModel = null;
-        Debug.Log(currentModel);
-
-        if(weapon != Weapon.NONE)
+        currentWeapon = weaponToBe;
+        RemoveModel();
+        
+        if(weaponToBe != Weapon.NONE)
         {
             Debug.Log("new model loading");
-            //load object from resources folder
-            currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
-
-            //set pickup spawner as parent. false flag sets transform relative to parent.
-            currentModel.transform.SetParent(this.gameObject.transform, false);
+            AddModel(weaponToBe);
         }
 
+    }
+
+    private void RemoveModel()
+    {
+        Destroy(currentModel);
+        currentModel = null;
+        Debug.Log("Current model = " + currentModel);
+
+    }
+
+    private void AddModel(Weapon weapon)
+    {
+        //load object from resources folder
+        currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+
+        //set pickup spawner as parent. false flag sets transform relative to parent.
+        currentModel.transform.SetParent(this.gameObject.transform, false);
     }
 }
