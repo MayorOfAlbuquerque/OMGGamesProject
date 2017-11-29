@@ -15,6 +15,7 @@ namespace VoiceChat
             {
                 if (instance == null)
                 {
+                    Debug.Log("################## FOUND AN INSTANCE POTATO ##########");
                     instance = FindObjectOfType(typeof(VoiceChatRecorder)) as VoiceChatRecorder;
                 }
 

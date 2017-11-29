@@ -33,6 +33,8 @@ namespace VoiceChat.Networking
                 }
 
                 VoiceChatRecorder.Instance.NewSample += OnNewSample;
+                Debug.Log("THIS IS THE INSTANCE BEING USED IN NETWORK PROXY");
+                Debug.Log(VoiceChatRecorder.Instance);
                 VoiceChatRecorder.Instance.NetworkId = networkId;
             }
             else
@@ -98,7 +100,7 @@ namespace VoiceChat.Networking
                 Debug.LogWarning("Can only set NetworkId before spawning");
                 return;
             }
-
+            Debug.Log("#### Network ID IS :" + networkId);
             this.networkId = networkId;
             //VoiceChatRecorder.Instance.NetworkId = networkId;
         }

@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VoiceChat;
+using UnityEngine.Networking;
 
 public class PlayerVoiceChat : MonoBehaviour {
 
-    public VoiceChatRecorder instance;
-    
-
+   
 	// Use this for initialization
 	void Start(){
-
-        if (instance == null)
+        Debug.Log("Instance may exist");
+        Debug.Log(VoiceChatRecorder.Instance);
+        if(VoiceChatRecorder.Instance == null)
         {
-            Debug.Log("Instance was null");
-            instance = FindObjectOfType(typeof(VoiceChatRecorder)) as VoiceChatRecorder;
+            Debug.Log("##### No Instance Found #########");
         }
         Application.RequestUserAuthorization(UserAuthorization.Microphone);
-        foreach (string device in instance.AvailableDevices)
+        foreach (string device in VoiceChatRecorder.Instance.AvailableDevices)
         {
             Debug.Log(device);
-            instance.Device = device; // Setting the device being used
+            VoiceChatRecorder.Instance.Device = device; // Setting the device being used
         }
 
-        
     }
 
 
@@ -47,7 +45,7 @@ public class PlayerVoiceChat : MonoBehaviour {
         }
         if(VoiceChatRecorder.Instance.NetworkId == 0)
         {
-            Debug.LogError("NetworkId not set");
+            Debug.Log("NetworkId not set");
         }
         else// Setup is correct
         {
