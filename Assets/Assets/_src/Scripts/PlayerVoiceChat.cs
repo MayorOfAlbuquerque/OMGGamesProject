@@ -21,7 +21,6 @@ public class PlayerVoiceChat : MonoBehaviour {
             Debug.Log(device);
             VoiceChatRecorder.Instance.Device = device; // Setting the device being used
         }
-
     }
 
 
