@@ -9,8 +9,6 @@ public class PlayerVoiceChat : MonoBehaviour {
    
 	// Use this for initialization
 	void Start(){
-        Debug.Log("Instance may exist");
-        Debug.Log(VoiceChatRecorder.Instance);
         if(VoiceChatRecorder.Instance == null)
         {
             Debug.Log("##### No Instance Found #########");
@@ -77,7 +75,7 @@ public class PlayerVoiceChat : MonoBehaviour {
                 {
                     Debug.Log("Transmitting to somewhere");
                 }
-                Debug.Log("Neither GetKeyUp or GetKeyDown returned True");
+               // Debug.Log("Neither GetKeyUp or GetKeyDown returned True");
             }
         }
         

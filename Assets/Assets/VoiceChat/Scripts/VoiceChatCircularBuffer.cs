@@ -5,9 +5,9 @@ namespace VoiceChat
 {
     public class VoiceChatCircularBuffer<T>
     {
-        int capacity;
-        int count;
-        int head;
+        int capacity; // max number of items allowed
+        int count; // keep track of number of items
+        int head; 
         int tail;
         T[] buffer;
 

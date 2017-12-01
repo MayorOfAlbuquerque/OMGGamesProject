@@ -58,6 +58,8 @@ namespace VoiceChat
         float[] fftBuffer = null;
         float[] sampleBuffer = null;
         VoiceChatCircularBuffer<float[]> previousSampleBuffer = new VoiceChatCircularBuffer<float[]>(5);
+        // Creates a "buffer", which is basically a list of limit 5. This is used to keep track of 
+        //previous samples 'recorded'
 
         public KeyCode PushToTalkKey
         {
@@ -181,15 +183,15 @@ namespace VoiceChat
                 transmitToggled = !transmitToggled;
             }
 
-            bool transmit = transmitToggled || Input.GetKey(pushToTalkKey);
-            int currentPosition = Microphone.GetPosition(Device);
+            bool transmit = transmitToggled || Input.GetKey(pushToTalkKey); // Tells you whether transmit is needed
+            int currentPosition = Microphone.GetPosition(Device); // Microphone is already "recording", we're not sampling
 
             // This means we wrapped around
-            if (currentPosition < previousPosition)
+            if (currentPosition < previousPosition) // If we've looped on the samples
             {
-                while (sampleIndex < recordFrequency)
+                while (sampleIndex < recordFrequency) // Record frequency by default is 0 but is changed on StartRecording()
                 {
-                    ReadSample(transmit);
+                    ReadSample(transmit); // If transmit is false, 
                 }
 
                 sampleIndex = 0;
@@ -198,9 +200,9 @@ namespace VoiceChat
             // Read non-wrapped samples
             previousPosition = currentPosition;
 
-            while (sampleIndex + recordSampleSize <= currentPosition)
+            while (sampleIndex + recordSampleSize <= currentPosition) 
             {
-                ReadSample(transmit);
+                ReadSample(transmit); // Read samples if we're not wrapped either.
             }
         }
 
@@ -229,7 +231,7 @@ namespace VoiceChat
             clip.GetData(sampleBuffer, sampleIndex);
 
             // Grab a new sample buffer
-            float[] targetSampleBuffer = VoiceChatFloatPool.Instance.Get();
+            float[] targetSampleBuffer = VoiceChatFloatPool.Instance.Get(); // A glorified Queue.
 
             // Resample our real sample into the buffer
             Resample(sampleBuffer, targetSampleBuffer);
@@ -242,8 +244,8 @@ namespace VoiceChat
             int index = -1;
 
             // Auto detect speech, but no need to do if we're pushing a key to transmit
-            if (autoDetectSpeaking && !transmit)
-            {
+            if (autoDetectSpeaking && !transmit) // if We're autoDectectingSpeech and not transmitting.
+            { // then look at the frequency of the current buffer and see if it's worth transmitting.
                 // Clear FFT buffer
                 for (int i = 0; i < fftBuffer.Length; ++i)
                 {
@@ -259,41 +261,43 @@ namespace VoiceChat
                 // Get highest frequency
                 for (int i = 0; i < fftBuffer.Length; ++i)
                 {
-                    if (fftBuffer[i] > freq)
+                    if (fftBuffer[i] > freq) 
                     {
                         freq = fftBuffer[i];
-                        index = i;
+                        index = i; // we set the index of the highest frequency, this determines whether we record
                     }
                 }
             }
 
-            // If we have an event, and 
+            // If we have an event, and we're transmitting / being forced to transmit / detected speech
             if (NewSample != null && (transmit || forceTransmit > 0 || index >= autoDetectIndex))
             {
                 // If we auto-detected a voice, force recording for a while
                 if (index >= autoDetectIndex)
                 {
-                    if (forceTransmit <= 0)
+                    if (forceTransmit <= 0) 
                     {
                         while (previousSampleBuffer.Count > 0)
                         {
                             TransmitBuffer(previousSampleBuffer.Remove());
                         }
                     }
-
                     forceTransmit = forceTransmitTime;
                 }
 
-                TransmitBuffer(targetSampleBuffer);
+                TransmitBuffer(targetSampleBuffer); // transmit even if we haven't auto detected a voice.
+                // Here we don't care about the previous sample buffer.
             }
-            else
+            else // If we're not recording
             {
-                if (previousSampleBuffer.Count == previousSampleBuffer.Capacity)
+                if (previousSampleBuffer.Count == previousSampleBuffer.Capacity) // If the previous sample reached max capacity
                 {
-                    VoiceChatFloatPool.Instance.Return(previousSampleBuffer.Remove());
+                    VoiceChatFloatPool.Instance.Return(previousSampleBuffer.Remove()); 
+                    // Remove gives back the last value in the "circular" queue.
+                    // Return "adds" it to the queue in the FloatPool
                 }
 
-                previousSampleBuffer.Add(targetSampleBuffer);
+                previousSampleBuffer.Add(targetSampleBuffer); // Add something to the 'previous' buffers.
             }
 
         }
@@ -331,7 +335,8 @@ namespace VoiceChat
             int maxFreq;
             Microphone.GetDeviceCaps(Device, out minFreq, out maxFreq);
 
-            recordFrequency = minFreq == 0 && maxFreq == 0 ? 44100 : maxFreq;
+            recordFrequency = minFreq == 0 && maxFreq == 0 ? 44100 : maxFreq; // set record frequency to maxFreq or something large
+        
             recordSampleSize = recordFrequency / (targetFrequency / targetSampleSize);
 
             clip = Microphone.Start(Device, true, 1, recordFrequency);
