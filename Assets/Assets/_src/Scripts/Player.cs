@@ -106,15 +106,22 @@ public class Player : NetworkBehaviour {
         spawner.GetComponent<PickupController>().RpcSetSpawnWeaponModel(weapon);
     }
 
-    public void SetPlayerWeapon(Weapon weapon)
+    [Command]
+    public void CmdSetPlayerWeapon(Weapon weapon)
+    {
+        RpcNetworkWeaponAppearence(weapon, this.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcNetworkWeaponAppearence(Weapon weapon, GameObject player)
     {
         this.weapon = weapon;
 
-        if(weapon != Weapon.NONE)
+        if (weapon != Weapon.NONE)
         {
             Destroy(weaponModel);
         }
         weaponModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
-        weaponModel.transform.SetParent(this.gameObject.transform.GetChild(1).gameObject.transform.GetChild(1).transform, false);
+        weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
     }
 }

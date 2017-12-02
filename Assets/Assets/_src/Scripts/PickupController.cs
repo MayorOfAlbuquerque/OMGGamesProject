@@ -30,28 +30,30 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
 
         if(currentWeapon != Weapon.NONE)
         {
-            Weapon weaponToBe = player.GetPlayerCurrentWeapon();
+            Weapon newWeapon = player.GetPlayerCurrentWeapon();
             //Needs altering for networking use
-            player.SetPlayerWeapon(currentWeapon);
-            player.CmdChangeSpawnWeapon(this.gameObject, weaponToBe);
+            player.CmdSetPlayerWeapon(currentWeapon);
+            player.CmdChangeSpawnWeapon(this.gameObject, newWeapon);
+        }
+        else
+        {
+            Debug.Log("No weapon to pick up");
         }
     }
 
     public void OnGvrPointerHover(PointerEventData eventData)
     {
-        Debug.Log("Hover over object");
     }
 
     [ClientRpc]
-    public void RpcSetSpawnWeaponModel(Weapon weaponToBe)
+    public void RpcSetSpawnWeaponModel(Weapon newWeapon)
     {
-        currentWeapon = weaponToBe;
+        currentWeapon = newWeapon;
         RemoveModel();
         
-        if(weaponToBe != Weapon.NONE)
-        {
-            Debug.Log("new model loading");
-            AddModel(weaponToBe);
+        if(newWeapon != Weapon.NONE)
+        {   
+            AddModel(newWeapon);
         }
 
     }
@@ -61,11 +63,11 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         Destroy(currentModel);
         currentModel = null;
         Debug.Log("Current model = " + currentModel);
-
     }
 
     private void AddModel(Weapon weapon)
     {
+        Debug.Log("new model loading");
         //load object from resources folder
         currentModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
 
