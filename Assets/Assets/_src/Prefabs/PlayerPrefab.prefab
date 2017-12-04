@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114402016594110506}
   - component: {fileID: 114325534915793858}
   - component: {fileID: 114695291186880990}
+  - component: {fileID: 114771121774133272}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -339,6 +340,25 @@ MonoBehaviour:
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   speed: 0
+--- !u!114 &114771121774133272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376468861992814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4150360194761334}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!124 &124959515241874906
 Behaviour:
   m_ObjectHideFlags: 1
