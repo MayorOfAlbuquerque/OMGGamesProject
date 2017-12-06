@@ -6,7 +6,7 @@ using VoiceChat.Networking;
 
 namespace VoiceChat.Demo.HLAPI
 {
-    public class VoiceChatNetworkManager : NetworkManager
+    public class OMGNetManager : NetworkManager
     {
         //PlayerVoiceChat this_instance;
         public override void OnStartClient(NetworkClient client)
