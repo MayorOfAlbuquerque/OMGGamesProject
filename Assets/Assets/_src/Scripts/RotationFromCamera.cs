@@ -16,15 +16,9 @@ public class RotationFromCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        newRotation = cameraTransform.eulerAngles;
-        if (newRotation != oldRotation)
-        {
-            float diffX = Mathf.DeltaAngle(oldRotation.x, newRotation.x);
-            float diffY = Mathf.DeltaAngle(oldRotation.y, newRotation.y);
-            float diffZ = 0.0f; //Mathf.DeltaAngle(oldRotation.z, newRotation.z);
-            transform.Rotate(diffX, diffY, diffZ, Space.World);
-            oldRotation = newRotation;
-        }
+        Vector3 forward = cameraTransform.forward;
+        forward.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(forward, Vector3.up);
+        transform.rotation = rotation;
     }
 }
