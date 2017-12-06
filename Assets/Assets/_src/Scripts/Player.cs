@@ -6,8 +6,15 @@ using UnityEngine.Networking;
 using UnityEngine.Events;
 //using DoorController;
 
+public enum Weapon{
+    Spanner, Candlestick, NONE
+}
+
 
 public class Player : NetworkBehaviour {
+
+    private Weapon weapon;
+    private GameObject weaponModel;
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -23,6 +30,7 @@ public class Player : NetworkBehaviour {
         {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
+            weapon = Weapon.NONE;
         }
 
         private void EnablePlayer()
@@ -86,5 +94,34 @@ public class Player : NetworkBehaviour {
 	public void CmdCloseDoor(GameObject door){
 		door.GetComponent<DoorController>().RpcCloseDoor ();
 	}
-		
+
+    public Weapon GetPlayerCurrentWeapon()
+    {
+        return weapon;
+    }
+
+    [Command]
+    public void CmdChangeSpawnWeapon(GameObject spawner, Weapon weapon)
+    {
+        spawner.GetComponent<PickupController>().RpcSetSpawnWeaponModel(weapon);
+    }
+
+    [Command]
+    public void CmdSetPlayerWeapon(Weapon weapon)
+    {
+        RpcNetworkWeaponAppearence(weapon, this.gameObject);
+    }
+
+    [ClientRpc]
+    public void RpcNetworkWeaponAppearence(Weapon weapon, GameObject player)
+    {
+        this.weapon = weapon;
+
+        if (weapon != Weapon.NONE)
+        {
+            Destroy(weaponModel);
+        }
+        weaponModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+        weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
+    }
 }
