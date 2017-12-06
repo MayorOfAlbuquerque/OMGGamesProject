@@ -37,15 +37,17 @@ namespace VoiceChat
 
         void Start()
         {
-            int size = VoiceChatSettings.Instance.Frequency * 10;
+            int size = VoiceChatSettings.Instance.Frequency * 10; 
 
             GetComponent<AudioSource>().loop = true;
             GetComponent<AudioSource>().clip = AudioClip.Create("VoiceChat", size, 1, VoiceChatSettings.Instance.Frequency, false);
             data = new float[size];
 
-            if (VoiceChatSettings.Instance.LocalDebug)
+            if (VoiceChatSettings.Instance.LocalDebug) // if the localDebug is on
             {
                 VoiceChatRecorder.Instance.NewSample += OnNewSample;
+                // NewSample is an Action Delegate, i.e you can group functions and 
+                // call them all at once if needed
             }
 
             if(PlayerStarted != null)
@@ -66,7 +68,7 @@ namespace VoiceChat
 
                 lastTime = GetComponent<AudioSource>().time;
 
-                // Check if we've played to far
+                // Check if we've played too far
                 if (played + GetComponent<AudioSource>().time >= received)
                 {
                     Stop();

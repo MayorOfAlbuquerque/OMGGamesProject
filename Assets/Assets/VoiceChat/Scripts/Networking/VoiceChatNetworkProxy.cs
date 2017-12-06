@@ -17,6 +17,7 @@ namespace VoiceChat.Networking
         private static Dictionary<int, GameObject> proxies = new Dictionary<int, GameObject>();
 
         public bool isMine { get { return networkId != 0 && networkId == localProxyId; } }
+        // 
         
         [SyncVar]
         private int networkId;
@@ -44,7 +45,10 @@ namespace VoiceChat.Networking
 
             if (isClient && (!isMine || VoiceChatSettings.Instance.LocalDebug))
             {
-                gameObject.AddComponent<AudioSource>();
+               // if(GetComponent<AudioSource>() == null) // if there is no audio component.
+                {
+                    gameObject.AddComponent<AudioSource>();
+                }
                 player = gameObject.AddComponent<VoiceChatPlayer>();
             }
 

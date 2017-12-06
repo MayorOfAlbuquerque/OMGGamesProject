@@ -47,7 +47,7 @@ namespace VoiceChat
 
         public bool LocalDebug
         {
-            get { return localDebug; }
+            get { return localDebug; /*false*/ }
             set { localDebug = value; }
         }
 

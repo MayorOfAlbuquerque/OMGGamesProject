@@ -150,6 +150,7 @@ namespace VoiceChat
             }
 
             Application.RequestUserAuthorization(UserAuthorization.Microphone);
+            //TODO: Add android permissions at some point
             instance = this;
         }
 
@@ -316,7 +317,7 @@ namespace VoiceChat
 
         public bool StartRecording()
         {
-            if (NetworkId == 0 && !VoiceChatSettings.Instance.LocalDebug)
+            if (NetworkId == 0 && !VoiceChatSettings.Instance.LocalDebug) // if debug is off.
             {
                 Debug.LogError("NetworkId is not set");
                 return false;
