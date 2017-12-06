@@ -45,7 +45,7 @@ namespace VoiceChat.Networking
 
             if (isClient && (!isMine || VoiceChatSettings.Instance.LocalDebug))
             {
-               // if(GetComponent<AudioSource>() == null) // if there is no audio component.
+               //if(GetComponent<AudioSource>() == null) // if there is no audio component.
                 {
                     gameObject.AddComponent<AudioSource>();
                 }
