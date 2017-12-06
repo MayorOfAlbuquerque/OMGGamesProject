@@ -192,7 +192,7 @@ namespace VoiceChat
             {
                 while (sampleIndex < recordFrequency) // Record frequency by default is 0 but is changed on StartRecording()
                 {
-                    ReadSample(transmit); // If transmit is false, 
+                    ReadSample(transmit); 
                 }
 
                 sampleIndex = 0;
@@ -211,17 +211,18 @@ namespace VoiceChat
         {
             if (src.Length == dst.Length)
             {
-                Array.Copy(src, 0, dst, 0, src.Length);
+                Array.Copy(src, 0, dst, 0, src.Length); // copy over if they're just the same size
             }
             else
             {
+                    // Sunny : Check which is longer when doing maths 
                 //TODO: Low-pass filter 
-                float rec = 1.0f / (float)dst.Length;
+                float rec = 1.0f / (float)dst.Length; // get the reciprocal 
 
-                for (int i = 0; i < dst.Length; ++i)
+                for (int i = 0; i < dst.Length; ++i) // for the target length:
                 {
-                    float interp = rec * (float)i * (float)src.Length;
-                    dst[i] = src[(int)interp];
+                    float interp = rec * (float)i * (float)src.Length; 
+                    dst[i] = src[(int)interp]; 
                 }
             }
         }
@@ -232,7 +233,7 @@ namespace VoiceChat
             clip.GetData(sampleBuffer, sampleIndex);
 
             // Grab a new sample buffer
-            float[] targetSampleBuffer = VoiceChatFloatPool.Instance.Get(); // A glorified Queue.
+            float[] targetSampleBuffer = VoiceChatFloatPool.Instance.Get(); // VoiceChatFloatPool is a a glorified Queue.
 
             // Resample our real sample into the buffer
             Resample(sampleBuffer, targetSampleBuffer);
