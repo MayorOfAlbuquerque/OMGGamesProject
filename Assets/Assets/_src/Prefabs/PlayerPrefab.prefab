@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114402016594110506}
   - component: {fileID: 114325534915793858}
   - component: {fileID: 114695291186880990}
+  - component: {fileID: 114192294943031642}
   - component: {fileID: 114771121774133272}
   - component: {fileID: 114228313599931748}
   m_Layer: 0
@@ -311,6 +312,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2178f465abb464f8cab6a96251ceae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114192294943031642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376468861992814}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551fe5d6b65751c438d317b3a6ffdc88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114188156753113992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,6 +479,28 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114062274863837340}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114192294943031642}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
