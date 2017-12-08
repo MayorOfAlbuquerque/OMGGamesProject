@@ -121,7 +121,7 @@ public class Player : NetworkBehaviour {
         {
             Destroy(weaponModel);
         }
-        weaponModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+		weaponModel = Instantiate (Resources.Load (weapon.ToString (), typeof(GameObject))) as GameObject;
         weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 using VoiceChat.Networking;
 
+
 namespace VoiceChat.Demo.HLAPI
 {
     public class OMGNetManager : NetworkManager
@@ -11,23 +12,18 @@ namespace VoiceChat.Demo.HLAPI
         //PlayerVoiceChat this_instance;
         public override void OnStartClient(NetworkClient client)
         {
-
-            VoiceChatNetworkProxy.OnManagerStartClient(client);
-            base.OnStartClient(client);
-            Debug.Log("No problemo with Proxyo");
-            //this_instance = new PlayerVoiceChat();
-
+			//base.OnStartClient(client); //Never calls uses the optional parameter
+            VoiceChatNetworkProxy.OnManagerStartClient(client);      
         }
 
         public override void OnStopClient()
         {
-            base.OnStopClient();
+            //base.OnStopClient();
             VoiceChatNetworkProxy.OnManagerStopClient();
 
             if (client != null)
             {
               Destroy(GetComponent<PlayerVoiceChat>());
-          //      this_instance = null;
             }
 
         }
@@ -35,23 +31,22 @@ namespace VoiceChat.Demo.HLAPI
         public override void OnServerDisconnect(NetworkConnection conn)
         {
             base.OnServerDisconnect(conn);
-
             VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
         }
 
+		/* Called from NetworkManager.StartServer()
+		*  This is also the implementation for a Host
+		*/
         public override void OnStartServer()
         {
-            base.OnStartServer();
-            VoiceChatNetworkProxy.OnManagerStartServer();
-
-            //gameObject.AddComponent<VoiceChatServerUi>();
+		//	base.OnStartServer(); //Default implementation
+			VoiceChatNetworkProxy.OnManagerStartServer(); //Voice chat implementation
         }
 
         public override void OnStopServer()
         {
-            base.OnStopServer();
+            //base.OnStopServer();
             VoiceChatNetworkProxy.OnManagerStopServer();
-
             //Destroy(GetComponent<VoiceChatServerUi>());
         }
 
