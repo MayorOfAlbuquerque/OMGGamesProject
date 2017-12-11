@@ -23,8 +23,8 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 
     public bool openInitially;
     private bool isOpen;
-
     public Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();  
@@ -41,8 +41,7 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		else
 			anim.Play("Closing", -1);
 	}
-
-
+		
     public void Open() {
         anim.Play("Opening", -1);
         isOpen = true;
@@ -83,10 +82,17 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	 * This is temporarily redundant code
 	*/
     public void Toggle() {
-        if(isOpen) {
+        if(isOpen) 
+		{
+			anim.Play("Closing", -1);
+			isOpen = false;
+			Debug.Log ("Closed the Door");
         }
-        else {
-
+        else
+		{
+			anim.Play("Opening", -1);
+			isOpen = true;
+			Debug.Log("Opened the Door");
         }
     }
 
@@ -98,11 +104,9 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	{
 		if(isOpen) {
 			player.PlayerCloseDoor(this.gameObject);
-
 		}
 		else {
 			player.PlayerOpenDoor(this.gameObject);
-
 		}
 	}
 
@@ -110,8 +114,8 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
     #region Controller button handlers
     public override void OnClick()
     {
-		//Debug.Log ("Player Clicked");
-        //Toggle();
+		Debug.Log ("Player Clicked");
+        Toggle();
 		//PlayerToggle();
     }
 

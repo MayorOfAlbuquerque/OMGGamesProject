@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
 //using DoorController;
+using UnityEngine.EventSystems;
 
 public enum Weapon{
     Spanner, Candlestick, NONE
@@ -124,4 +125,20 @@ public class Player : NetworkBehaviour {
 		weaponModel = Instantiate (Resources.Load (weapon.ToString (), typeof(GameObject))) as GameObject;
         weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
     }
+
+
+	/* NEW IDEAS FOR NETWORKING ANIMATION */
+
+	[Command]
+	public void CmdInteractObject( GameObject interactable)
+	{
+		RpcExecuteInteration (interactable);
+
+	}
+
+	[ClientRpc]
+	public void RpcExecuteInteration( GameObject interactable)
+	{
+		interactable.GetComponent<InteractableObjectController> ().OnClick();
+	}
 }
