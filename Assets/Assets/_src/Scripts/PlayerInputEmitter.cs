@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 public class PlayerInputEmitter : MonoBehaviour {
     
+	private PlayerInteractionController playerInteractionController;
 
     // Use this for initialization
-    void Start () {
-        //Get the player reference here as this wont change
+    void Start () 
+	{
+		playerInteractionController = gameObject.GetComponent<PlayerInteractionController> (); // Get the player reference here as this wont change
 	}
 	
 	// Update is called once per frame
@@ -18,8 +20,15 @@ public class PlayerInputEmitter : MonoBehaviour {
                 .gameObject?
                 .GetComponent<InteractableObjectController>() 
 				as InteractableObjectController;
+		if (interactable) 
+		{
+			GameObject obj = result.gameObject as GameObject;
+			playerInteractionController.HandleAction (obj);
+		}
+	}
+}
 
-
+/*
 		//do a switch statement heremfor input
 		if (interactable) {
 			GameObject obj = result.gameObject as GameObject;
@@ -39,3 +48,4 @@ public class PlayerInputEmitter : MonoBehaviour {
       
 	}
 }
+*/

@@ -21,7 +21,7 @@ public interface IDoor
 [RequireComponent(typeof(Animator))]
 public class DoorController : InteractableObjectController, IDoor, IGvrPointerHoverHandler {
 
-    public bool openInitially;
+    public bool openInitially = false;
     private bool isOpen;
     public Animator anim;
 
@@ -77,22 +77,39 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		Debug.Log ("Closed the door for all other clients");
 	}
 
+	[Command]
+	public void CmdCloseDoor()
+	{
+		RpcCloseDoor ();
 
-	/*
-	 * This is temporarily redundant code
-	*/
+	}
+
+	[Command]
+	public void CmdOpenDoor()
+	{
+		RpcOpenDoor ();
+	}
+
+
+
     public void Toggle() {
         if(isOpen) 
 		{
+			CmdCloseDoor ();
+			/*
 			anim.Play("Closing", -1);
 			isOpen = false;
 			Debug.Log ("Closed the Door");
+			*/
         }
         else
 		{
+			CmdOpenDoor ();
+			/*
 			anim.Play("Opening", -1);
 			isOpen = true;
 			Debug.Log("Opened the Door");
+			*/
         }
     }
 
