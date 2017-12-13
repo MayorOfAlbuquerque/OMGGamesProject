@@ -158,14 +158,15 @@ namespace VoiceChat.Networking
             proxies.Remove(id);
         }
 
-		//TODO : what are the RegisterHandlersd doing?
+		/* Registers a handlers for a specific message, VoiceCharMsgTypes are defined in the corresponding cs script
+		 * public static void RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler); 
+		 * The handler is the callback invoked when the message is recieved, theoy are defined in this script 
+		*/
         public static void OnManagerStartServer()
-		{	//Registers a handlers for a specific message, VoiceCharMsgTypes are defined in the corresponding cs script
-			//public static void RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler);
-			//The handler is the callback invoked when the message is recieved, theoy are defined in this script
+		{	
             NetworkServer.RegisterHandler(VoiceChatMsgType.Packet, OnServerPacketReceived); 
             NetworkServer.RegisterHandler(VoiceChatMsgType.RequestProxy, OnProxyRequested);
-			proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath); //This seemed to fix it
+			proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath); //Server needed a reference to the ProxyPrefab
         }
 
         public static void OnManagerStopServer()

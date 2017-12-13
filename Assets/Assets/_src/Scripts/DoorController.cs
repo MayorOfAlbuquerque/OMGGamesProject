@@ -100,11 +100,10 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		RpcOpenDoor ();
 	}
 
-
-	/*
-	 * Toggles the relevant Open or close command, Toggle() is called by OnClick()
-	 * TODO Condense the RPC into a single method as unity permits Bools as parameters for these calls
-	*/
+	//TODO Condense the RPC into a single method as unity permits Bools as parameters for these calls
+	/// <summary>
+	/// Toggles the relevant Open or close command, Toggle() is called by OnClick() 
+	/// </summary>
     public void Toggle() {
         if(isOpen) 
 			CmdCloseDoor (); //RPC needs to be performed on the Server
