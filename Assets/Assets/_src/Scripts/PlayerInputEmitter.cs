@@ -15,37 +15,11 @@ public class PlayerInputEmitter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        RaycastResult result = GvrPointerInputModule.CurrentRaycastResult;
-            var interactable = result
-                .gameObject?
-                .GetComponent<InteractableObjectController>() 
-				as InteractableObjectController;
-		if (interactable) 
+        RaycastResult result = GvrPointerInputModule.CurrentRaycastResult; // Get the Raycast each frame
+		if (result.gameObject?.GetComponent<InteractableObjectController>()) // Can we interact with the object?
 		{
 			GameObject obj = result.gameObject as GameObject;
-			playerInteractionController.HandleAction (obj);
+			playerInteractionController.HandleAction (obj); // If we can, handle the request 
 		}
 	}
 }
-
-/*
-		//do a switch statement heremfor input
-		if (interactable) {
-			GameObject obj = result.gameObject as GameObject;
-			if(Input.GetMouseButtonUp(0)) {
-				Player player = gameObject.GetComponent<Player> (); //Get the player that clicked, dont want to do this every fram
-				player.CmdInteractObject(obj);
-			} else if(Input.GetMouseButtonDown(1)) {
-				//     interactable?.OnKeyDown(KeyCode.Mouse1);
-			} else if(Input.GetMouseButtonUp(1)) {
-				//     interactable?.OnKeyUp(KeyCode.Mouse1);
-			}
-		} 
-		else 
-		{
-			return;
-		}
-      
-	}
-}
-*/

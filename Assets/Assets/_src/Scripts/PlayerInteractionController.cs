@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+/// <summary>
+/// Class that handles any player interations that should be networked, 
+/// particularly animations that need to be shown for every other player in the game.
+/// </summary>
 public class PlayerInteractionController : NetworkBehaviour{
 
 
@@ -16,40 +21,29 @@ public class PlayerInteractionController : NetworkBehaviour{
 	void Update () {
 		
 	}
-
+		
 
 	public void HandleAction (GameObject obj)
 	{
 		if(Input.GetMouseButtonUp(0)) //LMB release
 		{
-			CmdPlayerLeftClick (obj);
+			PlayerLeftClick (obj);
 			
 		} 
+		//Extend this as necessary
 	}
+
 
 	[Command]
-	public void CmdPlayerLeftClick (GameObject obj)
+	public void PlayerLeftClick (GameObject obj)
 	{
-		RpcPlayerLeftClick (obj);
+		obj.GetComponent<InteractableObjectController> ().OnClick (); //Needs to run on server as players do not have authority over interactable objects
 		
 	}
-
-	[ClientRpc]
-	void RpcPlayerLeftClick (GameObject obj)
-	{
-		obj.GetComponent<InteractableObjectController> ().OnClick (); //Invoked on correspoding GameObjects on all clients
-	}
-
-
+		
 
 	[Command]
 	void CmdPlayerRightClick (GameObject obj)
-	{
-
-	}
-
-	[ClientRpc]
-	void RpcPlayerRightClick (GameObject obj)
 	{
 
 	}
