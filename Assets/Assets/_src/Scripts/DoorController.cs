@@ -106,9 +106,11 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	/// </summary>
     public void Toggle() {
         if(isOpen) 
-			CmdCloseDoor (); //RPC needs to be performed on the Server
+			RpcCloseDoor();
+			//CmdCloseDoor (); //RPC needs to be performed on the Server
         else
-			CmdOpenDoor ();
+			RpcOpenDoor();
+			//CmdOpenDoor ();
     }
 		
     #region Controller button handlers
