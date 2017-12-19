@@ -159,6 +159,7 @@ namespace VoiceChat.Networking
         {
             NetworkServer.RegisterHandler(VoiceChatMsgType.Packet, OnServerPacketReceived);
             NetworkServer.RegisterHandler(VoiceChatMsgType.RequestProxy, OnProxyRequested);
+			proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath); //Server needed a reference to the ProxyPrefab
         }
 
         public static void OnManagerStopServer()
@@ -205,7 +206,7 @@ namespace VoiceChat.Networking
                 netMsg.conn.Send(VoiceChatMsgType.SpawnProxy, new IntegerMessage(id));
             }
 
-            var proxy = Instantiate<GameObject>(proxyPrefab);
+            var proxy = Instantiate<GameObject>(proxyPrefab); //If the server doesnt know what proxyPrefab in line 162 is here, then it crashes.
             proxy.SendMessage("SetNetworkId", id);
 
             proxies.Add(id, proxy);
