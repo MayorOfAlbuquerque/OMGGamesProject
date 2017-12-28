@@ -52,8 +52,6 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		isOpen = false;
 	}
 
-
-
 	/// <summary>
 	/// Runs on the server, opens the door for all the clients syncing the animation
 	/// across the network.
@@ -61,12 +59,10 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	[ClientRpc] 
 	public void RpcOpenDoor()
 	{
-		anim.Play("Opening", -1);
-		isOpen = true;
+		Open ();
 		Debug.Log("Opened the door for all other clients");
 	}
 		
-
 	/// <summary>
 	/// Runs on the server, closes the door for all the clients syncing the animation
 	/// across the network.
@@ -74,30 +70,8 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	[ClientRpc]
 	public void RpcCloseDoor()
 	{
-		anim.Play("Closing", -1);
-		isOpen = false;
+		Close ();
 		Debug.Log ("Closed the door for all other clients");
-	}
-		
-	/// <summary>
-	/// Runs on the server, since we want to RPC the door animation we have to get to the server side "Door"
-	/// first, this command allows us to do this.
-	/// </summary> 
-	[Command]
-	public void CmdCloseDoor()
-	{
-		RpcCloseDoor ();
-
-	}
-
-	/// <summary>
-	/// Runs on the server, since we want to RPC the door animation we have to get to the server side "Door"
-	/// first, this command allows us to do this.
-	/// </summary> 
-	[Command]
-	public void CmdOpenDoor()
-	{
-		RpcOpenDoor ();
 	}
 
 	//TODO Condense the RPC into a single method as unity permits Bools as parameters for these calls
