@@ -105,12 +105,16 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 	/// Toggles the relevant Open or close command, Toggle() is called by OnClick() 
 	/// </summary>
     public void Toggle() {
-        if(isOpen) 
-			RpcCloseDoor();
-			//CmdCloseDoor (); //RPC needs to be performed on the Server
-        else
-			RpcOpenDoor();
-			//CmdOpenDoor ();
+		if (isOpen) 
+		{
+			this.Close();	//If we only use RPC, the action does not occur on the server, this is potentially an issue if we need to query the server for informations
+			RpcCloseDoor ();
+		} 
+		else 
+		{
+			this.Open();
+			RpcOpenDoor ();
+		}
     }
 		
     #region Controller button handlers
