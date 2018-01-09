@@ -15,6 +15,7 @@ public class Player : NetworkBehaviour {
 
     private Weapon weapon;
     private GameObject weaponModel;
+    [SerializeField] int health;
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -30,7 +31,7 @@ public class Player : NetworkBehaviour {
         {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
-            weapon = Weapon.NONE;
+            this.weapon = Weapon.NONE;
         }
 
         private void EnablePlayer()
@@ -61,11 +62,38 @@ public class Player : NetworkBehaviour {
             }
         }
 
+    public void ChangeHealth(int change) //---------------------------------------TODO
+    {
+        this.health = health + change;
+        if(this.health <= 0)
+        {
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
-	/*
+            //kill player
+            //Make Ghost
+            //set killable script to false
+        }
+    }
+
+    [Command]
+    public void CmdAttackPlayer(GameObject otherPlayer)
+    {
+        RpcRemovePlayerHealth(otherPlayer);
+    }
+
+    [ClientRpc]
+    private void RpcRemovePlayerHealth(GameObject otherPlayer)
+    {
+        Player playerScript = otherPlayer.GetComponent<Player>();
+        playerScript.ChangeHealth(-100);
+    }
+
+
+
+    /*
 	 * Wrapper function for the open door command
 	*/
-	public void PlayerOpenDoor(GameObject door)
+    public void PlayerOpenDoor(GameObject door)
 	{
 		CmdOpenDoor (door);
 	}
