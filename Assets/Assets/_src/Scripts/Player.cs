@@ -67,6 +67,7 @@ public class Player : NetworkBehaviour {
         this.health = health + change;
         if(this.health <= 0)
         {
+            //remove player model so player is invisible
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
             //kill player
