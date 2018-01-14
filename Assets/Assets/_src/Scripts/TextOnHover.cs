@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 {
     [SerializeField] GameObject text;                                                       //This is all going to be shit code
+    [SerializeField] int timerValue;
     private int countdown;
 
     // Use this for initialization
@@ -31,6 +32,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
                 text.SetActive(true);
             }
         }
+        //Makes text face wrong way so text must be contained within seperate unity object where it is reversed 180
         text.transform.LookAt(Camera.main.transform);
     }
 
@@ -38,7 +40,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     {
         Debug.Log("Hovering to reveal text");
 
-        countdown = 50;
+        countdown = timerValue;
     }
 
 }                                                               // Yep it's a horrible bodge
