@@ -11,7 +11,6 @@ namespace VoiceChat.Demo.HLAPI
         //PlayerVoiceChat this_instance;
         public override void OnStartClient(NetworkClient client)
         {
-
             VoiceChatNetworkProxy.OnManagerStartClient(client);
             base.OnStartClient(client);
             Debug.Log("No problemo with Proxyo");
