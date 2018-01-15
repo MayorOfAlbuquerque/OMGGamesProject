@@ -19,6 +19,9 @@ public class PlayerVoiceChat : MonoBehaviour {
             Debug.Log(device);
             VoiceChatRecorder.Instance.Device = device; // Setting the device being used
         }
+
+        VoiceChatRecorder.Instance.AutoDetectSpeech = true;
+        Debug.Log("Voice recorder set to true confirm with : "+ VoiceChatRecorder.Instance.AutoDetectSpeech);
     }
 
 
@@ -42,7 +45,7 @@ public class PlayerVoiceChat : MonoBehaviour {
         }
         if(VoiceChatRecorder.Instance.NetworkId == 0)
         {
-            Debug.Log("NetworkId not set");
+           // Debug.Log("NetworkId not set");
         }
         else// Setup is correct
         {
@@ -67,6 +70,7 @@ public class PlayerVoiceChat : MonoBehaviour {
             }
             if (VoiceChatRecorder.Instance.AutoDetectSpeech && VoiceChatRecorder.Instance.IsRecording == false)
             {
+                Debug.Log("Started recording via AutoDetectSpeech");
                 VoiceChatRecorder.Instance.StartRecording();
             }
             else
