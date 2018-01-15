@@ -15,6 +15,7 @@ public class Player : NetworkBehaviour {
 
     private Weapon weapon;
     private GameObject weaponModel;
+    [SerializeField] int health;
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -30,7 +31,7 @@ public class Player : NetworkBehaviour {
         {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
-            weapon = Weapon.NONE;
+            this.weapon = Weapon.NONE;
         }
 
         private void EnablePlayer()
@@ -60,6 +61,68 @@ public class Player : NetworkBehaviour {
                 onToggleRemote.Invoke(false);
             }
         }
+
+    public void ChangeHealth(int change) //---------------------------------------TODO
+    {
+        this.health = health + change;
+        if(this.health <= 0)
+        {
+            //remove player model so player is invisible
+            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+
+            //kill player
+            //Make Ghost
+            //set killable script to false
+        }
+    }
+
+    [Command]
+    public void CmdAttackPlayer(GameObject otherPlayer)
+    {
+        RpcRemovePlayerHealth(otherPlayer);
+    }
+
+    [ClientRpc]
+    private void RpcRemovePlayerHealth(GameObject otherPlayer)
+    {
+        Player playerScript = otherPlayer.GetComponent<Player>();
+        playerScript.ChangeHealth(-100);
+    }
+
+  
+  //Need to be certain about things working with the new methods before deleting this
+//     /*
+// 	 * Wrapper function for the open door command
+// 	*/
+//     public void PlayerOpenDoor(GameObject door)
+// 	{
+// 		CmdOpenDoor (door);
+// 	}
+
+// 	/*
+// 	 * Wrapper function for the close door command
+// 	*/
+// 	public void PlayerCloseDoor(GameObject door)
+// 	{
+// 		CmdCloseDoor (door);
+// 	}
+
+// 	/*
+// 	 * Forces the server to open the door, this calls the RPC so animation is synced for all clients
+// 	*/
+// 	[Command]
+// 	public void CmdOpenDoor(GameObject door){
+// 		door.GetComponent<DoorController>().RpcOpenDoor (); //Synchronise this change for all other clients
+// 	}
+		
+
+// 	/*
+// 	 * Forces the server to close the door, this calls the RPC so animation is synced for all clients
+// 	*/
+// 	[Command]
+// 	public void CmdCloseDoor(GameObject door){
+// 		door.GetComponent<DoorController>().RpcCloseDoor ();
+// 	}
 
     public Weapon GetPlayerCurrentWeapon()
     {
