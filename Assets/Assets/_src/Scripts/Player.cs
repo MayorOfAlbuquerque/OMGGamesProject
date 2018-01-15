@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
-//using DoorController;
+using UnityEngine.EventSystems;
 
 public enum Weapon{
     Spanner, Candlestick, NONE
@@ -89,40 +89,40 @@ public class Player : NetworkBehaviour {
         playerScript.ChangeHealth(-100);
     }
 
+  
+  //Need to be certain about things working with the new methods before deleting this
+//     /*
+// 	 * Wrapper function for the open door command
+// 	*/
+//     public void PlayerOpenDoor(GameObject door)
+// 	{
+// 		CmdOpenDoor (door);
+// 	}
 
+// 	/*
+// 	 * Wrapper function for the close door command
+// 	*/
+// 	public void PlayerCloseDoor(GameObject door)
+// 	{
+// 		CmdCloseDoor (door);
+// 	}
 
-    /*
-	 * Wrapper function for the open door command
-	*/
-    public void PlayerOpenDoor(GameObject door)
-	{
-		CmdOpenDoor (door);
-	}
-
-	/*
-	 * Wrapper function for the close door command
-	*/
-	public void PlayerCloseDoor(GameObject door)
-	{
-		CmdCloseDoor (door);
-	}
-
-	/*
-	 * Forces the server to open the door, this calls the RPC so animation is synced for all clients
-	*/
-	[Command]
-	public void CmdOpenDoor(GameObject door){
-		door.GetComponent<DoorController>().RpcOpenDoor (); //Synchronise this change for all other clients
-	}
+// 	/*
+// 	 * Forces the server to open the door, this calls the RPC so animation is synced for all clients
+// 	*/
+// 	[Command]
+// 	public void CmdOpenDoor(GameObject door){
+// 		door.GetComponent<DoorController>().RpcOpenDoor (); //Synchronise this change for all other clients
+// 	}
 		
 
-	/*
-	 * Forces the server to close the door, this calls the RPC so animation is synced for all clients
-	*/
-	[Command]
-	public void CmdCloseDoor(GameObject door){
-		door.GetComponent<DoorController>().RpcCloseDoor ();
-	}
+// 	/*
+// 	 * Forces the server to close the door, this calls the RPC so animation is synced for all clients
+// 	*/
+// 	[Command]
+// 	public void CmdCloseDoor(GameObject door){
+// 		door.GetComponent<DoorController>().RpcCloseDoor ();
+// 	}
 
     public Weapon GetPlayerCurrentWeapon()
     {
@@ -150,7 +150,7 @@ public class Player : NetworkBehaviour {
         {
             Destroy(weaponModel);
         }
-        weaponModel = Instantiate(Resources.Load(weapon.ToString(), typeof(GameObject))) as GameObject;
+		weaponModel = Instantiate (Resources.Load (weapon.ToString (), typeof(GameObject))) as GameObject;
         weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
     }
 }

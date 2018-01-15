@@ -289,6 +289,11 @@ Prefab:
       propertyPath: m_NetworkAddress
       value: localhost
       objectReference: {fileID: 0}
+    - target: {fileID: 114510011671401178, guid: 0a1dc237abb6d064ebb0f66194bc0d61,
+        type: 2}
+      propertyPath: m_OnlineScene
+      value: GameSceneInteractiveDoorNoVoice
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a1dc237abb6d064ebb0f66194bc0d61, type: 2}
   m_IsPrefabParent: 0
@@ -1160,7 +1165,8 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 1
   m_OfflineScene: introScene
   m_OnlineScene: GameSceneInteractiveDoor
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 100000, guid: 2b2103bde27e6b44a82bb69671412321, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

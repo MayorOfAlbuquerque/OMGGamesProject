@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114192294943031642}
   - component: {fileID: 114771121774133272}
   - component: {fileID: 114228313599931748}
+  - component: {fileID: 114535888471015534}
   - component: {fileID: 65717207188759218}
   - component: {fileID: 114010635022792964}
   m_Layer: 0
@@ -457,6 +458,17 @@ MonoBehaviour:
     i15: 66
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114535888471015534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376468861992814}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37806a656f9621e4f8899d6bf9f9847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114695291186880990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -471,7 +483,18 @@ MonoBehaviour:
   health: 0
   onToggleShared:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114535888471015534}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -554,7 +577,7 @@ MonoBehaviour:
   m_Target: {fileID: 4150360194761334}
   m_ChildIndex: 0
   m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
+  m_SyncRotationAxis: 4
   m_RotationSyncCompression: 0
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5

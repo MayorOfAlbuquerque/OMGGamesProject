@@ -9,8 +9,15 @@ public class JoinAsServer : MonoBehaviour
         //if object is player then load scene
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Joined as dedicated server");
-            NetworkManager.singleton.StartServer(); //Starts as server, NetworkManger loads online scene
+			bool started;
+			started = NetworkManager.singleton.StartServer(); //Starts as server, NetworkManger loads online scene
+			if (started) {
+				Debug.Log ("Successfully started the Server");
+			} 
+			else
+			{
+				Debug.Log ("Failed to Start Server");
+			}
         }
     }
 }

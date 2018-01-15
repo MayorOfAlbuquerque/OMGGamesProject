@@ -11,7 +11,7 @@ namespace VoiceChat.Networking
         public static event MessageHandler<VoiceChatPacketMessage> VoiceChatPacketReceived;
         public static event System.Action<VoiceChatNetworkProxy> ProxyStarted;
 
-        private const string ProxyPrefabPath = "VoiceChat_NetworkProxy";
+		private const string ProxyPrefabPath = "VoiceChat_NetworkProxy"; //The label for the networkProxy
         private static GameObject proxyPrefab;
         private static int localProxyId;
         private static Dictionary<int, GameObject> proxies = new Dictionary<int, GameObject>();
@@ -111,23 +111,26 @@ namespace VoiceChat.Networking
 
       
         #region NetworkManager Hooks
-
+		// Called from OMGNetManager
+		// what is the customPrefab, an optional parameter?
         public static void OnManagerStartClient(NetworkClient client, GameObject customPrefab = null)
         {
             client.RegisterHandler(VoiceChatMsgType.Packet, OnClientPacketReceived);
             client.RegisterHandler(VoiceChatMsgType.SpawnProxy, OnProxySpawned);
 
-
-            if (customPrefab == null)
+			//Since OMGNetManager never specifies the optional parameter, customprefab defualts to null
+			//The else part of this statement will never run
+            if (customPrefab == null) 
             {
-                proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath);
+				//This is loaded from VoiceChat\Resources\Legacy\
+                proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath); 
             }
             else
             {
                 proxyPrefab = customPrefab;
             }
             
-            ClientScene.RegisterPrefab(proxyPrefab);
+            ClientScene.RegisterPrefab(proxyPrefab); //creates the clientside version?
         }
 
         public static void OnManagerStopClient()
@@ -155,9 +158,13 @@ namespace VoiceChat.Networking
             proxies.Remove(id);
         }
 
+		/* Registers a handlers for a specific message, VoiceCharMsgTypes are defined in the corresponding cs script
+		 * public static void RegisterHandler(short msgType, Networking.NetworkMessageDelegate handler); 
+		 * The handler is the callback invoked when the message is recieved, theoy are defined in this script 
+		*/
         public static void OnManagerStartServer()
-        {
-            NetworkServer.RegisterHandler(VoiceChatMsgType.Packet, OnServerPacketReceived);
+		{	
+            NetworkServer.RegisterHandler(VoiceChatMsgType.Packet, OnServerPacketReceived); 
             NetworkServer.RegisterHandler(VoiceChatMsgType.RequestProxy, OnProxyRequested);
 			proxyPrefab = Resources.Load<GameObject>(ProxyPrefabPath); //Server needed a reference to the ProxyPrefab
         }
@@ -178,6 +185,7 @@ namespace VoiceChat.Networking
 
         #region Network Message Handlers
 
+		//When a client requets a proxy
         private static void OnProxyRequested(NetworkMessage netMsg) 
         {
             var id = netMsg.conn.connectionId; // Sunny: Extract NetworkId here and set for the instance using the function below
@@ -205,10 +213,10 @@ namespace VoiceChat.Networking
             {
                 netMsg.conn.Send(VoiceChatMsgType.SpawnProxy, new IntegerMessage(id));
             }
-
-            var proxy = Instantiate<GameObject>(proxyPrefab); //If the server doesnt know what proxyPrefab in line 162 is here, then it crashes.
+			//proxyprefab defintely exists when a client has joined
+			      GameObject proxy = Instantiate<GameObject>(proxyPrefab) as GameObject; //TODO this is causing the error for a dedicated server
+			//var proxy = Instantiate<GameObject>(proxyPrefab);
             proxy.SendMessage("SetNetworkId", id);
-
             proxies.Add(id, proxy);
             NetworkServer.Spawn(proxy);
 

@@ -23,8 +23,8 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 
     public bool openInitially;
     private bool isOpen;
-
     public Animator anim;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();  
@@ -41,8 +41,7 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		else
 			anim.Play("Closing", -1);
 	}
-
-
+		
     public void Open() {
         anim.Play("Opening", -1);
         isOpen = true;
@@ -53,81 +52,61 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 		isOpen = false;
 	}
 
-
-	/*
-	 * Runs on the server, opens the door for all the clients, syncing the animation
-	 * across the network.
-	*/
+	/// <summary>
+	/// Runs on the server, opens the door for all the clients syncing the animation
+	/// across the network.
+	/// </summary>
 	[ClientRpc] 
 	public void RpcOpenDoor()
 	{
-		anim.Play("Opening", -1);
-		isOpen = true;
+		Open ();
 		Debug.Log("Opened the door for all other clients");
 	}
-
-	/*
-	 * Runs on the server, closes the door for all the clients, syncing the animation
-	 * across the network.
-	*/
+		
+	/// <summary>
+	/// Runs on the server, closes the door for all the clients syncing the animation
+	/// across the network.
+	/// </summary>
 	[ClientRpc]
 	public void RpcCloseDoor()
 	{
-		anim.Play("Closing", -1);
-		isOpen = false;
+		Close ();
 		Debug.Log ("Closed the door for all other clients");
 	}
 
-
-	/*
-	 * This is temporarily redundant code
-	*/
+	//TODO Condense the RPC into a single method as unity permits Bools as parameters for these calls
+	/// <summary>
+	/// Toggles the relevant Open or close command, Toggle() is called by OnClick() 
+	/// </summary>
     public void Toggle() {
-        if(isOpen) {
-        }
-        else {
-
-        }
+		if (isOpen) 
+		{
+			this.Close();	//If we only use RPC, the action does not occur on the server, this is potentially an issue if we need to query the server for informations
+			RpcCloseDoor ();
+		} 
+		else 
+		{
+			this.Open();
+			RpcOpenDoor ();
+		}
     }
-
-
-	/*
-	 * Calls the methods on the player script, this has local authority so can call commands
-	 */ 
-	public void PlayerToggle(Player player)
-	{
-		if(isOpen) {
-			player.PlayerCloseDoor(this.gameObject);
-
-		}
-		else {
-			player.PlayerOpenDoor(this.gameObject);
-
-		}
-	}
-
-
+		
     #region Controller button handlers
     public override void OnClick()
     {
-		//Debug.Log ("Player Clicked");
-        //Toggle();
-		//PlayerToggle();
+		Debug.Log ("Player Clicked");
+        Toggle();
     }
 
-	public override void OnClick(object obj)
-	{
-		Debug.Log ("Player Clicked");
-		Player player = obj as Player;
-		PlayerToggle(player);
-	}
     public override void OnKeyDown(KeyCode code) {}
     public override void OnKeyUp(KeyCode code) {}
     #endregion
 
-    public bool IsOpen {
-        get {
-            return isOpen;
+    public bool IsOpen 
+	{
+		get
+		{
+			return isOpen;
         }   
     }
 
