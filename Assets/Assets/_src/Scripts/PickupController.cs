@@ -19,9 +19,7 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
     public override void OnKeyDown(KeyCode code) { }
     public override void OnKeyUp(KeyCode code) { }
 
-    public override void OnClick()
-    {
-    }
+    public override void OnClick() { }
 
     public override void OnClick(object obj)
     {

@@ -9,14 +9,14 @@ using UnityEngine.Networking;
 /// particularly animations that need to be shown for every other player in the game.
 /// </summary>
 public class PlayerInteractionController : NetworkBehaviour{
-
+	
+	private GameObject thisGameObject;
 
 	// Use this for initialization
 	void Start () {
-		
+		thisGameObject = this.gameObject;
 	}
-
-
+		
 	// Update is called once per frame
 	void Update () {
 		
@@ -30,7 +30,12 @@ public class PlayerInteractionController : NetworkBehaviour{
 	{
 		if(Input.GetMouseButtonUp(0)) //LMB release
 		{
-			CmdPlayerLeftClick (obj);
+			if (obj?.GetComponent<PickupController>()) {
+				CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
+			} 
+			else {
+				CmdPlayerLeftClick (obj);
+			}
 			
 		} 
 		//Extend this as necessary
@@ -42,12 +47,21 @@ public class PlayerInteractionController : NetworkBehaviour{
 	/// </summary>
 	/// <param name="obj">The game object the player is trying to interact with</param> 
 	[Command]
-	public void CmdPlayerLeftClick (GameObject obj)
+	public void CmdPlayerLeftClick (GameObject obj) //Cant have overloaded commands, so need to use optional arguments instead
 	{
-		obj.GetComponent<InteractableObjectController> ().OnClick (); //Needs to run on server as players do not have authority over interactable objects
-		
+			obj.GetComponent<InteractableObjectController> ().OnClick (); //Needs to run on server as players do not have authority over interactable objects
 	}
-		
+
+	/// <summary>
+	/// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
+	/// </summary>
+	/// <param name="obj">The game object the player is trying to interact with</param> 
+	[Command]
+	public void CmdPlayerLeftClickWeapon (GameObject obj, GameObject thisPlayer)
+	{
+		obj.GetComponent<InteractableObjectController> ().OnClick (thisPlayer.GetComponent<Player>()); //Needs to run on server as players do not have authority over interactable objects
+
+	}
 
 	/// <summary>
 	/// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
