@@ -12,8 +12,9 @@ namespace VoiceChat.Demo.HLAPI
         //PlayerVoiceChat this_instance;
         public override void OnStartClient(NetworkClient client)
         {
-			//base.OnStartClient(client); //Never calls uses the optional parameter
-            VoiceChatNetworkProxy.OnManagerStartClient(client);      
+
+            VoiceChatNetworkProxy.OnManagerStartClient(client);
+            base.OnStartClient(client);
         }
 
         public override void OnStopClient()

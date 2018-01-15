@@ -214,11 +214,9 @@ namespace VoiceChat.Networking
                 netMsg.conn.Send(VoiceChatMsgType.SpawnProxy, new IntegerMessage(id));
             }
 			//proxyprefab defintely exists when a client has joined
-			GameObject proxy = Instantiate<GameObject>(proxyPrefab) as GameObject; //TODO this is causing the error for a dedicated server
+			      GameObject proxy = Instantiate<GameObject>(proxyPrefab) as GameObject; //TODO this is causing the error for a dedicated server
 			//var proxy = Instantiate<GameObject>(proxyPrefab);
-
             proxy.SendMessage("SetNetworkId", id);
-
             proxies.Add(id, proxy);
             NetworkServer.Spawn(proxy);
 

@@ -29,7 +29,6 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         if(currentWeapon != Weapon.NONE)
         {
             Weapon newWeapon = player.GetPlayerCurrentWeapon();
-            //Needs altering for networking use
             player.CmdSetPlayerWeapon(currentWeapon);
             player.CmdChangeSpawnWeapon(this.gameObject, newWeapon);
         }
