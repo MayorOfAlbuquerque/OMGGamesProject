@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 114156095443553572}
   - component: {fileID: 114489532721417262}
   - component: {fileID: 114437340061180846}
+  - component: {fileID: 114093294234834302}
   - component: {fileID: 114767119098080364}
   - component: {fileID: 65410305026219658}
   m_Layer: 0
@@ -333,6 +334,17 @@ MonoBehaviour:
   reticleSegments: 20
   reticleGrowthSpeed: 8
   reticleSortingOrder: 32767
+--- !u!114 &114093294234834302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1897936961782674}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37806a656f9621e4f8899d6bf9f9847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114137146477993842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +359,18 @@ MonoBehaviour:
   health: 0
   onToggleShared:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114093294234834302}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
