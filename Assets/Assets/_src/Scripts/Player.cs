@@ -126,26 +126,28 @@ public class Player : NetworkBehaviour {
 
     public Weapon GetPlayerCurrentWeapon()
     {
-        return weapon;
+        return this.weapon;
     }
+
 
     [Command]
     public void CmdChangeSpawnWeapon(GameObject spawner, Weapon weapon)
     {
+        Debug.Log("INSERVER: cmdchangespawnweapon. weapon = " + weapon); // == NONE on server when called
         spawner.GetComponent<PickupController>().RpcSetSpawnWeaponModel(weapon);
     }
 
-    [Command]
-    public void CmdSetPlayerWeapon(Weapon weapon)
+    
+    public void SetPlayerWeapon(Weapon weapon)
     {
+        this.weapon = weapon;
         RpcNetworkWeaponAppearence(weapon, this.gameObject);
     }
 
     [ClientRpc]
-    public void RpcNetworkWeaponAppearence(Weapon weapon, GameObject player)
+    public void RpcNetworkWeaponAppearence(Weapon newWeapon, GameObject player)
     {
-        this.weapon = weapon;
-
+        this.weapon = newWeapon;
         if (weapon != Weapon.NONE)
         {
             Destroy(weaponModel);
