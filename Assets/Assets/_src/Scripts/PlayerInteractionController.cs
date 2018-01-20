@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 /// </summary>
 public class PlayerInteractionController : NetworkBehaviour{
 	
-	private GameObject thisGameObject;
+	private GameObject thisGameObject; //The object this script is attached to, used to access the "player".
 
 	// Use this for initialization
 	void Start () {
@@ -30,10 +30,12 @@ public class PlayerInteractionController : NetworkBehaviour{
 	{
 		if(Input.GetMouseButtonUp(0)) //LMB release
 		{
+			
             if(obj?.GetComponent<Attackable>())
             {
                 CmdAttackPlayer(obj);
             }
+            
 			else if (obj?.GetComponent<PickupController>()) {
 				CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
 			} 
@@ -60,8 +62,8 @@ public class PlayerInteractionController : NetworkBehaviour{
     public void CmdAttackPlayer(GameObject obj) 
     {
         Debug.Log("CMDATTACK");
-        obj.GetComponent<Attackable>().OnClick();
-        obj.GetComponent<InteractableObjectController>().OnClick();
+        //obj.GetComponent<Attackable>().OnClick();
+		obj.GetComponent<InteractableObjectController>().OnClick(thisGameObject.GetComponent<Player>()); //Added the attacking player as argument to Onclick here.
     }
 
     /// <summary>
