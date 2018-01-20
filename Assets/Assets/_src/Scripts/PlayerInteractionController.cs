@@ -30,7 +30,11 @@ public class PlayerInteractionController : NetworkBehaviour{
 	{
 		if(Input.GetMouseButtonUp(0)) //LMB release
 		{
-			if (obj?.GetComponent<PickupController>()) {
+            if(obj?.GetComponent<Attackable>())
+            {
+                CmdAttackPlayer(obj);
+            }
+			else if (obj?.GetComponent<PickupController>()) {
 				CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
 			} 
 			else {
@@ -52,11 +56,19 @@ public class PlayerInteractionController : NetworkBehaviour{
 			obj.GetComponent<InteractableObjectController> ().OnClick (); //Needs to run on server as players do not have authority over interactable objects
 	}
 
-	/// <summary>
-	/// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
-	/// </summary>
-	/// <param name="obj">The game object the player is trying to interact with</param> 
-	[Command]
+    [Command]
+    public void CmdAttackPlayer(GameObject obj) 
+    {
+        Debug.Log("CMDATTACK");
+        obj.GetComponent<Attackable>().OnClick();
+        obj.GetComponent<InteractableObjectController>().OnClick();
+    }
+
+    /// <summary>
+    /// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
+    /// </summary>
+    /// <param name="obj">The game object the player is trying to interact with</param> 
+    [Command]
 	public void CmdPlayerLeftClickWeapon (GameObject obj, GameObject thisPlayer)
 	{
 		obj.GetComponent<InteractableObjectController> ().OnClick (thisPlayer.GetComponent<Player>()); //Needs to run on server as players do not have authority over interactable objects

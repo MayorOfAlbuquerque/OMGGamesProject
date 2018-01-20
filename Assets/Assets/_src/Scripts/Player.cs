@@ -65,8 +65,10 @@ public class Player : NetworkBehaviour {
     public void ChangeHealth(int change) //---------------------------------------TODO
     {
         this.health = health + change;
+        Debug.Log("Health changed");
         if(this.health <= 0)
         {
+
             //remove player model so player is invisible
             this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
@@ -75,18 +77,12 @@ public class Player : NetworkBehaviour {
             //set killable script to false
         }
     }
-
-    [Command]
-    public void CmdAttackPlayer(GameObject otherPlayer)
-    {
-        RpcRemovePlayerHealth(otherPlayer);
-    }
+    
 
     [ClientRpc]
-    private void RpcRemovePlayerHealth(GameObject otherPlayer)
+    public void RpcRemovePlayerHealth()
     {
-        Player playerScript = otherPlayer.GetComponent<Player>();
-        playerScript.ChangeHealth(-100);
+        ChangeHealth(-100);
     }
 
   
