@@ -29,8 +29,15 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         if(currentWeapon != Weapon.NONE)
         {
             Weapon newWeapon = player.GetPlayerCurrentWeapon();
-            player.CmdSetPlayerWeapon(currentWeapon);
-            player.CmdChangeSpawnWeapon(this.gameObject, newWeapon);
+            
+            player.SetPlayerWeapon(currentWeapon);
+            RemoveModel();
+            if (newWeapon != Weapon.NONE)
+            {
+                AddModel(newWeapon);
+            }
+            currentWeapon = newWeapon;
+            RpcSetSpawnWeaponModel(newWeapon); 
         }
         else
         {
@@ -38,8 +45,10 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         }
     }
 
+
     public void OnGvrPointerHover(PointerEventData eventData)
     {
+        Debug.Log("Hovering over weapon");
     }
 
     [ClientRpc]
@@ -49,7 +58,8 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         RemoveModel();
         
         if(newWeapon != Weapon.NONE)
-        {   
+        {
+            Debug.Log("New model added");
             AddModel(newWeapon);
         }
 

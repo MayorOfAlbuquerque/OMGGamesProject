@@ -29,12 +29,14 @@ public class Attackable : InteractableObjectController, IGvrPointerHoverHandler
 
     public override void OnClick(object obj)
     {
-        Debug.Log("You have attacked player");
-        Player player = obj as Player;
+        Debug.Log("Player Attacked");
+        Player attacker = obj as Player;
+        Player player = this.gameObject.GetComponent<Player>();
 
-        if (player.GetPlayerCurrentWeapon() != Weapon.NONE)
+        if (attacker.GetPlayerCurrentWeapon() != Weapon.NONE)
         {
-            player.CmdAttackPlayer(this.gameObject);
+            player.ChangeHealth(100);
+            player.RpcRemovePlayerHealth();
         }
         else
         {
