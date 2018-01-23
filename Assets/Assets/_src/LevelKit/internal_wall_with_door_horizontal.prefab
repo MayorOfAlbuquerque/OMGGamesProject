@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4577241661246648}
   - component: {fileID: 65416508373148792}
+  - component: {fileID: 65405207966058310}
   m_Layer: 0
   m_Name: internal_wall_tile_240x250_with_door_hole
   m_TagString: Untagged
@@ -69,6 +70,7 @@ GameObject:
   - component: {fileID: 4795943062681434}
   - component: {fileID: 33604504796424486}
   - component: {fileID: 23958690477111218}
+  - component: {fileID: 65809055195783756}
   m_Layer: 0
   m_Name: internal_wall_tile_door_80x250
   m_TagString: Untagged
@@ -113,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028546693299340}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.031279, y: -28.729439, z: 5.754136}
+  m_LocalPosition: {x: 1.0451093, y: 8.152467e-17, z: 0.35854125}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4577241661246648}
@@ -285,6 +287,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513579929523818}
   m_Mesh: {fileID: 4300000, guid: ecbb3b4e86fe1482e831ed2a4dea0b58, type: 3}
+--- !u!65 &65405207966058310
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270251999190844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 35.71259, y: 67.731514, z: 47.787613}
+  m_Center: {x: 17.914118, y: 33.36576, z: 9.058015}
 --- !u!65 &65416508373148792
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -297,3 +311,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65809055195783756
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513579929523818}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 159.549, y: 250.853, z: 20}
+  m_Center: {x: 79.7745, y: 125.4265, z: 2.500015}
