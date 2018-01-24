@@ -1,33 +1,36 @@
 fileFormatVersion: 2
-guid: 8391cd960e8fe447780ea8120e048f63
-timeCreated: 1516817331
+guid: c52f897aa8e00493f9d379207d7f285f
+timeCreated: 1516825530
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: door
-    100004: door_panel
-    100006: door_window
-    100008: wall
+    100002: door_panel
+    100004: door_window
+    100006: pasted__door_panel
+    100008: pasted__door_window
     400000: //RootNode
-    400002: door
-    400004: door_panel
-    400006: door_window
-    400008: wall
+    400002: door_panel
+    400004: door_window
+    400006: pasted__door_panel
+    400008: pasted__door_window
     2300000: door_panel
     2300002: door_window
-    2300004: wall
+    2300004: pasted__door_panel
+    2300006: pasted__door_window
     3300000: door_panel
     3300002: door_window
-    3300004: wall
+    3300004: pasted__door_panel
+    3300006: pasted__door_window
     4300000: door_panel
     4300002: door_window
-    4300004: wall
-    7400000: smallRearDoorOpening
-    7400002: smallRearDoorClosing
+    4300004: pasted__door_panel
+    4300006: pasted__door_window
+    7400000: smallRearDoorOpened
+    7400002: smallRearDoorOpening
     7400004: smallRearDoorClosed
-    7400006: smallRearDoorOpened
+    7400006: smallRearDoorClosing
     9500000: //RootNode
   externalObjects:
   - first:
@@ -62,6 +65,34 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
+      name: smallRearDoorOpened
+      takeName: Take 001
+      firstFrame: 18
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: smallRearDoorOpening
       takeName: Take 001
       firstFrame: 0
@@ -90,9 +121,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: smallRearDoorClosing
+      name: smallRearDoorClosed
       takeName: Take 001
-      firstFrame: 19
+      firstFrame: 35
       lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
@@ -118,38 +149,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: smallRearDoorClosed
+      name: smallRearDoorClosing
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: smallRearDoorOpened
-      takeName: Take 001
-      firstFrame: 18
-      lastFrame: 19
+      firstFrame: 19
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
