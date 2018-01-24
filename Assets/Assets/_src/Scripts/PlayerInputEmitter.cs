@@ -16,6 +16,8 @@ public class PlayerInputEmitter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         RaycastResult result = GvrPointerInputModule.CurrentRaycastResult; // Get the Raycast each frame
+		Debug.Log(result);
+		Debug.Log(result.gameObject);
 		if (result.gameObject?.GetComponent<InteractableObjectController>()) // Can we interact with the object?
 		{
             Debug.Log("INTERACTABLE OBJECT");
