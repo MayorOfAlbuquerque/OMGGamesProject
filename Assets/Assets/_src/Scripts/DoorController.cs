@@ -34,7 +34,6 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
         }
 	}
 
-		
     public void Open() {
 		Debug.Log ("In the open function");
         anim.Play("Opening", -1);
