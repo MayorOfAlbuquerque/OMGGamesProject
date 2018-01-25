@@ -23,6 +23,9 @@ GameObject:
   - component: {fileID: 23096656893319282}
   - component: {fileID: 95645771022195104}
   - component: {fileID: 65935527638570988}
+  - component: {fileID: 114803043511601320}
+  - component: {fileID: 114003832483183342}
+  - component: {fileID: 114206798461671030}
   m_Layer: 0
   m_Name: bar_door_animation
   m_TagString: Untagged
@@ -36,9 +39,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1133555137558316}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.656, y: 0.96602106, z: 19.335}
-  m_LocalScale: {x: 49.95688, y: 6.690729, z: 66.85147}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.2861, y: 0.9777, z: 8.1957}
+  m_LocalScale: {x: 49.95697, y: 6.690729, z: 66.85156}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,3 +116,67 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114003832483183342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133555137558316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51eb6a042d0a04523a699f2a2e3f000a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openInitially: 0
+  anim: {fileID: 95645771022195104}
+--- !u!114 &114206798461671030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133555137558316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 73
+    i1: 239
+    i2: 130
+    i3: 118
+    i4: 91
+    i5: 222
+    i6: 244
+    i7: 52
+    i8: 185
+    i9: 75
+    i10: 169
+    i11: 161
+    i12: 108
+    i13: 7
+    i14: 8
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114803043511601320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133555137558316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 95645771022195104}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
