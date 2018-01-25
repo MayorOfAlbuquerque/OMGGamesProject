@@ -61,7 +61,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            RotateView();
+            //RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
@@ -97,7 +97,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
-            Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+            //Vector3 desiredMove = transform.forward*m_Input.y + transform.right*m_Input.x;
+			Vector3 desiredMove = this.transform.GetChild (0).transform.forward*m_Input.y + this.transform.GetChild (0).transform.right*m_Input.x;
 
             // get a normal for the surface that is being touched to move along it
             RaycastHit hitInfo;
