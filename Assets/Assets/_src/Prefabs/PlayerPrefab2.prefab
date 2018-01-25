@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 114093294234834302}
   - component: {fileID: 114767119098080364}
   - component: {fileID: 65410305026219658}
-  - component: {fileID: 54775883242520456}
+  - component: {fileID: 54995887197505830}
   m_Layer: 0
   m_Name: PlayerPrefab2
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897936961782674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.15, y: 1.54, z: 0.42075682}
+  m_LocalPosition: {x: -6.6, y: 1.6, z: 0.42075682}
   m_LocalScale: {x: 0.6784973, y: 0.67849714, z: 0.67849714}
   m_Children:
   - {fileID: 4068345021694466}
@@ -169,7 +169,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119768170380240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007, y: -0.13, z: 0.04}
+  m_LocalPosition: {x: -0.007, y: -0.39, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207444789881564}
@@ -286,17 +286,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1711699397509972}
   m_Mesh: {fileID: 4300000, guid: e168957c694ba0a4dbf9cd285f605964, type: 3}
---- !u!54 &54775883242520456
+--- !u!54 &54995887197505830
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897936961782674}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 1000
+  m_Drag: 1000
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112

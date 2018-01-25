@@ -18,7 +18,7 @@ public class SinglePlayerMovement : MonoBehaviour {
         float v = Input.GetAxis("Vertical");
 
         Vector3 newPos;
-
+        
         if (h != 0 || v != 0)
         {
             Vector3 forward = Camera.main.transform.forward;
@@ -26,7 +26,7 @@ public class SinglePlayerMovement : MonoBehaviour {
             newPos = calculate(transform.position, h, v, right, forward);
         }
         else newPos = transform.position;
-
+        
         transform.position = newPos;
     }
 
@@ -34,7 +34,7 @@ public class SinglePlayerMovement : MonoBehaviour {
     {
         Vector3 newPos = position + (right * h * speed * Time.deltaTime);
         newPos = newPos + (forward * v * speed * Time.deltaTime);
-        newPos.y = 1f;
+        newPos.y = 1.6f;
         return newPos;
     }
 }
