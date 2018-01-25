@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 256
   m_ReflectionBounces: 2
-  m_ReflectionIntensity: 0.097
+  m_ReflectionIntensity: 0.16
   m_CustomReflection: {fileID: 8900000, guid: 656a59a5ff93c46498416d97e5c16b66, type: 3}
   m_Sun: {fileID: 416048976}
-  m_IndirectSpecularColor: {r: 0.17175078, g: 0.15759751, b: 0.16412133, a: 0.097}
+  m_IndirectSpecularColor: {r: 0.22346446, g: 0.20582616, b: 0.21526912, a: 0.16}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -56,20 +56,20 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 9
     m_Resolution: 2
-    m_BakeResolution: 20
-    m_TextureWidth: 512
+    m_BakeResolution: 128
+    m_TextureWidth: 2048
     m_TextureHeight: 1024
     m_AO: 1
     m_AOMaxDistance: 0.4
-    m_CompAOExponent: 0.67
+    m_CompAOExponent: 0.7
     m_CompAOExponentDirect: 0.16
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 0
-    m_TextureCompression: 0
+    m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 128
+    m_FinalGatherRayCount: 2000
     m_ReflectionCompression: 2
     m_MixedBakeMode: 0
     m_BakeBackend: 0
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_LightingDataAsset: {fileID: 112004262, guid: f64e732799baa439e85a8ee71adb53c3,
+  m_LightingDataAsset: {fileID: 112004440, guid: f64e732799baa439e85a8ee71adb53c3,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -1119,18 +1119,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4948544810940620, guid: c8bf9714d98ff47348333d56f46aacb8, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 4948544810940620, guid: c8bf9714d98ff47348333d56f46aacb8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.268505
-      objectReference: {fileID: 0}
-    - target: {fileID: 4948544810940620, guid: c8bf9714d98ff47348333d56f46aacb8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.010388488
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8bf9714d98ff47348333d56f46aacb8, type: 2}
   m_IsPrefabParent: 0
@@ -2156,21 +2144,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4633819455632958, guid: dc0dc89b8e55a4bc992b37ddaa25b19a, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 1150751510793318, guid: dc0dc89b8e55a4bc992b37ddaa25b19a, type: 2}
       propertyPath: m_Name
       value: furniture_curtain_half (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633819455632958, guid: dc0dc89b8e55a4bc992b37ddaa25b19a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.268505
-      objectReference: {fileID: 0}
-    - target: {fileID: 4633819455632958, guid: dc0dc89b8e55a4bc992b37ddaa25b19a, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.010388488
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc0dc89b8e55a4bc992b37ddaa25b19a, type: 2}
@@ -4633,10 +4609,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4977574240702236, guid: 0db661d20ef0648f2a37b67cff83b1ea, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1822667067092820, guid: 0db661d20ef0648f2a37b67cff83b1ea, type: 2}
       propertyPath: m_Name
       value: cp_internal_wall_with_door_240x250 (1)
@@ -4676,8 +4648,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 3
-  m_SpotAngle: 65
+  m_Range: 4
+  m_SpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -8985,13 +8957,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520525013}
-  m_LocalRotation: {x: -0, y: 0.08274728, z: -0, w: 0.9965706}
-  m_LocalPosition: {x: -22.63, y: 1.62, z: 3.82}
+  m_LocalRotation: {x: -0, y: -0.73211956, z: -0, w: 0.6811762}
+  m_LocalPosition: {x: -21.128, y: 1.62, z: 9.259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 9.493, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -94.129005, z: 0}
 --- !u!1001 &526654919
 Prefab:
   m_ObjectHideFlags: 0
@@ -18976,7 +18948,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -20620,21 +20592,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
     - target: {fileID: 1130246723147052, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
       propertyPath: m_Name
       value: furniture_curtain_rolled_up (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.268505
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.010388488
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
@@ -22497,7 +22457,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4515271055326056, guid: f34a47a0177a041948a54787911a073d, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4515271055326056, guid: f34a47a0177a041948a54787911a073d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -30720,10 +30680,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.9393923, a: 1}
   m_Intensity: 1
-  m_Range: 3
-  m_SpotAngle: 65
+  m_Range: 4
+  m_SpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -32288,7 +32248,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4703689376317824, guid: beb0880f82d5d4d3f9de466b402eea47, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -33609,10 +33569,6 @@ Prefab:
     - target: {fileID: 4977574240702236, guid: 0db661d20ef0648f2a37b67cff83b1ea, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4977574240702236, guid: 0db661d20ef0648f2a37b67cff83b1ea, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0db661d20ef0648f2a37b67cff83b1ea, type: 2}
