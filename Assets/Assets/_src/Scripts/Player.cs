@@ -24,7 +24,6 @@ public class Player : NetworkBehaviour {
     [SerializeField] ToggleEvent onToggleRemote;
     [SerializeField] ToggleEvent onToggleLocal;
     GameObject mainCamera;
-
     public float speed;
 
     private void Start()

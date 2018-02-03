@@ -18,7 +18,6 @@ public class PlayerInputEmitter : MonoBehaviour {
         RaycastResult result = GvrPointerInputModule.CurrentRaycastResult; // Get the Raycast each frame
 		if (result.gameObject?.GetComponent<InteractableObjectController>()) // Can we interact with the object?
 		{
-            Debug.Log("INTERACTABLE OBJECT");
 			GameObject obj = result.gameObject as GameObject; //Get the object that the raycast hit
 			playerInteractionController.HandleAction (obj); // If we can, handle the request (This is what the raycasting player does)
 		}

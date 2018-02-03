@@ -34,20 +34,14 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
         }
 	}
 
-	public void AnimateDoor()
-	{
-		if(IsOpen)
-			anim.Play("Opening", -1);
-		else
-			anim.Play("Closing", -1);
-	}
-		
     public void Open() {
+		Debug.Log ("In the open function");
         anim.Play("Opening", -1);
         isOpen = true;
     }
 
 	public void Close() {
+		Debug.Log ("In the close function");
 		anim.Play("Closing", -1);
 		isOpen = false;
 	}
