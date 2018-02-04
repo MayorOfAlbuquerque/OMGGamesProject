@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa799777d9d34dc98932e86f22ef076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deviceName: cardboard
 --- !u!4 &1133948144
 Transform:
   m_ObjectHideFlags: 0
@@ -1156,14 +1157,13 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 0
-  m_PlayerPrefab: {fileID: 1897936961782674, guid: 89f2b5b34ebf88949b35d6630ce63ad1,
-    type: 2}
+  m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
   m_OfflineScene: introScene
-  m_OnlineScene: GameSceneInteractiveDoor
+  m_OnlineScene: GameSceneTrainRemake
   m_SpawnPrefabs:
-  - {fileID: 100000, guid: 2b2103bde27e6b44a82bb69671412321, type: 2}
+  - {fileID: 0}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
