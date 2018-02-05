@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 114076750736523788}
   - component: {fileID: 114537373850870736}
   - component: {fileID: 114603255753335854}
-  - component: {fileID: 114257850378717878}
   m_Layer: 0
   m_Name: FirstPersonPlayerPrefab
   m_TagString: Player
@@ -472,17 +471,6 @@ MonoBehaviour:
     i15: 209
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114257850378717878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377887965633902}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551fe5d6b65751c438d317b3a6ffdc88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114306010181586308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,7 +707,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114257850378717878}
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
