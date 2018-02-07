@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour {
     public GameObject PickCharacterPanel;
     public Button pickCharacterOkButton;
 
+    public GameSettings Settings;
+
     public void ShowHomePanel() {
         HomePanel.SetActive(true);
         SettingsPanel.SetActive(false);
@@ -40,20 +42,19 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         ShowHomePanel();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
+    public void handleCharacterSelection(int id) {
+        Debug.Log("saving character choice.");
+        Settings.CharacterId = id;
+    }
     public void FillSettingsFom()
     {
-        IpAddress.text = GameSettings.Instance.IpAddress;
+        IpAddress.text = Settings.IpAddress;
     }
     public void SaveSettings() 
     {
         Debug.Log(IpAddress.textComponent.text);
-        GameSettings.Instance.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        Settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
         ShowHomePanel();
     }
 

@@ -13,7 +13,7 @@ public class JoinAsHost : MonoBehaviour
         }
     }
 
-    public static void Host() {
+    public void Host() {
          Debug.Log("Joined as dedicated server");
          NetworkManager.singleton.StartHost(); //Starts as host, NetworkManger loads online scene
     }
