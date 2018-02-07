@@ -28,7 +28,7 @@ public class PlayerInteractionController : NetworkBehaviour{
 	/// <param name="obj">The game object the player is trying to interact with</param> 
 	public void HandleAction (GameObject obj)
 	{
-		if(Input.GetMouseButtonUp(0)) //LMB release
+			if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
 		{
 			
             if(obj?.GetComponent<Attackable>())
