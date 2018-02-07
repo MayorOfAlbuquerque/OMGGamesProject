@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace VoiceChat.Demo.HLAPI
-{
-    public class OMGNetManager : NetworkManager
+public class OMGNetManager : NetworkManager
     {
         
     }
-}
+
