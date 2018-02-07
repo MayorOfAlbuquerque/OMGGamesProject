@@ -9,8 +9,12 @@ public class JoinAsHost : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Joined as dedicated server");
-            NetworkManager.singleton.StartHost(); //Starts as host, NetworkManger loads online scene
+            Host();
         }
+    }
+
+    public static void Host() {
+         Debug.Log("Joined as dedicated server");
+         NetworkManager.singleton.StartHost(); //Starts as host, NetworkManger loads online scene
     }
 }
