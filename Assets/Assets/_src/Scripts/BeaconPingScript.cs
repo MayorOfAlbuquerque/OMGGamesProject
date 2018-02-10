@@ -5,13 +5,14 @@ using UnityEngine.UI;
 public class BeaconPingScript : MonoBehaviour
 {
     AndroidJavaClass jc;
-    string javaMessage = "";
+    string javaMessage = "EMPTY";
     [SerializeField] Text textBox;
 
     void Start()
     {
         // Acces the android java receiver we made
-        jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReciever");
+		jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReceiver");
+		Debug.LogError (jc);
         // We call our java class function to create our MyReceiver java object
         jc.CallStatic("createInstance");
     }
