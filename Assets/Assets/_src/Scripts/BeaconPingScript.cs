@@ -20,7 +20,8 @@ public class BeaconPingScript : MonoBehaviour
     void Update()
     {
         // We get the text property of our receiver
-        javaMessage = jc.GetStatic<string>("intentMessage");
-        textBox.text = javaMessage;
+        //javaMessage = jc.GetStatic<string>("intentMessage");
+		javaMessage =jc.GetStatic<int>("called").ToString();
+		textBox.text = javaMessage;
     }
 }
