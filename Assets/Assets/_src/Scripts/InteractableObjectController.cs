@@ -11,8 +11,7 @@ public abstract class InteractableObjectController : NetworkBehaviour, IControll
     public abstract void OnClick();
     public abstract void OnKeyDown(KeyCode code);
     public abstract void OnKeyUp(KeyCode code);
-	public virtual void OnClick (object obj)
-	{
-		
-	}
+    public void OnHoverEnter() { }
+    public void OnHoverExit() { }
+    public virtual void OnClick(object obj) { }
 }
