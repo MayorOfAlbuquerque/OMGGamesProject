@@ -11,7 +11,6 @@ public interface IDoor
     void Close();
     void Toggle();
     bool IsOpen { get; }
-
 }
 
 /// <summary>
@@ -94,14 +93,14 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 
     public override void OnKeyDown(KeyCode code) {}
     public override void OnKeyUp(KeyCode code) {}
-    #endregion
 
-    public bool IsOpen 
-	{
-		get
-		{
-			return isOpen;
-        }   
+
+    public bool IsOpen
+    {
+        get
+        {
+            return isOpen;
+        }
     }
 
     private void OnMouseEnter()
@@ -125,5 +124,5 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
     {
         
     }
-
+#endregion
 }
