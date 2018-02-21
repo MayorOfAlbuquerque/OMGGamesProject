@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class AnimationTrigger : MonoBehaviour {
+public class AnimationTrigger : NetworkBehaviour {
     public PlayableDirector director;
 
     private void OnTriggerEnter(Collider other)
@@ -12,7 +13,7 @@ public class AnimationTrigger : MonoBehaviour {
         Debug.Log("playing animation");
         Debug.Log(other.gameObject.tag);
         if(other.gameObject.tag == "Player") {
-            PlayAnimation();
+            other.gameObject.GetComponent<Player>().OpenDoor(this.gameObject);
         }
     }
 
@@ -23,4 +24,6 @@ public class AnimationTrigger : MonoBehaviour {
         }
         director.Play();
     }
+
+    
 }
