@@ -46,6 +46,8 @@ public class UIManager : MonoBehaviour {
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice.");
         Settings.CharacterId = id;
+        PickCharacterPanel
+                  .GetComponent<CharacterPickerController>()?.UpdateItems(id);
     }
     public void FillSettingsFom()
     {
