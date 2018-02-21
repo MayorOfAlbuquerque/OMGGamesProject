@@ -30,9 +30,9 @@ public class CharacterPickerController : MonoBehaviour {
         }
     }
     private void DestroyModels() {
-        if(models!=null) {
-            for (int i = 0; i < models.Length; i++)
-            {
+        for (int i = 0; i < models.Length; i++)
+        {
+            if(models[i] != null){
                 Destroy(models[i]);
                 models[i] = null;
             }
@@ -68,8 +68,13 @@ public class CharacterPickerController : MonoBehaviour {
 
     private void OnDisable()
     {
-        Debug.Log("picker disabled");
-        DestroyModels();
-        CharacterModelView?.SetActive(false);
+        try
+        {
+            Debug.Log("picker disabled");
+            DestroyModels();
+            CharacterModelView?.SetActive(false);
+        }catch(MissingReferenceException e) {
+            
+        }
     }
 }
