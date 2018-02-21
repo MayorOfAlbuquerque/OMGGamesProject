@@ -24,7 +24,6 @@ public class Player : NetworkBehaviour {
     [SerializeField] ToggleEvent onToggleRemote;
     [SerializeField] ToggleEvent onToggleLocal;
     GameObject mainCamera;
-
     public float speed;
 
     private void Start()
@@ -151,4 +150,24 @@ public class Player : NetworkBehaviour {
 		weaponModel = Instantiate (Resources.Load (weapon.ToString (), typeof(GameObject))) as GameObject;
         weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
     }
+
+    public void OpenDoor(GameObject thisDoor)
+    {
+        CmdServerOpenDoor(thisDoor);
+    }
+
+    /* This is to open doors: */
+    [Command]
+    public void CmdServerOpenDoor(GameObject thisDoor)
+    {
+        RpcClientOpenDoor(thisDoor);
+
+    }
+
+    [ClientRpc]
+    public void RpcClientOpenDoor(GameObject thisDoor)
+    {
+        thisDoor.gameObject.GetComponent<AnimationTrigger>().PlayAnimation();
+    }
+
 }

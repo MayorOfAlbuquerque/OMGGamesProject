@@ -11,7 +11,6 @@ public interface IDoor
     void Close();
     void Toggle();
     bool IsOpen { get; }
-
 }
 
 /// <summary>
@@ -34,20 +33,14 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
         }
 	}
 
-	public void AnimateDoor()
-	{
-		if(IsOpen)
-			anim.Play("Opening", -1);
-		else
-			anim.Play("Closing", -1);
-	}
-		
     public void Open() {
+		Debug.Log ("In the open function");
         anim.Play("Opening", -1);
         isOpen = true;
     }
 
 	public void Close() {
+		Debug.Log ("In the close function");
 		anim.Play("Closing", -1);
 		isOpen = false;
 	}
@@ -100,14 +93,14 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
 
     public override void OnKeyDown(KeyCode code) {}
     public override void OnKeyUp(KeyCode code) {}
-    #endregion
 
-    public bool IsOpen 
-	{
-		get
-		{
-			return isOpen;
-        }   
+
+    public bool IsOpen
+    {
+        get
+        {
+            return isOpen;
+        }
     }
 
     private void OnMouseEnter()
@@ -131,5 +124,5 @@ public class DoorController : InteractableObjectController, IDoor, IGvrPointerHo
     {
         
     }
-
+#endregion
 }
