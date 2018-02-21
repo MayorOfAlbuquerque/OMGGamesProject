@@ -28,20 +28,22 @@ public class PlayerInteractionController : NetworkBehaviour{
 	/// <param name="obj">The game object the player is trying to interact with</param> 
 	public void HandleAction (GameObject obj)
 	{
-			if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
-		{
+		if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
+		   {
 			
             if(obj?.GetComponent<Attackable>())
             {
                 CmdAttackPlayer(obj);
             }
             
-			else if (obj?.GetComponent<PickupController>()) {
-				CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
-			} 
-			else {
-				CmdPlayerLeftClick (obj);
-			}
+		    else if (obj?.GetComponent<PickupController>()) {
+			    CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
+                Debug.Log("Left clicked Weapon \n");
+            } 
+		    else {
+			    CmdPlayerLeftClick (obj);
+                Debug.Log("Left clicked Object! \n");
+		    }
 			
 		} 
 		//Extend this as necessary
