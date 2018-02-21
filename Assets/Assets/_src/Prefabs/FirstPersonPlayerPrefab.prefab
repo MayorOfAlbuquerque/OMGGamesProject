@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 114076750736523788}
   - component: {fileID: 114537373850870736}
   - component: {fileID: 114603255753335854}
+  - component: {fileID: 114809010436703326}
   m_Layer: 0
   m_Name: FirstPersonPlayerPrefab
   m_TagString: Player
@@ -673,6 +674,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 15
   m_InterpolateMovement: 1
+--- !u!114 &114809010436703326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377887965633902}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a086fd8b1ba79434889d62a734ff30bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Beacon1: {fileID: 1439328191824346, guid: 000a937c127135f4b8c228b2689dc1e8, type: 2}
+  Beacon2: {fileID: 1950565705648830, guid: 209386f4a7a18de468d2e32d87f76d3c, type: 2}
 --- !u!114 &114905580909726224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -765,6 +779,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 143947460775265718}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114809010436703326}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
