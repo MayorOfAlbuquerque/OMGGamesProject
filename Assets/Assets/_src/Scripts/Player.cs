@@ -31,8 +31,25 @@ public class Player : NetworkBehaviour {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
             this.weapon = Weapon.NONE;
+            HideModelIfLocal();
+        }
+    private void HideModelIfLocal()
+    {
+        if(!isLocalPlayer) 
+        {
+            return;
+        }
+        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+        foreach(var meshRenderer in renderers) 
+        {
+            if (!meshRenderer.gameObject.name.Equals("GvrReticlePointer"))
+            {
+                meshRenderer.receiveShadows = false;
+                meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            }
         }
 
+    }
         private void EnablePlayer()
         {
             onToggleShared.Invoke(true);
