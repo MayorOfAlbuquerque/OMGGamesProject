@@ -4,42 +4,38 @@ using UnityEngine;
 
 public class BeaconMoveScript : MonoBehaviour {
 	AndroidJavaClass jc;
-	int javaMessage;
+	string javaMessage;
 	[SerializeField]
 	public GameObject Beacon1;
 	[SerializeField]
 	public GameObject Beacon2;
-	private int lastReceived = 1;
-	private Vector3 B1;
-	private Vector3 B2;
+	private string lastReceived = "1";
 	public GameObject cube;
-	[SerializeField]
-	public GameObject player;
 
 
 	// Use this for initialization
 	void Start () {
-		cube = GameObject.FindGameObjectWithTag ("Test");
+		cube = GameObject.FindWithTag("Test");
+
 		// Acces the android java receiver we made
 		jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReceiver");
-		//Debug.LogError (jc);
+		Debug.LogError (jc);
 		// We call our java class function to create our MyReceiver java object
 		jc.CallStatic("createInstance");
-		B1 = Beacon1.transform.position;
-		B2 = Beacon1.transform.position;
 		
 	}
 	// Update is called once per frame
 	void Update () {
-		int.TryParse(jc.GetStatic<string> ("intentMessage"), out javaMessage);
-		if ((javaMessage == 1) && (lastReceived != 1)) {
+		javaMessage = jc.GetStatic<string> ("intentMessage");
+		if ((javaMessage == "1") && (lastReceived != "1")) {
 			cube.SetActive (true);
-			gameObject.transform.position = new Vector3 (0, 0, 0);
-			lastReceived = 1;
-		} else if ((javaMessage == 2) && (lastReceived!=2)) {
+			this.gameObject.transform.position = Beacon1.transform.position;
+			lastReceived = "1";
+		} else if ((javaMessage == "2") && (lastReceived!="2")) {
 			cube.SetActive (false);
-			gameObject.transform.position = new Vector3 (100, 100, 100);
-			lastReceived = 2;
+//			Debug.Log ("Should move to second carraige");
+			this.gameObject.transform.position = Beacon2.transform.position;
+			lastReceived = "2";
 		}
 
 		

@@ -108,6 +108,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
+			Debug.Log ("Desired Move " + desiredMove);
 
 
             if (m_CharacterController.isGrounded)
