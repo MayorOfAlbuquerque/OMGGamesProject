@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
 
     public GameObject SettingsPanel;
     public InputField IpAddress;
+    public Dropdown IpAddressDropDown;
     public Button SettingsOkButton;
 
     public GameObject PickCharacterPanel;
@@ -42,12 +43,18 @@ public class UIManager : MonoBehaviour {
 	void Start () {
         ShowHomePanel();
 	}
+    public void handleDropdownSelection(int optionId) {
+        if(IpAddressDropDown == null) {
+            return;
+        }
+
+        Dropdown.OptionData data = IpAddressDropDown.options[optionId];
+        IpAddress.text = data.text;
+    }
 
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice:" + id);
         Settings.CharacterId = id;
-        PickCharacterPanel
-                  .GetComponent<CharacterPickerController>()?.UpdateItems(id);
     }
     public void FillSettingsFom()
     {
