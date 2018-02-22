@@ -27,6 +27,7 @@ public class CharacterPickerController : MonoBehaviour {
             models[i].transform.position = new Vector3(i * 4.0f - totalWidth * 0.5f, -1.5f, 2.0f);
             var item = models[i].GetComponent<CharacterSelectionItem>();
             item?.SetCharacter(chars[i], chars[i].Id == Settings.CharacterId);
+            item.characterSelected.AddListener(UpdateItems);
         }
     }
     private void DestroyModels() {

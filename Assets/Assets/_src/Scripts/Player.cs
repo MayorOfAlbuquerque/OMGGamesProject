@@ -48,7 +48,6 @@ public class Player : NetworkBehaviour {
                 meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
             }
         }
-
     }
         private void EnablePlayer()
         {

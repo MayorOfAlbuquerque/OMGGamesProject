@@ -13,6 +13,11 @@ public class CharacterSelectionItem : MonoBehaviour {
     public CharacterSelectEvent characterSelected;
     private LayerMask uiLayerMask = 5;
     private GameObject characterModel = null;
+
+    void Start()
+    {
+        SetupEvent();    
+    }
     void SetupEvent()
     {
         if (characterSelected == null)
