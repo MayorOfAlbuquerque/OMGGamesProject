@@ -56,7 +56,7 @@ public class CharacterSelectionItem : MonoBehaviour {
         characterSelected.Invoke(characterId);
     }
 
-    void Update()
+  /*  void Update()
     {
         
 #if UNITY_ANDROID || UNITY_IOS
@@ -71,7 +71,7 @@ public class CharacterSelectionItem : MonoBehaviour {
                 NotifyCharacterSelected();
             }
         }
-    }
+    }*/
 
     void OnMouseDown()
     {
