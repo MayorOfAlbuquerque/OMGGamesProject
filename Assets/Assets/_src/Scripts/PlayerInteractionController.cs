@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
 
@@ -16,17 +17,12 @@ public class PlayerInteractionController : NetworkBehaviour{
 	void Start () {
 		thisGameObject = this.gameObject;
 	}
-		
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	/// <summary>
 	/// Method that handles player interaction with an interactable gameobject
 	/// </summary>
 	/// <param name="obj">The game object the player is trying to interact with</param> 
-	public void HandleAction (GameObject obj)
+    public void HandleOnClickAction (GameObject obj, ref RaycastResult result)
 	{
 		if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
 		   {
@@ -45,19 +41,56 @@ public class PlayerInteractionController : NetworkBehaviour{
                 Debug.Log("Left clicked Object! \n");
 		    }
 			
-		} 
+        }
 		//Extend this as necessary
 	}
 
+    public void HandleOnHoverEnterAction(GameObject obj, ref RaycastResult result) {
+        InteractableObjectController controller = obj.GetComponent<InteractableObjectController>();
+        if (controller == null)
+        {
+            return;
+        }
+        string helpText = controller.HelpText ?? "";
 
-	/// <summary>
-	/// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
-	/// </summary>
-	/// <param name="obj">The game object the player is trying to interact with</param> 
-	[Command]
-	public void CmdPlayerLeftClick (GameObject obj) //Cant have overloaded commands, so need to use optional arguments instead
-	{
-			obj.GetComponent<InteractableObjectController> ().OnClick (); //Needs to run on server as players do not have authority over interactable objects
+        ExecuteEvents.Execute<IHelpTextDisplay>(
+            thisGameObject,
+            null,
+            (x, y) =>
+            {
+                x.Show(helpText);
+            });
+        controller.OnHoverEnter();
+    }
+
+    public void HandleOnHoverExitAction(GameObject obj, ref RaycastResult result) {
+        InteractableObjectController controller = obj.GetComponent<InteractableObjectController>();
+        if (controller == null)
+        {
+            return;
+        }
+        ExecuteEvents.Execute<IHelpTextDisplay>(
+            thisGameObject,
+            null,
+            (x, y) =>
+            {
+                x.Hide();
+            });
+        controller.OnHoverExit();
+    }
+    /// <summary>
+    /// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
+    /// </summary>
+    /// <param name="obj">The game object the player is trying to interact with</param> 
+    [Command]
+    public void CmdPlayerLeftClick(GameObject obj) //Cant have overloaded commands, so need to use optional arguments instead
+    {
+        InteractableObjectController controller = obj.GetComponent<InteractableObjectController>();
+        if (controller == null)
+        {
+            return;
+        }
+        controller.OnClick (); //Needs to run on server as players do not have authority over interactable objects
 	}
 
     [Command]
@@ -88,5 +121,4 @@ public class PlayerInteractionController : NetworkBehaviour{
 	{
 
 	}
-
 }
