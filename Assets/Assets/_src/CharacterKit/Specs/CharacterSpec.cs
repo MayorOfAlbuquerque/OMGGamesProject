@@ -13,5 +13,6 @@ public class CharacterSpec : ScriptableObject
     public string FullName = "Captain Hook";
     public int age = 35;
     public string Bio = "Attack!!!";
-    public GameObject CharacterPrefab = null;
+    public GameObject CharacterModelPrefab = null;
+    public GameObject PlayablePrefab = null;
 }
