@@ -29,12 +29,15 @@ public class BeaconMoveScript : MonoBehaviour {
 		javaMessage = jc.GetStatic<string> ("intentMessage");
 		if ((javaMessage == "1") && (lastReceived != "1")) {
 			cube.SetActive (true);
+			this.gameObject.GetComponent<CharacterController> ().enabled = false;
 			this.gameObject.transform.position = Beacon1.transform.position;
+			this.gameObject.GetComponent<CharacterController> ().enabled = true;
 			lastReceived = "1";
 		} else if ((javaMessage == "2") && (lastReceived!="2")) {
 			cube.SetActive (false);
-//			Debug.Log ("Should move to second carraige");
+			this.gameObject.GetComponent<CharacterController> ().enabled = false;
 			this.gameObject.transform.position = Beacon2.transform.position;
+			this.gameObject.GetComponent<CharacterController> ().enabled = true;
 			lastReceived = "2";
 		}
 
