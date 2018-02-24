@@ -6,8 +6,11 @@ public class MoveTrigger : MonoBehaviour {
 	[SerializeField] GameObject Beacon2;
 	
 		void OnTriggerEnter(Collider other){
-			Vector3 moveVector = Beacon2.transform.position - other.gameObject.transform.position;
-			other.gameObject.GetComponent<CharacterController> ().Move (moveVector);
+		//We know that other is the character controller.
+		Debug.LogError(other);
+		other.enabled = false;
+		other.gameObject.transform.position = Beacon2.transform.position;
+		other.enabled = true;
 			Debug.Log ("Object is within the collider");
 		}
 
