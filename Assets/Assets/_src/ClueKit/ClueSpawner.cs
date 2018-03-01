@@ -21,6 +21,7 @@ public class ClueSpawner : MonoBehaviour {
     public void SpawnClues(Scene scene) {
         GameObject[] rootObjects = scene.GetRootGameObjects();
 
+        //loop through all root objects in scene to find placeholders
         CluePlaceholder[] placeholders;
         foreach(GameObject obj in rootObjects) {
             placeholders = obj.GetComponentsInChildren<CluePlaceholder>();
@@ -29,6 +30,7 @@ public class ClueSpawner : MonoBehaviour {
         }
     }
 
+    //replace placeholder with real clue
     private void SpawnClueInScene(CluePlaceholder placeholder) {
         if(placeholder != null && placeholder.Clue && placeholder.Clue.ModelPrefab != null)
         {
