@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 320410180420256292}
   - component: {fileID: 95540173129645008}
   - component: {fileID: 114915722498406736}
+  - component: {fileID: 114930716522060426}
+  - component: {fileID: 114584184445294434}
   m_Layer: 0
   m_Name: cupboard_door
   m_TagString: Untagged
@@ -684,7 +686,9 @@ GameObject:
   - component: {fileID: 65040437335862536}
   - component: {fileID: 320688786878668870}
   - component: {fileID: 95279564915229978}
-  - component: {fileID: 114340144360497454}
+  - component: {fileID: 114421541383086236}
+  - component: {fileID: 114733761133052986}
+  - component: {fileID: 114290777071652680}
   m_Layer: 0
   m_Name: bar_door
   m_TagString: Untagged
@@ -4009,7 +4013,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114340144360497454
+--- !u!114 &114290777071652680
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -4024,21 +4028,86 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 320688786878668870}
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &114421541383086236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730936977747634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 163
+    i1: 158
+    i2: 64
+    i3: 253
+    i4: 200
+    i5: 57
+    i6: 84
+    i7: 169
+    i8: 25
+    i9: 169
+    i10: 21
+    i11: 20
+    i12: 178
+    i13: 226
+    i14: 84
+    i15: 29
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114584184445294434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101851889051826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 163
+    i1: 158
+    i2: 64
+    i3: 253
+    i4: 200
+    i5: 57
+    i6: 84
+    i7: 169
+    i8: 25
+    i9: 169
+    i10: 21
+    i11: 20
+    i12: 178
+    i13: 226
+    i14: 84
+    i15: 29
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114733761133052986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730936977747634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde12df7022755f4b8adf6591977904e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HelpText: Open
 --- !u!114 &114915722498406736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4054,21 +4123,22 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 320410180420256292}
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &114930716522060426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1101851889051826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde12df7022755f4b8adf6591977904e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HelpText: Open
 --- !u!320 &320410180420256292
 PlayableDirector:
   m_ObjectHideFlags: 1
@@ -4078,7 +4148,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a0d0a7aebdf904b6faee9d00b565b7f2, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
