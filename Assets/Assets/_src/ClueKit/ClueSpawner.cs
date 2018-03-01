@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ClueSpawner : MonoBehaviour {
 
+    //list of characters in the game so corrrect clues can be chosen
+    private CharacterSpec[] charactersInGame;
+
 	// Use this for initialization
 	void Start () {
         SpawnCluesForCurrentScene();
@@ -18,8 +21,9 @@ public class ClueSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnClues(Scene scene) {
-        GameObject[] rootObjects = scene.GetRootGameObjects();
+    public void SpawnClues(Scene scene)
+    {
+        /*GameObject[] rootObjects = scene.GetRootGameObjects();
 
         //loop through all root objects in scene to find placeholders
         CluePlaceholder[] placeholders;
@@ -27,7 +31,21 @@ public class ClueSpawner : MonoBehaviour {
             placeholders = obj.GetComponentsInChildren<CluePlaceholder>();
             foreach (CluePlaceholder placeholder in placeholders)
                 SpawnClueInScene(placeholder);    
+        }*/
+
+        //check which private clues to spawn
+        //spawn general clues
+        //spawn private clues
+
+        //for all children of controller
+        foreach (Transform child in transform)
+        {
+            if (!child.GetComponent<CluePlaceholder>().IsCluePrivate())
+            {
+                SpawnClueInScene(child.GetComponent<CluePlaceholder>());   
+            }
         }
+
     }
 
     //replace placeholder with real clue

@@ -14,6 +14,11 @@ public class CluePlaceholder : MonoBehaviour{
         InstantiateCluePrefab();
     }
 
+    public bool IsCluePrivate()
+    {
+        return Clue.PrivateClue;
+    }
+
     void InstantiateCluePrefab() {
         RemovePrefabs();
         if (Clue != null && Clue.ModelPrefab != null && prefabInstance == null)

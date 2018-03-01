@@ -15,6 +15,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     {
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +37,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
         text.transform.LookAt(Camera.main.transform);
     }
 
+    //while looking at object reset timer value to max
     public void OnGvrPointerHover(PointerEventData eventData)
     {
         Debug.Log("Hovering to reveal text");
