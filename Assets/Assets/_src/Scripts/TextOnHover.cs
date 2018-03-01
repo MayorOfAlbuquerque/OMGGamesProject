@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 
 public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 {
@@ -13,6 +13,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     // Use this for initialization
     void Start()
     {
+        this.text = transform.GetChild(0).gameObject;
     }
 
 
@@ -43,6 +44,15 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
         Debug.Log("Hovering to reveal text");
 
         countdown = timerValue;
+    }
+
+    public void ChangeText(string newText)
+    {
+        Debug.Log(newText);
+        text.SetActive(true);
+        TextMesh txt = text.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
+        text.SetActive(false);
+        txt.text = newText;
     }
 
 }                                                               // Yep it's a horrible bodge

@@ -7,18 +7,30 @@ public class ClueSpawner : MonoBehaviour {
 
     //list of characters in the game so corrrect clues can be chosen
     private CharacterSpec[] charactersInGame;
+    private GameObject activeClueContainter;
 
 	// Use this for initialization
 	void Start () {
-        SpawnCluesForCurrentScene();
+        SetActiveContatiner();
+        SpawnGeneralCluesForCurrentScene();
 	}
 
-    public void SpawnCluesForCurrentScene() {
+    private void SetActiveContatiner()
+    {
+        this.activeClueContainter = GameObject.Find("ActiveClueContainer");
+    }
+
+    public void SpawnGeneralCluesForCurrentScene() {
         Scene activeScene = SceneManager.GetActiveScene();
         if (activeScene != null)
         {
             SpawnClues(activeScene);
         }
+    }
+
+    private void SpawnPrivateCharacterClues()
+    {
+
     }
 
     public void SpawnClues(Scene scene)
@@ -55,12 +67,19 @@ public class ClueSpawner : MonoBehaviour {
             if(!placeholder.gameObject.activeInHierarchy) {
                 return;
             }
+            //instantiate a replacement object for the placehodler
             placeholder.gameObject.SetActive(false);
-            Instantiate(
+            GameObject clue =  Instantiate(
                 placeholder.Clue.ModelPrefab,
                 placeholder.transform.position,
-                placeholder.transform.rotation
-            );    
+                placeholder.transform.rotation,
+                activeClueContainter.transform.GetChild(0).transform
+            );
+
+            //assign the hoverable text to what is said in the clue general text
+            clue.GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
         }
     }
+
+
 }
