@@ -10,6 +10,8 @@ public class BeaconMoveScript : MonoBehaviour {
 	[SerializeField]
 	public GameObject Beacon2;
 	private string lastReceived = "1";
+	[SerializeField]
+	public GameObject Beacon3;
 
 	// Use this for initialization
 	void Start () {
@@ -24,18 +26,34 @@ public class BeaconMoveScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		javaMessage = jc.GetStatic<string> ("intentMessage");
-		if ((javaMessage == "1") && (lastReceived != "1")) {
-			this.gameObject.GetComponent<CharacterController> ().enabled = false;
-			this.gameObject.transform.position = Beacon1.transform.position;
-			this.gameObject.GetComponent<CharacterController> ().enabled = true;
-			lastReceived = "1";
-		} else if ((javaMessage == "2") && (lastReceived!="2")) {
-			this.gameObject.GetComponent<CharacterController> ().enabled = false;
-			this.gameObject.transform.position = Beacon2.transform.position;
-			this.gameObject.GetComponent<CharacterController> ().enabled = true;
-			lastReceived = "2";
+		switch (javaMessage) {
+			case "1":
+				if (lastReceived != "1") {
+					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+					this.gameObject.transform.position = Beacon1.transform.position;
+					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+					lastReceived = "1";
+				}
+				break;
+			case "2":
+				if (lastReceived != "2") {
+					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+					this.gameObject.transform.position = Beacon2.transform.position;
+					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+					lastReceived = "2";
+				}
+				break;
+			case "3":
+				if (lastReceived != "3") {
+					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+					this.gameObject.transform.position = Beacon3.transform.position;
+					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+					lastReceived = "3";
+				}
+				break;
+			default:
+				//Stay where you are
+				break;
 		}
-
-		
 	}
 }
