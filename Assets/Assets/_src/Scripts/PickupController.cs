@@ -23,26 +23,6 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
 
     public override void OnClick(object obj)
     {
-        Debug.Log("Player Clicked Object");
-        Player player = obj as Player;
-
-        if(currentWeapon != Weapon.NONE)
-        {
-            Weapon newWeapon = player.GetPlayerCurrentWeapon();
-            
-            player.SetPlayerWeapon(currentWeapon);
-            RemoveModel();
-            if (newWeapon != Weapon.NONE)
-            {
-                AddModel(newWeapon);
-            }
-            currentWeapon = newWeapon;
-            RpcSetSpawnWeaponModel(newWeapon); 
-        }
-        else
-        {
-            Debug.Log("No weapon to pick up");
-        }
     }
 
 
@@ -51,19 +31,6 @@ public class PickupController : InteractableObjectController, IGvrPointerHoverHa
         Debug.Log("Hovering over weapon");
     }
 
-    [ClientRpc]
-    public void RpcSetSpawnWeaponModel(Weapon newWeapon)
-    {
-        currentWeapon = newWeapon;
-        RemoveModel();
-        
-        if(newWeapon != Weapon.NONE)
-        {
-            Debug.Log("New model added");
-            AddModel(newWeapon);
-        }
-
-    }
 
     private void RemoveModel()
     {
