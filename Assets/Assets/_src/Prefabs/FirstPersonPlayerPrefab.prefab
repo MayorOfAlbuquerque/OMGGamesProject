@@ -39,7 +39,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4558391042166666}
   - component: {fileID: 143947460775265718}
-  - component: {fileID: 114234242920434408}
   - component: {fileID: 114350619965299158}
   - component: {fileID: 54774470060024578}
   - component: {fileID: 82789805093482202}
@@ -48,7 +47,6 @@ GameObject:
   - component: {fileID: 114905580909726224}
   - component: {fileID: 114076750736523788}
   - component: {fileID: 114537373850870736}
-  - component: {fileID: 114603255753335854}
   - component: {fileID: 114114985930942400}
   m_Layer: 0
   m_Name: FirstPersonPlayerPrefab
@@ -594,17 +592,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hello world
---- !u!114 &114234242920434408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377887965633902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d8dd42e977af493f99060febacf1f25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114250531475864700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -821,18 +808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37806a656f9621e4f8899d6bf9f9847a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114603255753335854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377887965633902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61195c199d16cb14bbad38dcacecc48a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HelpText: 
 --- !u!114 &114769968448006298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -903,17 +878,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114076750736523788}
-        m_MethodName: set_enabled
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
