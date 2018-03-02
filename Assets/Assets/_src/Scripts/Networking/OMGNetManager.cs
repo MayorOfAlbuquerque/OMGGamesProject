@@ -17,6 +17,7 @@ public class OMGNetManager : NetworkManager
     {
         playerManager = GetComponent<PlayerServerManager>();
     }
+
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
         if(extraMessageReader == null) {
@@ -39,7 +40,12 @@ public class OMGNetManager : NetworkManager
             player = Instantiate(playerPrefab);
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+
+        //rpc call to all clients to spawn clues with list of characters
+        GameObject.Find("ClueController").GetComponent<ClueSpawner>().RpcSpawnPrivateClues(playerManager.list.Characters);
     }
+
+
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {

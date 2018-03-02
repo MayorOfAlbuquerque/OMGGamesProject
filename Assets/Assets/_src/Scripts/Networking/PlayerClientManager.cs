@@ -29,6 +29,7 @@ public class PlayerClientManager : MonoBehaviour {
     {
         JoinServer();    
     }
+
     public void JoinServer()
     {
         if (joined || client == null)
