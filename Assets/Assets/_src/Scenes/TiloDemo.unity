@@ -83702,6 +83702,8 @@ GameObject:
   - component: {fileID: 1970328587}
   - component: {fileID: 1970328586}
   - component: {fileID: 1970328585}
+  - component: {fileID: 1970328592}
+  - component: {fileID: 1970328591}
   m_Layer: 0
   m_Name: cupboard_door
   m_TagString: Untagged
@@ -83740,18 +83742,7 @@ MonoBehaviour:
   - eventID: 4
     callback:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1970328587}
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
@@ -83848,6 +83839,50 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970328583}
   m_Mesh: {fileID: 4300058, guid: f2d59f76b76994800ac3b05a0983017b, type: 3}
+--- !u!114 &1970328591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1970328583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 163
+    i1: 158
+    i2: 64
+    i3: 253
+    i4: 200
+    i5: 57
+    i6: 84
+    i7: 169
+    i8: 25
+    i9: 169
+    i10: 21
+    i11: 20
+    i12: 178
+    i13: 226
+    i14: 84
+    i15: 29
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &1970328592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1970328583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde12df7022755f4b8adf6591977904e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HelpText: Open
 --- !u!1 &1972755811
 GameObject:
   m_ObjectHideFlags: 0

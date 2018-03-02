@@ -26,13 +26,8 @@ public class PlayerInteractionController : NetworkBehaviour{
 	{
 		if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
 		   {
-			
-            if(obj?.GetComponent<Attackable>())
-            {
-                CmdAttackPlayer(obj);
-            }
-            
-		    else if (obj?.GetComponent<PickupController>()) {
+
+		    if (obj?.GetComponent<PickupController>()) {
 			    CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
                 Debug.Log("Left clicked Weapon \n");
             } 
@@ -92,14 +87,7 @@ public class PlayerInteractionController : NetworkBehaviour{
         }
         controller.OnClick (); //Needs to run on server as players do not have authority over interactable objects
 	}
-
-    [Command]
-    public void CmdAttackPlayer(GameObject obj) 
-    {
-        Debug.Log("CMDATTACK");
-        //obj.GetComponent<Attackable>().OnClick();
-		obj.GetComponent<InteractableObjectController>().OnClick(thisGameObject.GetComponent<Player>()); //Added the attacking player as argument to Onclick here.
-    }
+    
 
     /// <summary>
     /// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
