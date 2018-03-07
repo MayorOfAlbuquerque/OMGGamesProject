@@ -5,23 +5,13 @@ using UnityEngine.Networking;
 
 public class PlayerVotingSystem : NetworkBehaviour {
 
-    var numOfConnectedPlayers = Network.connections.Length;
-    int[] listOfPlayersVotes = new int[numOfConnectedPlayers];
-    public CharacterList playerCharacterList;  
-
+    int numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+    int[] listOfPlayersVotes = new int[10];
+    
     int numberOfPlayersVoted;
 
     bool haveIVoted;
     
-
-    /*
-    * 
-    *  For Dynamic playableCharacters, 
-    *  use the PlayerServerManager from Zaiyang to get the dynamic number of players!
-    * 
-    * */
-
-
 
     // Use this for initialization
     void Start () {
@@ -39,9 +29,9 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
        
 	}
-
+    
     [Command]
-    bool updateVote(int uniquePlayerId, bool haveIVoted)
+    void CmdUpdateVote(int uniquePlayerId, bool haveIVoted)
     {
         if (haveIVoted == false)
         {
@@ -51,21 +41,23 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
         if (numberOfPlayersVoted == numOfConnectedPlayers)
         {
-            announceResults();
+            RpcAnnounceResults();
         }
 
-        return true;
+    }
+    
+
+    void VoteForPlayer(int uniquePlayerId)
+    {
+       CmdUpdateVote(uniquePlayerId, haveIVoted);
+       if(haveIVoted == false) { haveIVoted = true; }
 
     }
 
     [ClientRpc]
-    void voteForPlayer(int uniquePlayerId)
+    void RpcAnnounceResults()
     {
-        haveIVoted = updateVote(uniquePlayerId, haveIVoted);
-    }
-
-    void announceResults()
-    {
+        Debug.Log("Have voted yo kids");
         // Win or Lose! Game ends and we're happy.
     }
 
