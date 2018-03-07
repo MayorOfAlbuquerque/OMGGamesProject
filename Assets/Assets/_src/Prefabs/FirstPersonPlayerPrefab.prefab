@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114250531475864700}
   - component: {fileID: 114778168774056432}
   - component: {fileID: 114905580909726224}
+  - component: {fileID: 114993718820184144}
   - component: {fileID: 114076750736523788}
   - component: {fileID: 114537373850870736}
   - component: {fileID: 114114985930942400}
@@ -874,9 +875,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114993718820184144}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   speed: 0
+--- !u!114 &114993718820184144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377887965633902}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26a5e770823f2e44bb86d2bfc96635d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &124148740553038344
 Behaviour:
   m_ObjectHideFlags: 1

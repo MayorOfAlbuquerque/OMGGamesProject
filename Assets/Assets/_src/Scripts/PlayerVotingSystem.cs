@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerVotingSystem : NetworkBehaviour {
 
-    int numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+    int numOfConnectedPlayers;
     int[] listOfPlayersVotes = new int[10];
     
     int numberOfPlayersVoted;
@@ -15,7 +16,8 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-		for(int i = 0; i < numOfConnectedPlayers; i++)
+        int numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+        for (int i = 0; i < numOfConnectedPlayers; i++)
         {
             listOfPlayersVotes[i] = 0;
         }
@@ -23,9 +25,14 @@ public class PlayerVotingSystem : NetworkBehaviour {
         haveIVoted = false;
         numberOfPlayersVoted = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    internal void VoteForPlayer()
+    {
+        throw new NotImplementedException();
+    }
+
+    // Update is called once per frame
+    void Update () {
 
        
 	}
@@ -47,12 +54,14 @@ public class PlayerVotingSystem : NetworkBehaviour {
     }
     
 
-    void VoteForPlayer(int uniquePlayerId)
+    public void VoteForPlayer(int uniquePlayerId)
     {
        CmdUpdateVote(uniquePlayerId, haveIVoted);
        if(haveIVoted == false) { haveIVoted = true; }
 
     }
+    
+
 
     [ClientRpc]
     void RpcAnnounceResults()
