@@ -42,7 +42,7 @@ public class OMGNetManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
         //rpc call to all clients to spawn clues with list of characters
-        GameObject.Find("ClueController").GetComponent<ClueSpawner>().RpcSpawnPrivateClues(playerManager.list.Characters);
+       // GameObject.Find("ClueController").GetComponent<ClueSpawner>().RpcSpawnPrivateClues(playerManager.list.Characters);
     }
 
 

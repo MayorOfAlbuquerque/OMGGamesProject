@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class ClueSpawner : NetworkBehaviour {
+public class ClueSpawner : MonoBehaviour {
 
     //list of characters in the game so corrrect clues can be chosen
     private List<CharacterSpec> charactersAlreadyInGame;
     private GameObject activeClueContainter;
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
         SetActiveContatiner();
         SpawnCluesForCurrentScene();
 	}
@@ -44,7 +44,6 @@ public class ClueSpawner : NetworkBehaviour {
     //spawn clues for char given and decide which text appears
     public void SpawnPrivateCluesForChar(List<CharacterSpec> characters)
     {
-                
         //if you == char then run spawn as private
         //check if private clues already place before adding
         foreach(CharacterSpec spec in characters)
@@ -86,11 +85,11 @@ public class ClueSpawner : NetworkBehaviour {
             }
         }
     }
-    [ClientRpc]
+   /* [ClientRpc]
     public void RpcSpawnPrivateClues(List<CharacterSpec> charList)
     {
         //Call all client's clue spawners with list of current players
         GameObject clueController = GameObject.Find("ClueController");
         clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(charList);
-    }
+    }*/
 }
