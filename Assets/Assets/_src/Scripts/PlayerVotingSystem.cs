@@ -44,12 +44,16 @@ public class PlayerVotingSystem : NetworkBehaviour {
         {
             listOfPlayersVotes[uniquePlayerId] += 1;
             numberOfPlayersVoted += 1;
+            Debug.Log("Number Of Players Voted " +numberOfPlayersVoted);
         }
 
         if (numberOfPlayersVoted == numOfConnectedPlayers)
         {
+            Debug.Log("ALL PLAYERS VOTED! ");
             RpcAnnounceResults();
         }
+
+
 
     }
     
@@ -58,7 +62,7 @@ public class PlayerVotingSystem : NetworkBehaviour {
     {
        CmdUpdateVote(uniquePlayerId, haveIVoted);
        if(haveIVoted == false) { haveIVoted = true; }
-
+        Debug.Log("Players voted for unique id : "+uniquePlayerId);
     }
     
 
