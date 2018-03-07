@@ -48,8 +48,11 @@ public class PlayerServerManager : MonoBehaviour {
         return list.GetCharacterById(id);
     }
 
-    public GameObject InstantiateCharacter(CharacterSpec spec, GameObject backupPrefab) {
+    public GameObject InstantiateCharacter(CharacterSpec spec, GameObject backupPrefab, Transform t) {
+
         GameObject prefab = spec.PlayablePrefab ?? backupPrefab;
-        return Instantiate(prefab);
+        GameObject temp =  Instantiate(prefab);
+        temp.transform.position = t.position; 
+        return temp;
     }
 }

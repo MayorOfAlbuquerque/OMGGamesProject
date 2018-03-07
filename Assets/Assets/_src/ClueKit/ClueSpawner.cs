@@ -85,11 +85,5 @@ public class ClueSpawner : MonoBehaviour {
             }
         }
     }
-   /* [ClientRpc]
-    public void RpcSpawnPrivateClues(List<CharacterSpec> charList)
-    {
-        //Call all client's clue spawners with list of current players
-        GameObject clueController = GameObject.Find("ClueController");
-        clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(charList);
-    }*/
+   
 }
