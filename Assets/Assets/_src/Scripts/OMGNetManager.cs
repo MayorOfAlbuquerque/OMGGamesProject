@@ -7,6 +7,10 @@ public class OMGNetManager : NetworkManager
     public CharacterList PlayableCharacters;
     private Dictionary<int, CharacterSpec> characterSpecs = new Dictionary<int, CharacterSpec>();
 
+    int numOfConnectedPlayers;
+    int[] listOfPlayersVotes = new int[10];
+
+    int numberOfPlayersVoted;
 
     public override void OnStartServer()
     {
@@ -37,5 +41,7 @@ public class OMGNetManager : NetworkManager
         //CharacterSpec spec = characterSpecs[(uint)message.characterId];
 
     }
+
+    
 }
 

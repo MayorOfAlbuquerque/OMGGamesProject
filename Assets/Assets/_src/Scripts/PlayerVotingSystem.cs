@@ -16,7 +16,8 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-        int numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+        numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+        Debug.Log("Number of Players : " + numOfConnectedPlayers);
         for (int i = 0; i < numOfConnectedPlayers; i++)
         {
             listOfPlayersVotes[i] = 0;
@@ -26,17 +27,14 @@ public class PlayerVotingSystem : NetworkBehaviour {
         numberOfPlayersVoted = 0;
 	}
 
-    internal void VoteForPlayer()
-    {
-        throw new NotImplementedException();
-    }
-
     // Update is called once per frame
     void Update () {
+        
+        numOfConnectedPlayers = NetworkManager.singleton.numPlayers - 1;
+        
+        Debug.Log("Number of Players : " + numOfConnectedPlayers);
+    }
 
-       
-	}
-    
     [Command]
     void CmdUpdateVote(int uniquePlayerId, bool haveIVoted)
     {
@@ -44,7 +42,7 @@ public class PlayerVotingSystem : NetworkBehaviour {
         {
             listOfPlayersVotes[uniquePlayerId] += 1;
             numberOfPlayersVoted += 1;
-            Debug.Log("Number Of Players Voted " +numberOfPlayersVoted);
+            Debug.Log("Number Of Players Voted " + numberOfPlayersVoted);
         }
 
         if (numberOfPlayersVoted == numOfConnectedPlayers)
@@ -52,14 +50,12 @@ public class PlayerVotingSystem : NetworkBehaviour {
             Debug.Log("ALL PLAYERS VOTED! ");
             RpcAnnounceResults();
         }
-
-
-
     }
-    
+
 
     public void VoteForPlayer(int uniquePlayerId)
     {
+       Debug.Log("Number of Players : " + numOfConnectedPlayers);
        CmdUpdateVote(uniquePlayerId, haveIVoted);
        if(haveIVoted == false) { haveIVoted = true; }
         Debug.Log("Players voted for unique id : "+uniquePlayerId);
@@ -68,7 +64,7 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
 
     [ClientRpc]
-    void RpcAnnounceResults()
+    public void RpcAnnounceResults()
     {
         Debug.Log("Have voted yo kids");
         // Win or Lose! Game ends and we're happy.
