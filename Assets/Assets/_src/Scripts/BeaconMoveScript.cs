@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class BeaconMoveScript : MonoBehaviour {
 	AndroidJavaClass jc;
@@ -29,25 +30,25 @@ public class BeaconMoveScript : MonoBehaviour {
 		switch (javaMessage) {
 			case "1":
 				if (lastReceived != "1") {
-					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+				this.gameObject.GetComponent<CharacterController> ().enabled = false;
 					this.gameObject.transform.position = Beacon1.transform.position;
-					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+				this.gameObject.GetComponent<CharacterController> ().enabled = true;
 					lastReceived = "1";
 				}
 				break;
 			case "2":
 				if (lastReceived != "2") {
-					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+				this.gameObject.GetComponent<CharacterController> ().enabled = false;
 					this.gameObject.transform.position = Beacon2.transform.position;
-					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+				this.gameObject.GetComponent<CharacterController> ().enabled = true;
 					lastReceived = "2";
 				}
 				break;
 			case "3":
 				if (lastReceived != "3") {
-					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+				this.gameObject.GetComponent<CharacterController> ().enabled = false;
 					this.gameObject.transform.position = Beacon3.transform.position;
-					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+				this.gameObject.GetComponent<CharacterController> ().enabled = true;
 					lastReceived = "3";
 				}
 				break;
