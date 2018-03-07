@@ -42,22 +42,23 @@ public class ClueSpawner : MonoBehaviour {
     }
 
     //spawn clues for char given and decide which text appears
-    public void SpawnPrivateCluesForChar(List<CharacterSpec> characters)
+    public void SpawnPrivateCluesForChar(CharacterSpec spec)
     {
         //if you == char then run spawn as private
         //check if private clues already place before adding
-        foreach(CharacterSpec spec in characters)
+        
+        if(!charactersAlreadyInGame.Contains(spec))
         {
-            if(!charactersAlreadyInGame.Contains(spec))
+            //GameObject charCluesToSpawn = GameObject.Find("/PrivateClue1");
+            Transform charCluesToSpawn = transform.GetChild(1);
+            foreach (Transform child in charCluesToSpawn)
             {
-                //GameObject charCluesToSpawn = GameObject.Find("/PrivateClue1");
-                GameObject charCluesToSpawn = transform.GetChild(1).gameObject;
-                foreach (Transform child in charCluesToSpawn.transform)
-                {
-                    SpawnClueInScene(child.GetComponent<CluePlaceholder>(), false);
-                }
+                //TODO: if local player is spec then spawn private version
+                SpawnClueInScene(child.GetComponent<CluePlaceholder>(), true);
             }
+            charactersAlreadyInGame.Add(spec);
         }
+        
     }
 
     //replace placeholder with real clue
@@ -77,11 +78,10 @@ public class ClueSpawner : MonoBehaviour {
                 placeholder.transform.rotation,
                 activeClueContainter.transform.GetChild(0).transform
             );
-
             //assign the hoverable text to what is said in the clue general text
             if (!isPrivate)
             {
-                clue.GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
+                clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
             }
         }
     }

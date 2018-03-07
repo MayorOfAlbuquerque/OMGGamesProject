@@ -93,12 +93,12 @@ public class Player : NetworkBehaviour {
         thisDoor.gameObject.GetComponent<AnimationTrigger>().PlayAnimation();
     }
 
-   /* [ClientRpc]
-    public void RpcSpawnPrivateClues(List<CharacterSpec> charList)
+    [ClientRpc]
+    public void RpcSpawnPrivateClues(CharacterSpec spec)
     {
         //Call all client's clue spawners with list of current players
         GameObject clueController = GameObject.Find("ClueController");
-        clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(charList);
-    }*/
+        clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(spec);
+    }
 
 }

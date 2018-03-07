@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 {
-    [SerializeField] GameObject text;                                                       //This is all going to be shit code
+    [SerializeField] GameObject textHodler;                                                       //This is all going to be shit code
     [SerializeField] int timerValue;
     private int countdown;
 
     // Use this for initialization
     void Start()
     {
-        this.text = transform.GetChild(0).gameObject;
+        this.textHodler = transform.GetChild(0).gameObject;
     }
 
 
@@ -21,21 +21,21 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     void Update()
     {
         //turn off text
-        if(text.activeInHierarchy && countdown <= 0)
+        if(textHodler.activeInHierarchy && countdown <= 0)
         {
-            text.SetActive(false);
+            textHodler.SetActive(false);
         }
         //turn on/leave text on
         else if(countdown > 0 )
         {
             countdown--;
-            if(!text.activeInHierarchy)
+            if(!textHodler.activeInHierarchy)
             {
-                text.SetActive(true);
+                textHodler.SetActive(true);
             }
         }
         //Makes text face wrong way so text must be contained within seperate unity object where it is reversed 180
-        text.transform.LookAt(Camera.main.transform);
+        textHodler.transform.LookAt(Camera.main.transform);
     }
 
     //while looking at object reset timer value to max
@@ -48,11 +48,15 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 
     public void ChangeText(string newText)
     {
+        if(textHodler == null)
+        {
+            this.textHodler = transform.GetChild(0).gameObject;
+        }
         Debug.Log(newText);
-        text.SetActive(true);
-        TextMesh txt = text.transform.GetChild(0).gameObject.GetComponent<TextMesh>();
-        text.SetActive(false);
+        textHodler.SetActive(true);
+        Text txt = textHodler.transform.GetChild(0).gameObject.transform.GetChild(0).GetComponent<Text>();
         txt.text = newText;
+        textHodler.SetActive(false);
     }
 
 }                                                               // Yep it's a horrible bodge
