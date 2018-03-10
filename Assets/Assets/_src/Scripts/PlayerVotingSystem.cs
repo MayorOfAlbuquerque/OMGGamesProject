@@ -11,30 +11,34 @@ using UnityEngine.Networking;
  * */
 
 
-public class PlayerVotingSystem : NetworkBehaviour {
+public class PlayerVotingSystem : MonoBehaviour {
 
     bool haveIVoted;
     bool didIWin;
     int uniquePlayerVotedFor;
 
     GameObject playerVotingAnchor;
-    
-    // Use this for initialization
-    void Start () {
-        uniquePlayerVotedFor = 0;
-        playerVotingAnchor = GameObject.Find("PlayerVotingAnchor");
-        if(playerVotingAnchor == null)
-        {
-            Debug.LogError("Player voting Anchor not found! ");
-        }
-        haveIVoted = false;
-	}
-    
 
+    bool haveInit = false;
+
+    private void Start()
+    {
+        if (haveInit == false)
+        {
+            uniquePlayerVotedFor = 0;
+            playerVotingAnchor = GameObject.Find("PlayerVotingAnchor");
+            if (playerVotingAnchor == null)
+            {
+                Debug.LogError("Player voting Anchor not found! ");
+            }
+            haveIVoted = false;
+        }
+    }
 
     public void VoteForPlayer(int uniquePlayerId)
     {
-       playerVotingAnchor.GetComponent<PlayerVotingController>().CmdUpdateVote(uniquePlayerId, haveIVoted,this.gameObject);
+        
+       playerVotingAnchor.GetComponent<PlayerVotingController>().CmdUpdateVote(uniquePlayerId, haveIVoted, this.gameObject);
        if(haveIVoted == false) {
             haveIVoted = true;
             uniquePlayerVotedFor = uniquePlayerId;
