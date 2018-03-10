@@ -14,6 +14,7 @@ public class ClueSpawner : MonoBehaviour {
 	void Start() {
         SetActiveContatiner();
         SpawnCluesForCurrentScene();
+        charactersAlreadyInGame = new List<CharacterSpec>();
 	}
 
     private void SetActiveContatiner()
@@ -44,17 +45,19 @@ public class ClueSpawner : MonoBehaviour {
     //spawn clues for char given and decide which text appears
     public void SpawnPrivateCluesForChar(CharacterSpec spec)
     {
+        Debug.Log("spawning clues-----------------------");
         //if you == char then run spawn as private
         //check if private clues already place before adding
-        
-        if(!charactersAlreadyInGame.Contains(spec))
-        {
+
+        if (!charactersAlreadyInGame.Contains(spec))
+        { 
             //GameObject charCluesToSpawn = GameObject.Find("/PrivateClue1");
             Transform charCluesToSpawn = transform.GetChild(1);
             foreach (Transform child in charCluesToSpawn)
             {
                 //TODO: if local player is spec then spawn private version
                 SpawnClueInScene(child.GetComponent<CluePlaceholder>(), true);
+                Debug.Log(spec.FullName);
             }
             charactersAlreadyInGame.Add(spec);
         }
