@@ -9,12 +9,14 @@ public class ClueSpawner : MonoBehaviour {
     //list of characters in the game so corrrect clues can be chosen
     private List<CharacterSpec> charactersAlreadyInGame;
     private GameObject activeClueContainter;
+    private Dictionary<CluePlaceholder, GameObject> clueReference;
 
 	// Use this for initialization
 	void Start() {
+        clueReference = new Dictionary<CluePlaceholder, GameObject>();
+        charactersAlreadyInGame = new List<CharacterSpec>();
         SetActiveContatiner();
         SpawnCluesForCurrentScene();
-        charactersAlreadyInGame = new List<CharacterSpec>();
 	}
 
     private void SetActiveContatiner()
@@ -37,11 +39,11 @@ public class ClueSpawner : MonoBehaviour {
         //for all children of controller
         foreach (Transform child in generalClues)
         {
-            SpawnClueInScene(child.GetComponent<CluePlaceholder>(), false);  
+            SpawnClueInScene(child.GetComponent<CluePlaceholder>());  
         }
 
     }
-
+    /*
     //spawn clues for char given and decide which text appears
     public void SpawnPrivateCluesForChar(CharacterSpec spec)
     {
@@ -63,9 +65,21 @@ public class ClueSpawner : MonoBehaviour {
         }
         
     }
+    */
+    public void ChangeToPrivateText(CharacterSpec spec)
+    { 
+        foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
+        {
+            //if a private clue and if you are the required recipient
+            if(entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == spec.FullName)
+            {
+                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
+            }
+        }
+    }
 
     //replace placeholder with real clue
-    private void SpawnClueInScene(CluePlaceholder placeholder, bool isPrivate)
+    private void SpawnClueInScene(CluePlaceholder placeholder)
     {
         if (placeholder != null && placeholder.Clue && placeholder.Clue.ModelPrefab != null)
         {
@@ -79,13 +93,11 @@ public class ClueSpawner : MonoBehaviour {
                 placeholder.Clue.ModelPrefab,
                 placeholder.transform.position,
                 placeholder.transform.rotation,
-                activeClueContainter.transform.GetChild(0).transform
+                activeClueContainter.transform
             );
             //assign the hoverable text to what is said in the clue general text
-            if (!isPrivate)
-            {
-                clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
-            }
+            clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
+            clueReference.Add(placeholder, clue);
         }
     }
    

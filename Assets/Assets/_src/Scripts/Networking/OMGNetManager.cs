@@ -32,8 +32,7 @@ public class OMGNetManager : NetworkManager
             .FindCharacterSpecById((int)message.characterId);
         GameObject player;
         if (spec != null)
-        {
-           
+        {  
             player = playerManager.InstantiateCharacter(spec, playerPrefab, GetStartPosition());
         }
         else
@@ -43,10 +42,6 @@ public class OMGNetManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
         //rpc call to all clients to spawn clues with list of characters
-        Debug.Log("Player joined on servers-----------------------");
-        Debug.Log(conn.clientOwnedObjects.ToString());
-        Debug.Log(conn.clientOwnedObjects);
-        Debug.Log(conn.clientOwnedObjects.ToString());
         player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
     }
 
