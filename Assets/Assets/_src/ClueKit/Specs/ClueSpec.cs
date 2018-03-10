@@ -6,6 +6,9 @@ using UnityEngine;
 public class ClueSpec : ScriptableObject {
     public string Name;
     public string Description;
-    public string DisplayText;
+    public string GeneralDisplayText;
+    public bool PrivateClue;
+    public CharacterSpec Character;
+    public string PrivateDisplayText;
     public GameObject ModelPrefab;
 }

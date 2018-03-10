@@ -1319,6 +1319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2041073542}
   - component: {fileID: 2041073541}
+  - component: {fileID: 2041073543}
   m_Layer: 0
   m_Name: NetManager
   m_TagString: Untagged
@@ -1348,7 +1349,7 @@ MonoBehaviour:
   m_LogLevel: 0
   m_PlayerPrefab: {fileID: 1377887965633902, guid: 8d8a9d48767f72b458c5c88a9c618fd1,
     type: 2}
-  m_AutoCreatePlayer: 1
+  m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 1
   m_OfflineScene: introScene
   m_OnlineScene: MainScene
@@ -1408,7 +1409,7 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  PlayableCharacters: {fileID: 0}
+  playerManager: {fileID: 2041073543}
 --- !u!4 &2041073542
 Transform:
   m_ObjectHideFlags: 0
@@ -1422,6 +1423,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2041073543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041073540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9610c3bd163d643058c7533a9659f88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list: {fileID: 11400000, guid: 72265f53b797d4176a7e9f05011f7df2, type: 2}
 --- !u!1 &2106050336
 GameObject:
   m_ObjectHideFlags: 0
