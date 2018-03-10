@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class MoveTrigger : MonoBehaviour {
-	[SerializeField] GameObject Beacon2;
+	[SerializeField] GameObject Beacon;
 	
 		void OnTriggerEnter(Collider other){
 		//We know that other is the character controller.
 		Debug.LogError(other);
 		other.GetComponent<CharacterController> ().enabled = false;
-		other.transform.position = Beacon2.transform.position;
+		other.transform.position = Beacon.transform.position;
 		other.GetComponent<CharacterController> ().enabled = true;
 			Debug.Log ("Object is within the collider");
 		}
