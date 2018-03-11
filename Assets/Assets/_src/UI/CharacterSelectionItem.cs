@@ -30,7 +30,7 @@ public class CharacterSelectionItem : MonoBehaviour {
         this.selected = selected;
         if (characterModel == null)
         {
-            characterModel = Instantiate(spec.CharacterPrefab);
+            characterModel = Instantiate(spec.CharacterModelPrefab);
             characterId = spec.Id;
             characterModel.transform.parent = model.transform;
             characterModel.transform.position = model.transform.position;

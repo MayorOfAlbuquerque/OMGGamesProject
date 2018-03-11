@@ -13,6 +13,12 @@ public class CluePlaceholder : MonoBehaviour{
     {
         InstantiateCluePrefab();
     }
+
+    public bool IsCluePrivate()
+    {
+        return Clue.PrivateClue;
+    }
+
     void InstantiateCluePrefab() {
         RemovePrefabs();
         if (Clue != null && Clue.ModelPrefab != null && prefabInstance == null)
@@ -23,7 +29,7 @@ public class CluePlaceholder : MonoBehaviour{
             prefabInstance.SetActive(false);
         }
     }
-    void Update() {
+    /*void Update() {
         if(previewClue && prefabInstance == null) {
             InstantiateCluePrefab();
             prefabInstance.SetActive(true);
@@ -32,7 +38,7 @@ public class CluePlaceholder : MonoBehaviour{
         } else {
             prefabInstance.SetActive(false);
         }
-    }
+    }*/
     void OnDrawGizmos() 
     {
         if (!previewClue)

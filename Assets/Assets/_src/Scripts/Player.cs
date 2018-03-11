@@ -12,10 +12,7 @@ public enum Weapon{
 
 
 public class Player : NetworkBehaviour {
-
-    private Weapon weapon;
-    private GameObject weaponModel;
-    [SerializeField] int health;
+   
 
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
@@ -30,7 +27,6 @@ public class Player : NetworkBehaviour {
         {
             mainCamera = Camera.main.gameObject;
             EnablePlayer();
-            this.weapon = Weapon.NONE;
             HideModelIfLocal();
         }
     private void HideModelIfLocal()
@@ -95,6 +91,14 @@ public class Player : NetworkBehaviour {
     public void RpcClientOpenDoor(GameObject thisDoor)
     {
         thisDoor.gameObject.GetComponent<AnimationTrigger>().PlayAnimation();
+    }
+
+    [ClientRpc]
+    public void RpcSpawnPrivateClues(CharacterSpec spec)
+    {
+        //Call all client's clue spawners with list of current players
+        GameObject clueController = GameObject.Find("ClueController");
+        clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(spec);
     }
 
 }
