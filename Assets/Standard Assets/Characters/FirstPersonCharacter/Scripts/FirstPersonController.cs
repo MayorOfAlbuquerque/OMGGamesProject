@@ -47,6 +47,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_DisableMovement = change;
 		}
 
+        public Animator animator;
         // Use this for initialization
         private void Start()
         {
@@ -139,10 +140,21 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
-
+            UpdateAnimationState(speed);
             m_MouseLook.UpdateCursorLock();
         }
 
+        private void UpdateAnimationState(float speed)
+        {
+            if(animator == null){
+                return;
+            }
+            if(m_CharacterController.velocity.sqrMagnitude > 0.1) {
+                animator.SetBool("IsWalking", true);
+            } else {
+                animator.SetBool("IsWalking", false);
+            }
+        }
 
         private void PlayJumpSound()
         {
