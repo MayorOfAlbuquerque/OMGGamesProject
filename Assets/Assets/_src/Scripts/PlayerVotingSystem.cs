@@ -9,43 +9,40 @@ public class PlayerVotingSystem : NetworkBehaviour {
     int numOfConnectedPlayers;
     int[] listOfPlayersVotes = new int[10];
     
-    int numberOfPlayersVoted;
+    int numberOfPlayersVoted=0;
 
     bool haveIVoted;
-    
+    bool haveInit = false;
 
-    // Use this for initialization
-    void Start () {
-        int numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
-        for (int i = 0; i < numOfConnectedPlayers; i++)
+ 
+
+
+    [Command]
+    void CmdUpdateVote(int uniquePlayerId, bool haveIVotedPlayerInp)
+    {
+        Debug.Log(numberOfPlayersVoted);
+        if(haveInit == false)
         {
-            listOfPlayersVotes[i] = 0;
+            numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+            Debug.Log("Number of players connected :"+numOfConnectedPlayers);
+            Debug.Log("Number of players voted :" + numberOfPlayersVoted);
+            for (int i = 0; i < numOfConnectedPlayers; i++)
+            {
+                listOfPlayersVotes[i] = 0;
+            }
+            haveInit = true;
         }
 
-        haveIVoted = false;
-        numberOfPlayersVoted = 0;
-	}
-
-    internal void VoteForPlayer()
-    {
-        throw new NotImplementedException();
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-       
-	}
-    
-    [Command]
-    void CmdUpdateVote(int uniquePlayerId, bool haveIVoted)
-    {
-        if (haveIVoted == false)
+        if (haveIVotedPlayerInp == false)
         {
+            Debug.Log("PLAYER HAS VOTED");
             listOfPlayersVotes[uniquePlayerId] += 1;
             numberOfPlayersVoted += 1;
-            Debug.Log("Number Of Players Voted " +numberOfPlayersVoted);
         }
+
+
+        Debug.Log("Number of players connected AFTER INIT:" + numOfConnectedPlayers);
+        Debug.Log("Number of players voted AFTER INIT:" + numberOfPlayersVoted);
 
         if (numberOfPlayersVoted == numOfConnectedPlayers)
         {
@@ -53,18 +50,21 @@ public class PlayerVotingSystem : NetworkBehaviour {
             RpcAnnounceResults();
         }
 
-
-
     }
     
 
     public void VoteForPlayer(int uniquePlayerId)
     {
+        if (haveInit == false)
+        {
+            haveIVoted = false;
+            haveInit = true;
+        }
+
        CmdUpdateVote(uniquePlayerId, haveIVoted);
        if(haveIVoted == false) { haveIVoted = true; }
-        Debug.Log("Players voted for unique id : "+uniquePlayerId);
+       Debug.Log("Players voted for unique id : "+uniquePlayerId);
     }
-    
 
 
     [ClientRpc]
