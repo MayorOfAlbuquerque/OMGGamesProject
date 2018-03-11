@@ -70,11 +70,24 @@ public class ClueSpawner : MonoBehaviour {
     { 
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
-            //if a private clue and if you are the required recipient
+            //if a private clue and if you are the required recipient of each clue spec
             if(entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == spec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
             }
+            if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == spec.FullName)
+            {
+                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
+            }
+            if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == spec.FullName)
+            {
+                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
+            }
+            if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == spec.FullName)
+            {
+                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
+            }
+
         }
     }
 
