@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerVotingSystem : NetworkBehaviour {
+/*
+ *  This script is attached to the Player Prefab
+ * 
+ * 
+ * */
 
     int numOfConnectedPlayers;
     int[] listOfPlayersVotes = new int[10];
     
     int numberOfPlayersVoted=0;
+
+public class PlayerVotingSystem : MonoBehaviour {
 
     bool haveIVoted;
     bool haveInit = false;
@@ -26,9 +32,8 @@ public class PlayerVotingSystem : NetworkBehaviour {
         this_Voting.PlayerAddVote(haveIVotedPlayerInp, uniquePlayerId, this.gameObject, numOfConnectedPlayers);
 
     }
-    
 
-    public void VoteForPlayer(int uniquePlayerId)
+    public void VotingResults(int idOfPlayerWithMostVotes)
     {
         if (haveInit == false)
         {
