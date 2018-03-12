@@ -20,6 +20,8 @@ public class VotingControllerScript : MonoBehaviour {
 
     public void PlayerAddVote(bool haveVoted, int uniqueId, GameObject thisPlayer, int player_numberOfConnects)
     {
+        Debug.Log("Players added vote from Voting Controller!");
+
         if(playersList.Contains(thisPlayer) != true)
         {
             playersList.Add(thisPlayer);
@@ -32,6 +34,7 @@ public class VotingControllerScript : MonoBehaviour {
         }
         if (numberOfPlayersVoted == numberOfPlayersConnected)
         {
+            Debug.Log("Players FINISHED VOTE from Voting Controller!");
             VotingEnded();
         }
         else
@@ -67,6 +70,7 @@ public class VotingControllerScript : MonoBehaviour {
 
     void UpdateVotes()
     {
+        Debug.Log("Updating Votes");
         foreach (GameObject player in playersList)
         {
             player.GetComponent<PlayerVotingSystem>().UpdateVotes(numberOfPlayersVoted);

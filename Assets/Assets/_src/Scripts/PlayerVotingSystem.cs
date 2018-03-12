@@ -49,6 +49,12 @@ public class PlayerVotingSystem : NetworkBehaviour {
         // Win or Lose! Game ends and we're happy.
     }
 
+    [ClientRpc]
+    void RpcUpdateVotes(int numVotes)
+    {
+        numberOfPlayersVoted = numVotes;
+    }
+
 
     public void EndVotes()
     {
@@ -57,7 +63,8 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
     public void UpdateVotes(int numVotes)
     {
-        numberOfPlayersVoted = numVotes;
+        Debug.Log("UpdateVotes triggered ");
+        RpcUpdateVotes(numVotes);
     }
 }
 
