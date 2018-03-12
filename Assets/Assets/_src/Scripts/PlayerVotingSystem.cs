@@ -10,63 +10,66 @@ using UnityEngine.Networking;
  * 
  * */
 
+    int numOfConnectedPlayers;
+    int[] listOfPlayersVotes = new int[10];
+    
+    int numberOfPlayersVoted=0;
 
 public class PlayerVotingSystem : MonoBehaviour {
 
     bool haveIVoted;
-    bool didIWin;
-    int uniquePlayerVotedFor;
-
-    GameObject playerVotingAnchor;
-
     bool haveInit = false;
 
-    private void Start()
-    {
-        if (haveInit == false)
-        {
-            uniquePlayerVotedFor = 0;
-            playerVotingAnchor = GameObject.Find("PlayerVotingAnchor");
-            if (playerVotingAnchor == null)
-            {
-                Debug.LogError("Player voting Anchor not found! ");
-            }
-            haveIVoted = false;
-        }
-    }
+ 
 
-    public void VoteForPlayer(int uniquePlayerId)
-    {
-        
-       playerVotingAnchor.GetComponent<PlayerVotingController>().CmdUpdateVote(uniquePlayerId, haveIVoted, this.gameObject);
-       if(haveIVoted == false) {
-            haveIVoted = true;
-            uniquePlayerVotedFor = uniquePlayerId;
-        }
-       Debug.Log("Players voted for unique id : "+uniquePlayerId);
-    }
 
-    public int PlayerVoted()
+    [Command]
+    void CmdUpdateVote(int uniquePlayerId, bool haveIVotedPlayerInp)
     {
-        if(uniquePlayerVotedFor == 0 || haveIVoted == false)
-        {
-            Debug.Log("CAUTION : PlayerVoted doesn't return a correct value!");
-            return -1;
-        }
-        return uniquePlayerVotedFor;
+        VotingControllerScript this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+        numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
+
+        this_Voting.PlayerAddVote(haveIVotedPlayerInp, uniquePlayerId, this.gameObject, numOfConnectedPlayers);
+
     }
 
     public void VotingResults(int idOfPlayerWithMostVotes)
     {
-        if(idOfPlayerWithMostVotes == uniquePlayerVotedFor)
+        if (haveInit == false)
         {
-            Debug.Log("PLAYER WON!");
-            // This is a placeholder for something that actually needs to be done on winning
+            haveIVoted = false;
+            haveInit = true;
         }
-        else
-        {
-            Debug.Log("PLAYER LOST!");
-        }
+
+       CmdUpdateVote(uniquePlayerId, haveIVoted);
+       if(haveIVoted == false) { haveIVoted = true; }
+       Debug.Log("Players voted for unique id : "+uniquePlayerId);
     }
 
+
+    [ClientRpc]
+    void RpcAnnounceResults()
+    {
+        Debug.Log("Have voted yo kids");
+        // Win or Lose! Game ends and we're happy.
+    }
+
+    [ClientRpc]
+    void RpcUpdateVotes(int numVotes)
+    {
+        numberOfPlayersVoted = numVotes;
+    }
+
+
+    public void EndVotes()
+    {
+        RpcAnnounceResults();
+    }
+
+    public void UpdateVotes(int numVotes)
+    {
+        Debug.Log("UpdateVotes triggered ");
+        RpcUpdateVotes(numVotes);
+    }
 }
+
