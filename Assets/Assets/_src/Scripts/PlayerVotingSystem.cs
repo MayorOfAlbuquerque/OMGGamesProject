@@ -20,35 +20,10 @@ public class PlayerVotingSystem : NetworkBehaviour {
     [Command]
     void CmdUpdateVote(int uniquePlayerId, bool haveIVotedPlayerInp)
     {
-        Debug.Log(numberOfPlayersVoted);
-        if(haveInit == false)
-        {
-            numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
-            Debug.Log("Number of players connected :"+numOfConnectedPlayers);
-            Debug.Log("Number of players voted :" + numberOfPlayersVoted);
-            for (int i = 0; i < numOfConnectedPlayers; i++)
-            {
-                listOfPlayersVotes[i] = 0;
-            }
-            haveInit = true;
-        }
+        VotingControllerScript this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+        numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
 
-        if (haveIVotedPlayerInp == false)
-        {
-            Debug.Log("PLAYER HAS VOTED");
-            listOfPlayersVotes[uniquePlayerId] += 1;
-            numberOfPlayersVoted += 1;
-        }
-
-
-        Debug.Log("Number of players connected AFTER INIT:" + numOfConnectedPlayers);
-        Debug.Log("Number of players voted AFTER INIT:" + numberOfPlayersVoted);
-
-        if (numberOfPlayersVoted == numOfConnectedPlayers)
-        {
-            Debug.Log("ALL PLAYERS VOTED! ");
-            RpcAnnounceResults();
-        }
+        this_Voting.PlayerAddVote(haveIVotedPlayerInp, uniquePlayerId, this.gameObject, numOfConnectedPlayers);
 
     }
     
@@ -74,4 +49,15 @@ public class PlayerVotingSystem : NetworkBehaviour {
         // Win or Lose! Game ends and we're happy.
     }
 
+
+    public void EndVotes()
+    {
+        RpcAnnounceResults();
+    }
+
+    public void UpdateVotes(int numVotes)
+    {
+        numberOfPlayersVoted = numVotes;
+    }
 }
+
