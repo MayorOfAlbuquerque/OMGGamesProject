@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4326559283687212}
   - component: {fileID: 33536940483135120}
   - component: {fileID: 23603197072416040}
+  - component: {fileID: 65326495228786508}
   m_Layer: 0
   m_Name: f_kitchen_dryer
   m_TagString: Untagged
@@ -34,9 +35,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664048302272862}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.22, y: 0.00000011920929, z: -3.85}
-  m_LocalScale: {x: 0.6996735, y: 0.8522154, z: 0.5632171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.62, y: 1.5240002, z: 5.71}
+  m_LocalScale: {x: 0.69966996, y: 0.85222, z: -0.56322}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,3 +83,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664048302272862}
   m_Mesh: {fileID: 4300000, guid: c581b92d230e1485785a31212e99303e, type: 3}
+--- !u!65 &65326495228786508
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664048302272862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9999998, y: 0.99999994, z: 1.0445936}
+  m_Center: {x: 0.49999616, y: 0.49999976, z: 0.5222962}
