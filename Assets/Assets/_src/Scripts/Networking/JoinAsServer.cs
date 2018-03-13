@@ -6,6 +6,7 @@ public class JoinAsServer : MonoBehaviour
     //triggers when another object enters its area.
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("join as server trigger enter");
         //if object is player then load scene
         if (other.gameObject.tag == "Player")
         {

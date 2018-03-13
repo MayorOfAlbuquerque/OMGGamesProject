@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -55,8 +55,8 @@ LightmapSettings:
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 9
-    m_Resolution: 2
-    m_BakeResolution: 20
+    m_Resolution: 1
+    m_BakeResolution: 8
     m_TextureWidth: 1024
     m_TextureHeight: 1024
     m_AO: 0
@@ -304,12 +304,12 @@ Prefab:
     - target: {fileID: 224775602656240746, guid: f97988adc0c574a168535b91776143b4,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 219
+      value: 169.5
       objectReference: {fileID: 0}
     - target: {fileID: 224775602656240746, guid: f97988adc0c574a168535b91776143b4,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 178
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 224775602656240746, guid: f97988adc0c574a168535b91776143b4,
         type: 2}
@@ -446,17 +446,17 @@ MonoBehaviour:
   m_NetworkPort: 8000
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
-  m_NetworkAddress: 192.168.0.103
+  m_NetworkAddress: localhost
   m_DontDestroyOnLoad: 1
   m_RunInBackground: 1
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 0
-  m_PlayerPrefab: {fileID: 1377887965633902, guid: 8d8a9d48767f72b458c5c88a9c618fd1,
+  m_PlayerPrefab: {fileID: 1377887965633902, guid: 6fde0fd409cd24fe591000a2e1adec8d,
     type: 2}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: introScene
+  m_OfflineScene: StationInterior
   m_OnlineScene: MainScene
   m_SpawnPrefabs: []
   m_CustomConfig: 0
