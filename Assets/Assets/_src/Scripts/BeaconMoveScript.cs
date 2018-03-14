@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class BeaconMoveScript : MonoBehaviour {
-	AndroidJavaClass jc;
-	string javaMessage;
-	[SerializeField]
-	public GameObject Beacon1;
-	[SerializeField]
-	public GameObject Beacon2;
-	private string lastReceived = "1";
-	[SerializeField]
-	public GameObject Beacon3;
+public class BeaconMoveScript : MonoBehaviour
+{
+    AndroidJavaClass jc;
+    string javaMessage;
+    [SerializeField]
+    public GameObject Beacon1;
+    [SerializeField]
+    public GameObject Beacon2;
+    private string lastReceived = "1";
+    [SerializeField]
+    public GameObject Beacon3;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
-		// Acces the android java receiver we made
-		jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReceiver");
-		Debug.LogError (jc);
-		// We call our java class function to create our MyReceiver java object
-		jc.CallStatic("createInstance");
-		
-	}
-	// Update is called once per frame
-	void Update () {
-		javaMessage = jc.GetStatic<string> ("intentMessage");
+        // Acces the android java receiver we made
+        jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReceiver");
+        Debug.LogError(jc);
+        // We call our java class function to create our MyReceiver java object
+        jc.CallStatic("createInstance");
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        javaMessage = jc.GetStatic<string> ("intentMessage");
 		switch (javaMessage) {
 			case "1":
 				if (lastReceived != "1") {
@@ -56,5 +60,6 @@ public class BeaconMoveScript : MonoBehaviour {
 				//Stay where you are
 				break;
 		}
+#endif
 	}
 }

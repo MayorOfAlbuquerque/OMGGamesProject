@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class UIManager : MonoBehaviour {
 
@@ -20,6 +21,9 @@ public class UIManager : MonoBehaviour {
     public Button pickCharacterOkButton;
 
     public GameSettings Settings;
+
+    [SerializeField]
+    private string gameSceneName;
 
     public void ShowHomePanel() {
         HomePanel.SetActive(true);
@@ -69,6 +73,11 @@ public class UIManager : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.LoadScene("introScene");
+        SceneManager.LoadScene(gameSceneName ?? "introScene");
+    }
+
+    public void StartServer()
+    {
+        NetworkManager.singleton.StartServer();
     }
 }
