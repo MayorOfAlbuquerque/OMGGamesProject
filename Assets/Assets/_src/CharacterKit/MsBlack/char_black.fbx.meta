@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 727b39e08790d40a7acdf2dbff705fa8
-timeCreated: 1521046612
-=======
-guid: de5a3dffc732242bd95dc3ac6af7127e
-timeCreated: 1521045687
->>>>>>> 32da52eaf695c5894f842fa3d8b1d2949786ae1c
+guid: 6073caed11c2349a8ad5d208384d8cfa
+timeCreated: 1521048381
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -17,15 +12,16 @@ ModelImporter:
     100008: fore_arm 1
     100010: hand
     100012: hand 1
-    100014: head
-    100016: LEFT_arm
-    100018: LEFT_leg
-    100020: lower_leg
-    100022: lower_leg 1
-    100024: mink_stole
+    100014: hat
+    100016: head
+    100018: LEFT_arm
+    100020: LEFT_leg
+    100022: lower_leg
+    100024: lower_leg 1
     100026: neck
     100028: RIGHT_arm
     100030: RIGHT_leg
+    100032: skirt
     400000: //RootNode
     400002: foot
     400004: foot 1
@@ -33,15 +29,16 @@ ModelImporter:
     400008: fore_arm 1
     400010: hand
     400012: hand 1
-    400014: head
-    400016: LEFT_arm
-    400018: LEFT_leg
-    400020: lower_leg
-    400022: lower_leg 1
-    400024: mink_stole
+    400014: hat
+    400016: head
+    400018: LEFT_arm
+    400020: LEFT_leg
+    400022: lower_leg
+    400024: lower_leg 1
     400026: neck
     400028: RIGHT_arm
     400030: RIGHT_leg
+    400032: skirt
     2300000: //RootNode
     2300002: foot
     2300004: foot 1
@@ -49,15 +46,16 @@ ModelImporter:
     2300008: fore_arm 1
     2300010: hand
     2300012: hand 1
-    2300014: head
-    2300016: LEFT_arm
-    2300018: LEFT_leg
-    2300020: lower_leg
-    2300022: lower_leg 1
-    2300024: mink_stole
+    2300014: hat
+    2300016: head
+    2300018: LEFT_arm
+    2300020: LEFT_leg
+    2300022: lower_leg
+    2300024: lower_leg 1
     2300026: neck
     2300028: RIGHT_arm
     2300030: RIGHT_leg
+    2300032: skirt
     3300000: //RootNode
     3300002: foot
     3300004: foot 1
@@ -65,44 +63,42 @@ ModelImporter:
     3300008: fore_arm 1
     3300010: hand
     3300012: hand 1
-    3300014: head
-    3300016: LEFT_arm
-    3300018: LEFT_leg
-    3300020: lower_leg
-    3300022: lower_leg 1
-    3300024: mink_stole
+    3300014: hat
+    3300016: head
+    3300018: LEFT_arm
+    3300020: LEFT_leg
+    3300022: lower_leg
+    3300024: lower_leg 1
     3300026: neck
     3300028: RIGHT_arm
     3300030: RIGHT_leg
-    4300000: MsPeach
+    3300032: skirt
+    4300000: MsBlack
     4300002: neck
     4300004: head
-    4300006: RIGHT_arm
-    4300008: fore_arm
-    4300010: hand
-    4300012: RIGHT_leg
-    4300014: lower_leg
-    4300016: foot
-    4300018: mink_stole
-    4300020: LEFT_arm
-    4300022: fore_arm
-    4300024: hand
-    4300026: LEFT_leg
-    4300028: lower_leg
-    4300030: foot
+    4300006: hat
+    4300008: skirt
+    4300010: RIGHT_leg
+    4300012: lower_leg
+    4300014: foot
+    4300016: RIGHT_arm
+    4300018: fore_arm
+    4300020: hand
+    4300022: LEFT_arm
+    4300024: fore_arm
+    4300026: hand
+    4300028: LEFT_leg
+    4300030: lower_leg
+    4300032: foot
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: peach_mat
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: e64a5844711264ecbbbe7f3055549769, type: 2}
-=======
-    second: {fileID: 2100000, guid: 0c8bfca46ae92492d89d7247b347a8cd, type: 2}
->>>>>>> 32da52eaf695c5894f842fa3d8b1d2949786ae1c
+      name: msblack_mat
+    second: {fileID: 2100000, guid: dd6bc34b3750140d38e620300f26129e, type: 2}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -149,11 +145,11 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class PlayerClientManager : MonoBehaviour {
 
     public bool joinOnSceneLoad;
-    public GameSettings settings;
+    private GameSettings settings;
     private NetworkClient client;
     private bool joined = false;
 
@@ -16,6 +16,14 @@ public class PlayerClientManager : MonoBehaviour {
         client = NetworkManager.singleton?.client;
         if(joinOnSceneLoad) {
             //JoinServer();
+        }
+        if (Settings.gameSettings != null)
+        {
+            settings = Settings.gameSettings;
+        }
+        else
+        {
+            settings = ScriptableObject.CreateInstance<GameSettings>();
         }
     }
 
