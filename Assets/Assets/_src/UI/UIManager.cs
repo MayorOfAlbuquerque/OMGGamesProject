@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour {
 
         Dropdown.OptionData data = IpAddressDropDown.options[optionId];
         IpAddress.text = data.text;
+        IpAddress.textComponent.text = data.text;
     }
 
     public void handleCharacterSelection(int id) {
@@ -68,6 +69,7 @@ public class UIManager : MonoBehaviour {
     {
         Debug.Log(IpAddress.textComponent.text);
         Settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        Debug.Log("Setting ip to: " + Settings.IpAddress);
         ShowHomePanel();
     }
 
