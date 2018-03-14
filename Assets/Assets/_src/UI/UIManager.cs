@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
     public GameObject PickCharacterPanel;
     public Button pickCharacterOkButton;
 
-    public GameSettings Settings;
+    private GameSettings settings;
 
     [SerializeField]
     private string gameSceneName;
@@ -46,6 +46,11 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ShowHomePanel();
+        if (Settings.gameSettings != null) {
+            settings = Settings.gameSettings;
+        } else {
+            settings = ScriptableObject.CreateInstance<GameSettings>();
+        }
 	}
     public void handleDropdownSelection(int optionId) {
         if(IpAddressDropDown == null) {
@@ -59,18 +64,19 @@ public class UIManager : MonoBehaviour {
 
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice:" + id);
-        Settings.CharacterId = id;
+        settings.CharacterId = id;
     }
     public void FillSettingsFom()
     {
-        IpAddress.text = Settings.IpAddress;
+        IpAddress.text = settings.IpAddress;
     }
     public void SaveSettings() 
     {
         Debug.Log(IpAddress.textComponent.text);
-        Settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
-        Debug.Log("Setting ip to: " + Settings.IpAddress);
+        settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        Debug.Log("Setting ip to: " + settings.IpAddress);
         ShowHomePanel();
+        Debug.Log(settings);
     }
 
     public void StartGame()
