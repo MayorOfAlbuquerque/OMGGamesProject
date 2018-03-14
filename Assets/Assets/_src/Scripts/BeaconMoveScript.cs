@@ -14,6 +14,11 @@ public class BeaconMoveScript : MonoBehaviour
     private string lastReceived = "1";
     [SerializeField]
     public GameObject Beacon3;
+	[SerializeField]
+	public GameObject Beacon4;
+	[SerializeField]
+	public GameObject Beacon5;
+
 
     // Use this for initialization
     void Start()
@@ -54,6 +59,22 @@ public class BeaconMoveScript : MonoBehaviour
 					this.gameObject.transform.position = Beacon3.transform.position;
 				this.gameObject.GetComponent<CharacterController> ().enabled = true;
 					lastReceived = "3";
+				}
+				break;
+			case "4":
+				if (lastReceived != "4") {
+					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+					this.gameObject.transform.position = Beacon4.transform.position;
+					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+					lastReceived = "4";
+				}
+				break;
+			case "3":
+				if (lastReceived != "5") {
+					this.gameObject.GetComponent<CharacterController> ().enabled = false;
+					this.gameObject.transform.position = Beacon5.transform.position;
+					this.gameObject.GetComponent<CharacterController> ().enabled = true;
+					lastReceived = "5";
 				}
 				break;
 			default:
