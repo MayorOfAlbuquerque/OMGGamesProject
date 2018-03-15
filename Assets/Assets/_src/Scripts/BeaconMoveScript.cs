@@ -25,13 +25,13 @@ public class BeaconMoveScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        #if UNITY_ANDROID
         // Acces the android java receiver we made
         jc = new AndroidJavaClass("com.example.omg.myapplication.UnityReceiver");
         Debug.LogError(jc);
         // We call our java class function to create our MyReceiver java object
         jc.CallStatic("createInstance");
-
+        #endif
         if(Beacon1 != null)
             beaconAndIds.Add("1", Beacon1);
         if (Beacon2 != null)
@@ -47,7 +47,7 @@ public class BeaconMoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID
         javaMessage = jc.GetStatic<string> ("intentMessage");
 		switch (javaMessage) {
 			case "1":

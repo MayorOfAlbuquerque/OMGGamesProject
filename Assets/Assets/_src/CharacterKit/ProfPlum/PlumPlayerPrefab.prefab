@@ -870,7 +870,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4003882811850074}
   - component: {fileID: 95799630574921752}
-  - component: {fileID: 114428815586238660}
   - component: {fileID: 114042502383710336}
   - component: {fileID: 114014032325276272}
   m_Layer: 0
@@ -1211,7 +1210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1978249892313436
 GameObject:
   m_ObjectHideFlags: 1
@@ -3059,7 +3058,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786906802926720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f2178f465abb464f8cab6a96251ceae, type: 3}
   m_Name: 
@@ -3070,7 +3069,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786906802926720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 976997d955447481da6ddbc8841d5188, type: 3}
   m_Name: 
@@ -3207,7 +3206,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114014032325276272}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -3230,6 +3229,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114046910532027742}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114042502383710336}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -3288,38 +3298,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hello world
---- !u!114 &114428815586238660
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1786906802926720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 40
-    i1: 28
-    i2: 150
-    i3: 29
-    i4: 193
-    i5: 144
-    i6: 228
-    i7: 35
-    i8: 187
-    i9: 102
-    i10: 94
-    i11: 162
-    i12: 99
-    i13: 202
-    i14: 199
-    i15: 148
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &114444749440606968
 MonoBehaviour:
   m_ObjectHideFlags: 1

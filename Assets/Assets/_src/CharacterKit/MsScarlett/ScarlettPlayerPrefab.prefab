@@ -115,7 +115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1300969899328638
 GameObject:
   m_ObjectHideFlags: 1
@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 4781016534195232}
   - component: {fileID: 95822809604248956}
   - component: {fileID: 114516185976734980}
+  - component: {fileID: 114943942300624094}
   m_Layer: 0
   m_Name: MsScarlettModel
   m_TagString: Untagged
@@ -1777,7 +1778,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791857297763296}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 976997d955447481da6ddbc8841d5188, type: 3}
   m_Name: 
@@ -2055,7 +2056,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114943942300624094}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -2078,6 +2079,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114220384347897318}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114516185976734980}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -2124,6 +2136,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hello world
+--- !u!114 &114943942300624094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791857297763296}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2178f465abb464f8cab6a96251ceae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114978192822373818
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1367032711272524
 GameObject:
   m_ObjectHideFlags: 1
@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 23577328103927524}
   - component: {fileID: 95437386004004292}
   - component: {fileID: 114202170694931774}
+  - component: {fileID: 114367658089473130}
   m_Layer: 0
   m_Name: SergeantGreyModel
   m_TagString: Untagged
@@ -1553,8 +1554,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 1355324576794268}
+        m_MethodName: SetActive
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1576,6 +1577,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114593142630943468}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114367658089473130}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -1628,6 +1640,17 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114914088670815742}
   attachToMainCamera: 0
+--- !u!114 &114367658089473130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519569620926804}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976997d955447481da6ddbc8841d5188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114457957038844050
 MonoBehaviour:
   m_ObjectHideFlags: 1
