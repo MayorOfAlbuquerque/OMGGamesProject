@@ -46,13 +46,21 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ShowHomePanel();
-        if (Settings.gameSettings != null) {
+
+	}
+
+	private void OnEnable()
+	{
+        if (Settings.gameSettings != null)
+        {
             settings = Settings.gameSettings;
-        } else {
+        }
+        else
+        {
             settings = ScriptableObject.CreateInstance<GameSettings>();
         }
 	}
-    public void handleDropdownSelection(int optionId) {
+	public void handleDropdownSelection(int optionId) {
         if(IpAddressDropDown == null) {
             return;
         }
@@ -64,7 +72,8 @@ public class UIManager : MonoBehaviour {
 
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice:" + id);
-        settings.CharacterId = id;
+        Debug.Log(settings);
+        Settings.gameSettings.CharacterId = id;
     }
     public void FillSettingsFom()
     {
