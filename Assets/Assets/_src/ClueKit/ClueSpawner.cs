@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -100,17 +101,23 @@ public class ClueSpawner : MonoBehaviour {
             {
                 return;
             }
-            //instantiate a replacement object for the placehodler, place in active clue container
-            placeholder.gameObject.SetActive(false);
-            GameObject clue = Instantiate(
-                placeholder.Clue.ModelPrefab,
-                placeholder.transform.position,
-                placeholder.transform.rotation,
-                activeClueContainter.transform
-            );
-            //assign the hoverable text to what is said in the clue general text
-            clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
-            clueReference.Add(placeholder, clue);
+            try
+            {
+                //instantiate a replacement object for the placehodler, place in active clue container
+                placeholder.gameObject.SetActive(false);
+                GameObject clue = Instantiate(
+                    placeholder.Clue.ModelPrefab,
+                    placeholder.transform.position,
+                    placeholder.transform.rotation,
+                    activeClueContainter.transform
+                );
+                //assign the hoverable text to what is said in the clue general text
+                clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
+                clueReference.Add(placeholder, clue);
+            }catch(Exception e) {
+                Debug.LogWarning(e.Message);
+            }
+
         }
     }
    

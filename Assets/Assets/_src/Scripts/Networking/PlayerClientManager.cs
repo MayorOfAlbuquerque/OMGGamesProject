@@ -49,7 +49,7 @@ public class PlayerClientManager : MonoBehaviour {
             settings.CharacterId
         );
         ClientScene.AddPlayer(client.connection, 0, message);
-        //client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
+        client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
         joined = true;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,7 +74,12 @@ public class UIManager : MonoBehaviour {
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice:" + id);
         Debug.Log(settings);
-        Settings.gameSettings.CharacterId = id;
+        try
+        {
+            Settings.gameSettings.CharacterId = id;
+        }catch(Exception e) {
+            Debug.LogWarning(e.Message);
+        }
     }
     public void FillSettingsFom()
     {
