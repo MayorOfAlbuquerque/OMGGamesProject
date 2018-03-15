@@ -18,7 +18,12 @@ public class OMGNetManager : NetworkManager
         playerManager = GetComponent<PlayerServerManager>();
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
+	public override void OnStartClient(NetworkClient client)
+	{
+        playerManager.RegisterPlayerPrefabs();
+	}
+
+	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
         if(extraMessageReader == null) {
             return;

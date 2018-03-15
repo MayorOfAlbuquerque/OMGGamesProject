@@ -44,6 +44,7 @@ public class PlayerClientManager : MonoBehaviour {
         {
             return;
         }
+        Debug.Log("Player joining server");
         PlayerJoinMessage message = new PlayerJoinMessage(
             client.connection.connectionId,
             settings.CharacterId
