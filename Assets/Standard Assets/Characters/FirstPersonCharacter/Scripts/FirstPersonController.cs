@@ -41,6 +41,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+		private bool m_DisableMovement = false;
+
+		public void SetDisableMovement( bool change ){
+			m_DisableMovement = change;
+		}
 
         // Use this for initialization
         private void Start()
@@ -94,6 +99,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
+			if (m_DisableMovement) {
+				return;
+			}
+
             float speed;
             GetInput(out speed);
             // always move along the camera forward as it is the direction that it being aimed at
