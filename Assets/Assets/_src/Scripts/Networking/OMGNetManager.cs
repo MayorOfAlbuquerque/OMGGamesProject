@@ -39,6 +39,7 @@ public class OMGNetManager : NetworkManager
         else
         {
             player = Instantiate(playerPrefab);
+            player.transform.position = GetStartPosition().position;
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
