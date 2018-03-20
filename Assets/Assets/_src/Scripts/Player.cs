@@ -98,7 +98,7 @@ public class Player : NetworkBehaviour {
     {
         //Call all client's clue spawners with list of current players
         GameObject clueController = GameObject.Find("ClueController");
-        clueController.GetComponent<ClueSpawner>().SpawnPrivateCluesForChar(spec);
+        clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
     }
 
 }
