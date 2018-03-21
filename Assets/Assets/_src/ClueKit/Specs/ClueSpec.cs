@@ -10,5 +10,16 @@ public class ClueSpec : ScriptableObject {
     public bool PrivateClue;
     public CharacterSpec Character;
     public string PrivateDisplayText;
+
+    public bool AltPrivateClue1;
+    public CharacterSpec AltCharacter1;
+    public string AltPrivateDisplayText1;
+    public bool AltPrivateClue2;
+    public CharacterSpec AltCharacter2;
+    public string AltPrivateDisplayText2;
+    public bool AltPrivateClue3;
+    public CharacterSpec AltCharacter3;
+    public string AltPrivateDisplayText3;
     public GameObject ModelPrefab;
+
 }
