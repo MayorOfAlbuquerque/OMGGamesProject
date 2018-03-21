@@ -72,6 +72,7 @@ public class ClueSpawner : MonoBehaviour {
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
             //if a private clue and if you are the required recipient of each clue spec
+
             if(entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());

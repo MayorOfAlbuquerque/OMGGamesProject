@@ -46,7 +46,7 @@ public class OMGNetManager : NetworkManager
         //rpc call to all clients to spawn clues with list of characters
         if(spec != null)
         {
-            GameObject.Find("Player").GetComponent<Player>().RpcSpawnPrivateClues(spec);
+            player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
         }
     }
 

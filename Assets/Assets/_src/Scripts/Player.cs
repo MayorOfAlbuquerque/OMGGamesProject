@@ -96,6 +96,7 @@ public class Player : NetworkBehaviour {
     [ClientRpc]
     public void RpcSpawnPrivateClues(CharacterSpec spec)
     {
+        Debug.Log("RPC called__-___-______---________---_-");
         //Call all client's clue spawners with list of current players
         GameObject clueController = GameObject.Find("ClueController");
         clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
