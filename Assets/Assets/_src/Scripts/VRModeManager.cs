@@ -16,7 +16,7 @@ public class VRModeManager : MonoBehaviour {
         string device = string.IsNullOrEmpty(deviceName) 
                               ? "cardboard" 
                               : deviceName;
-        
+        yield return new WaitForSeconds(0.5f);
         XRSettings.LoadDeviceByName(device);
         yield return null;
         XRSettings.enabled = true;
