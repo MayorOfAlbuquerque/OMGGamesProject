@@ -49,7 +49,12 @@ public class OMGNetManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
         //rpc call to all clients to spawn clues with list of characters
-        player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
+        Debug.Log(spec.FullName.ToString() + "----------------------");
+        if(player != null)
+        {
+            Debug.Log("brokededed__________________");
+        }
+        //player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
     }
 
 

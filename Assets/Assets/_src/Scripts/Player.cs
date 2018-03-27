@@ -96,12 +96,20 @@ public class Player : NetworkBehaviour {
     [ClientRpc]
     public void RpcSpawnPrivateClues(CharacterSpec spec)
     {
+        /*
         if (isLocalPlayer)
         {
             //Call all client's clue spawners with list of current players
             GameObject clueController = GameObject.Find("ClueController");
-            clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
-        }
+            Debug.Log("MY NAME == " + spec.FullName.ToString());
+            if (clueController != null)
+            {
+                clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
+            }
+            else
+            {
+                Debug.Log("It gone fucked up _____________++++++++++++++++++++");
+            }
+        }*/
     }
-
 }
