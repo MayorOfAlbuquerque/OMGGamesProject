@@ -96,7 +96,7 @@ public class Player : NetworkBehaviour {
     [ClientRpc]
     public void RpcSpawnPrivateClues(CharacterSpec spec)
     {
-        /*
+        
         if (isLocalPlayer)
         {
             //Call all client's clue spawners with list of current players
@@ -106,10 +106,6 @@ public class Player : NetworkBehaviour {
             {
                 clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
             }
-            else
-            {
-                Debug.Log("It gone fucked up _____________++++++++++++++++++++");
-            }
-        }*/
+        }
     }
 }
