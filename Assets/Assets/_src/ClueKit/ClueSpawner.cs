@@ -19,7 +19,7 @@ public class ClueSpawner : MonoBehaviour {
         Debug.Log("-_____------------------Start-------------------______-");
         SetActiveContatiner();
         Debug.Log("Active Container _____________-----------------");
-        SpawnCluesForCurrentScene();
+        SpawnGeneralClues();
         Debug.Log("Spawned Clues-------------------_____________________");
 	}
 
@@ -32,18 +32,8 @@ public class ClueSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnCluesForCurrentScene() {
-        Scene activeScene = SceneManager.GetActiveScene();
-        Debug.Log("Active scene = " + activeScene.ToString());
-
-        if (activeScene != null)
-        {
-            SpawnGeneralClues(activeScene);
-        }
-    }
-
     //spawn all general clues
-    public void SpawnGeneralClues(Scene scene)
+    public void SpawnGeneralClues()
     {
         Transform generalClues = transform.GetChild(0);
         //for all children of controller
@@ -52,6 +42,7 @@ public class ClueSpawner : MonoBehaviour {
             foreach (Transform child in generalClues)
             {
                 SpawnClueInScene(child.GetComponent<CluePlaceholder>());
+                Debug.Log("Clue spawned _________________________");
             }
         }
     }
@@ -88,7 +79,7 @@ public class ClueSpawner : MonoBehaviour {
             if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
-            }/*
+            }
             if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
@@ -100,7 +91,7 @@ public class ClueSpawner : MonoBehaviour {
             if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
-            }*/
+            }
 
         }
     }
@@ -130,6 +121,7 @@ public class ClueSpawner : MonoBehaviour {
                 clueReference.Add(placeholder, clue);
             }catch(Exception e) {
                 Debug.LogWarning(e.Message);
+                Debug.Log("We got an exception bois");
             }
 
         }
