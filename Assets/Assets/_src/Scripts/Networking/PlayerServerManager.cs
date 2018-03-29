@@ -23,6 +23,7 @@ public class PlayerServerManager : MonoBehaviour {
         }
     }
 
+
     public void OnPlayerJoin(NetworkMessage message) {
         PlayerJoinMessage joinMessage = message.ReadMessage<PlayerJoinMessage>();
         if(joinMessage == null) {

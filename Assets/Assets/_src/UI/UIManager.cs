@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class UIManager : MonoBehaviour {
 
@@ -19,7 +21,10 @@ public class UIManager : MonoBehaviour {
     public GameObject PickCharacterPanel;
     public Button pickCharacterOkButton;
 
-    public GameSettings Settings;
+    private GameSettings settings;
+
+    [SerializeField]
+    private string gameSceneName;
 
     public void ShowHomePanel() {
         HomePanel.SetActive(true);
@@ -42,33 +47,60 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ShowHomePanel();
+
 	}
-    public void handleDropdownSelection(int optionId) {
+
+	private void OnEnable()
+	{
+        if (Settings.gameSettings != null)
+        {
+            settings = Settings.gameSettings;
+        }
+        else
+        {
+            settings = ScriptableObject.CreateInstance<GameSettings>();
+        }
+	}
+	public void handleDropdownSelection(int optionId) {
         if(IpAddressDropDown == null) {
             return;
         }
 
         Dropdown.OptionData data = IpAddressDropDown.options[optionId];
         IpAddress.text = data.text;
+        IpAddress.textComponent.text = data.text;
     }
 
     public void handleCharacterSelection(int id) {
         Debug.Log("saving character choice:" + id);
-        Settings.CharacterId = id;
+        Debug.Log(settings);
+        try
+        {
+            Settings.gameSettings.CharacterId = id;
+        }catch(Exception e) {
+            Debug.LogWarning(e.Message);
+        }
     }
     public void FillSettingsFom()
     {
-        IpAddress.text = Settings.IpAddress;
+        IpAddress.text = settings.IpAddress;
     }
     public void SaveSettings() 
     {
         Debug.Log(IpAddress.textComponent.text);
-        Settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        Debug.Log("Setting ip to: " + settings.IpAddress);
         ShowHomePanel();
+        Debug.Log(settings);
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("introScene");
+        SceneManager.LoadScene(gameSceneName ?? "introScene");
+    }
+
+    public void StartServer()
+    {
+        NetworkManager.singleton.StartServer();
     }
 }
