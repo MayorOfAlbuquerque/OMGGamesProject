@@ -45,11 +45,15 @@ public class OMGNetManager : NetworkManager
         else
         {
             player = Instantiate(playerPrefab);
+            player.transform.position = GetStartPosition().position;
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
         //rpc call to all clients to spawn clues with list of characters
-        player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
+        if(spec != null)
+        {
+            player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
+        }
     }
 
 

@@ -16,33 +16,35 @@ public class ClueSpawner : MonoBehaviour {
 	void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
         charactersAlreadyInGame = new List<CharacterSpec>();
+        Debug.Log("-_____------------------Start-------------------______-");
         SetActiveContatiner();
-        SpawnCluesForCurrentScene();
+        Debug.Log("Active Container _____________-----------------");
+        SpawnGeneralClues();
+        Debug.Log("Spawned Clues-------------------_____________________");
 	}
 
     private void SetActiveContatiner()
     {
         this.activeClueContainter = GameObject.Find("ActiveClueContainer");
-    }
-
-    public void SpawnCluesForCurrentScene() {
-        Scene activeScene = SceneManager.GetActiveScene();
-        if (activeScene != null)
+        if(activeClueContainter == null)
         {
-            SpawnGeneralClues(activeScene);
+            Debug.Log("container is a null");
         }
     }
 
     //spawn all general clues
-    public void SpawnGeneralClues(Scene scene)
+    public void SpawnGeneralClues()
     {
         Transform generalClues = transform.GetChild(0);
         //for all children of controller
-        foreach (Transform child in generalClues)
+        if (generalClues != null)
         {
-            SpawnClueInScene(child.GetComponent<CluePlaceholder>());  
+            foreach (Transform child in generalClues)
+            {
+                SpawnClueInScene(child.GetComponent<CluePlaceholder>());
+                Debug.Log("Clue spawned _________________________");
+            }
         }
-
     }
     /*
     //spawn clues for char given and decide which text appears
@@ -68,11 +70,13 @@ public class ClueSpawner : MonoBehaviour {
     }
     */
     public void ChangeToPrivateText(CharacterSpec mySpec)
-    { 
+    {
+        Debug.Log("Pos 1 +++++++++++++++_--------------------");
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
+            Debug.Log("Pos 1 +++++++++++++++_--------------------");
             //if a private clue and if you are the required recipient of each clue spec
-            if(entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+            if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
             {
                 entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
             }
@@ -95,6 +99,7 @@ public class ClueSpawner : MonoBehaviour {
     //replace placeholder with real clue
     private void SpawnClueInScene(CluePlaceholder placeholder)
     {
+
         if (placeholder != null && placeholder.Clue && placeholder.Clue.ModelPrefab != null)
         {
             if (!placeholder.gameObject.activeInHierarchy)
@@ -116,6 +121,7 @@ public class ClueSpawner : MonoBehaviour {
                 clueReference.Add(placeholder, clue);
             }catch(Exception e) {
                 Debug.LogWarning(e.Message);
+                Debug.Log("We got an exception bois");
             }
 
         }

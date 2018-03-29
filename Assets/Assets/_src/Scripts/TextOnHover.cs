@@ -58,5 +58,4 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
         txt.text = newText;
         textHodler.SetActive(false);
     }
-
 }                                                               // Yep it's a horrible bodge
