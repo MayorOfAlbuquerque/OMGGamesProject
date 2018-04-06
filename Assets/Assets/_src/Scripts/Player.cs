@@ -22,13 +22,16 @@ public class Player : NetworkBehaviour {
     [SerializeField] ToggleEvent onToggleLocal;
     GameObject mainCamera;
     public float speed;
+    private bool murderer = false;
+    private string heldClue = null;
 
     private void Start()
-        {
-            mainCamera = Camera.main.gameObject;
-            EnablePlayer();
-            HideModelIfLocal();
-        }
+    {
+        mainCamera = Camera.main.gameObject;
+        EnablePlayer();
+        HideModelIfLocal();
+    }
+
     private void HideModelIfLocal()
     {
         if(!isLocalPlayer) 
@@ -94,18 +97,44 @@ public class Player : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcSpawnPrivateClues(CharacterSpec spec)
+    public void RpcSpawnPrivateClues(CharacterSpec spec, bool murderer)
     {
-        
+        this.murderer = murderer;
         if (isLocalPlayer)
         {
             //Call all client's clue spawners with list of current players
             GameObject clueController = GameObject.Find("ClueController");
             Debug.Log("MY NAME == " + spec.FullName.ToString());
+            Debug.Log("Am I murderer? " + this.murderer);
             if (clueController != null)
             {
                 clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
             }
         }
+    }
+
+    public bool IsMurderer()
+    {
+        return this.murderer;
+    }
+    public void SetMurderer(bool m)
+    {
+        this.murderer = m;
+    }
+
+    public string GetHeldClue()
+    {
+        return heldClue;
+    }
+
+    public void SetHeldClue(string clue)
+    {
+        this.heldClue = clue;
+    }
+
+    [ClientRpc]
+    public void RpcSetClue(string clue)
+    {
+        SetHeldClue(clue);
     }
 }

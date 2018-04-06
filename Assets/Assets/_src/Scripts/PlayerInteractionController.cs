@@ -25,11 +25,14 @@ public class PlayerInteractionController : NetworkBehaviour{
     public void HandleOnClickAction (GameObject obj, ref RaycastResult result)
 	{
 		if(Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
-		   {
-
-		    if (obj?.GetComponent<PickupController>()) {
-			    CmdPlayerLeftClickWeapon(obj, thisGameObject); //Weapon pickup needs to know about the player gameobject
-                Debug.Log("Left clicked Weapon \n");
+		{
+		    if (obj.GetComponent<CluePickupController>() != null) {
+                Debug.Log("pos1");
+                Debug.Log(obj.GetComponent<CluePickupController>().ToString());
+                CluePlaceholder spec = obj.GetComponent<CluePickupController>().spec;
+                Debug.Log(spec.ToString() + "-------------------------");
+			    CmdPlayerLeftClickClue(spec.Clue.Name.ToString(), thisGameObject); 
+                Debug.Log("Left clicked Clue \n");
             } 
 		    else {
 			    CmdPlayerLeftClick (obj);
@@ -88,25 +91,45 @@ public class PlayerInteractionController : NetworkBehaviour{
         controller.OnClick (); //Needs to run on server as players do not have authority over interactable objects
 	}
     
-
     /// <summary>
     /// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
     /// </summary>
     /// <param name="obj">The game object the player is trying to interact with</param> 
     [Command]
-	public void CmdPlayerLeftClickWeapon (GameObject obj, GameObject thisPlayer)
+	public void CmdPlayerLeftClickClue (string specName, GameObject thisPlayer)
 	{
-		obj.GetComponent<InteractableObjectController> ().OnClick (thisPlayer.GetComponent<Player>()); //Needs to run on server as players do not have authority over interactable objects
+        //check for if murderer
+        if(thisPlayer.GetComponent<Player>().IsMurderer())
+        {
+            Debug.Log("------Player is murderer");
+            GameObject clueSpawner = GameObject.Find("ClueController");
+            CluePlaceholder spec = clueSpawner.GetComponent<ClueSpawner>().GetPlaceholderFromSpecName(specName);
+            //check if player holds clue
+            string currentClue = thisPlayer.GetComponent<Player>().GetHeldClue();
+            //rpc remove model or swap
+            if (currentClue != null)
+            {
 
-	}
+            }
+            else
+            {
+                //rpc set player holding clue
+                Debug.Log("Adding new clue to murderer");
+                thisPlayer.GetComponent<Player>().SetHeldClue(specName);
+                thisPlayer.GetComponent<Player>().RpcSetClue(specName);
+                //remove models on server and clients
+                clueSpawner.GetComponent<ClueSpawner>().RemoveClueModel(specName);
+                RpcRemoveClue(specName);
+                
+                //clueSpawner.GetComponent<ClueSpawner>().RpcRemoveClue(specName);
+            }
+        }
+    }
 
-	/// <summary>
-	/// Runs on the server, allowing the calling of Rpc's to display animation to all clients. 
-	/// </summary>
-	/// <param name="obj">The game object the player is trying to interact with</param> 
-	[Command]
-	void CmdPlayerRightClick (GameObject obj)
-	{
-
-	}
+    [ClientRpc]
+    public void RpcRemoveClue(string spec)
+    {
+        GameObject clueSpawner = GameObject.Find("ClueController");
+        clueSpawner.GetComponent<ClueSpawner>().RemoveClueModel(spec);
+    }
 }

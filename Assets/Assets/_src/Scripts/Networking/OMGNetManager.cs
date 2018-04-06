@@ -7,11 +7,20 @@ using UnityEngine.Networking;
 public class OMGNetManager : NetworkManager
 {
     public PlayerServerManager playerManager;
+    private string murderer;
 
     public override void OnStartServer()
     {
         playerManager.RegisterHandlers();
+        //select story 
+        ChooseMurderer(/*given story*/);
+    }
 
+    private void ChooseMurderer()
+    {
+        //get murderer name from story
+        string mName = "Ms Scarlett";
+        this.murderer = mName;
     }
 
     void Start()
@@ -52,7 +61,15 @@ public class OMGNetManager : NetworkManager
         //rpc call to all clients to spawn clues with list of characters
         if(spec != null)
         {
-            player.GetComponent<Player>().RpcSpawnPrivateClues(spec);
+            if(spec.FullName == this.murderer)
+            {
+                player.GetComponent<Player>().RpcSpawnPrivateClues(spec, true);
+                player.GetComponent<Player>().SetMurderer(true);
+            }
+            else
+            {
+                player.GetComponent<Player>().RpcSpawnPrivateClues(spec, false);
+            }
         }
     }
 
