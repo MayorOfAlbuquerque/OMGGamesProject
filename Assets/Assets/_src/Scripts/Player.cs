@@ -24,6 +24,7 @@ public class Player : NetworkBehaviour {
     public float speed;
     private bool murderer = false;
     private string heldClue = null;
+    private CharacterSpec mySpec;
 
     private void Start()
     {
@@ -100,6 +101,7 @@ public class Player : NetworkBehaviour {
     public void RpcSpawnPrivateClues(CharacterSpec spec, bool murderer)
     {
         this.murderer = murderer;
+        this.mySpec = spec;
         if (isLocalPlayer)
         {
             //Call all client's clue spawners with list of current players

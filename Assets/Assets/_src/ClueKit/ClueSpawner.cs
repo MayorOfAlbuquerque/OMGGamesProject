@@ -12,6 +12,7 @@ public class ClueSpawner : NetworkBehaviour {
     private GameObject activeClueContainter;
     private Dictionary<CluePlaceholder, GameObject> clueReference;
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
+    CharacterSpec localSpec;
 
     // Use this for initialization
     void Start() {
@@ -52,6 +53,8 @@ public class ClueSpawner : NetworkBehaviour {
     
     public void ChangeToPrivateText(CharacterSpec mySpec)
     {
+        localSpec = mySpec;
+        Debug.Log("-_-_-_-_-____________________"+localSpec);
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
             //if a private clue and if you are the required recipient of each clue spec
@@ -198,8 +201,12 @@ public class ClueSpawner : NetworkBehaviour {
         newPlaceholder.transform.rotation = currentPlaceholder.transform.rotation;
         clueReference[newPlaceholder] = clue;
         Debug.Log("Clue replaced");
-        //change text
 
+    }
+
+    public void ReplaceClueText()
+    {
+        ChangeToPrivateText(localSpec);
     }
 
 }

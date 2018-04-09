@@ -116,7 +116,7 @@ public class PlayerInteractionController : NetworkBehaviour {
                 thisPlayer.GetComponent<Player>().RpcSetClue(specName);
                 //remove clue model
                 //place new clue model with text
-               clueSpawner.GetComponent<ClueSpawner>().ReplaceClue(specName, currentClue);
+                clueSpawner.GetComponent<ClueSpawner>().ReplaceClue(specName, currentClue);
                 RpcReplaceClue(specName, currentClue);
             }
             else
@@ -128,8 +128,7 @@ public class PlayerInteractionController : NetworkBehaviour {
                 //remove models on server and clients
                 clueSpawner.GetComponent<ClueSpawner>().RemoveClueModel(specName);
                 RpcRemoveClue(specName);
-
-                //clueSpawner.GetComponent<ClueSpawner>().RpcRemoveClue(specName);
+                RpcReplaceText();
             }
         }
     }
@@ -146,5 +145,12 @@ public class PlayerInteractionController : NetworkBehaviour {
     {
         GameObject clueSpawner = GameObject.Find("ClueController");
         clueSpawner.GetComponent<ClueSpawner>().ReplaceClue(oldClue, newClue);
+    }
+
+    [ClientRpc]
+    public void RpcReplaceText()
+    {
+        GameObject clueSpawner = GameObject.Find("ClueController");
+        clueSpawner.GetComponent<ClueSpawner>().ReplaceClueText();
     }
 }
