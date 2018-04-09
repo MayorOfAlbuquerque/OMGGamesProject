@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,15 +9,22 @@ public class OMGNetManager : NetworkManager
 {
     public PlayerServerManager playerManager;
     private string murderer;
+    private GameObject clueController;
+    private int storyNum, spawnedFlag =0;
 
     public override void OnStartServer()
     {
         playerManager.RegisterHandlers();
-        //select story 
-        ChooseMurderer(/*given story*/);
+        this.storyNum = SelectStory();
     }
-
-    private void ChooseMurderer()
+    //choose story with random int
+    private int SelectStory()
+    {
+        return UnityEngine.Random.Range(1, 1);
+    }
+    
+    //TODO:
+    private void ChooseMurderer(int storyNum)
     {
         //get murderer name from story
         string mName = "Ms Scarlett";
@@ -26,9 +34,23 @@ public class OMGNetManager : NetworkManager
     void Start()
     {
         playerManager = GetComponent<PlayerServerManager>();
+        ChooseMurderer(storyNum);
     }
 
-	public override void OnStartClient(NetworkClient client)
+    private void SpawnAllServerAndClientClues(GameObject player)
+    {   
+        if(spawnedFlag ==0)
+        {
+            this.clueController = GameObject.Find("ClueController");
+            //server set clues
+            this.clueController.GetComponent<ClueSpawner>().SpawnGeneralClues(storyNum);
+            spawnedFlag = 1;
+        }
+        //RPC spawn player clues
+        player.GetComponent<Player>().RpcSpawnClues(storyNum);
+    }
+
+    public override void OnStartClient(NetworkClient client)
 	{
         playerManager.RegisterPlayerPrefabs();
         playerManager.RegisterHandlers();
@@ -61,7 +83,8 @@ public class OMGNetManager : NetworkManager
         //rpc call to all clients to spawn clues with list of characters
         if(spec != null)
         {
-            if(spec.FullName == this.murderer)
+            SpawnAllServerAndClientClues(player);
+            if (spec.FullName == this.murderer)
             {
                 player.GetComponent<Player>().RpcSpawnPrivateClues(spec, true);
                 player.GetComponent<Player>().SetMurderer(true);

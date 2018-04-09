@@ -18,7 +18,7 @@ public class ClueSpawner : NetworkBehaviour {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
         charactersAlreadyInGame = new List<CharacterSpec>();
         SetActiveContatiner();
-        SpawnGeneralClues();;
+        //SpawnGeneralClues();
 	}
 
     private void SetActiveContatiner()
@@ -31,9 +31,9 @@ public class ClueSpawner : NetworkBehaviour {
     }
 
     //spawn all general clues
-    public void SpawnGeneralClues()
+    public void SpawnGeneralClues(int story)
     {
-        Transform generalClues = transform.GetChild(0);
+        Transform generalClues = transform.GetChild(story-1);
         //for all children of controller
         if (generalClues != null)
         {
@@ -42,6 +42,12 @@ public class ClueSpawner : NetworkBehaviour {
                 SpawnClueInScene(child.GetComponent<CluePlaceholder>());
             }
         }
+    }
+
+    [ClientRpc]
+    public void RpcSpawnGeneralCLues(int story)
+    {
+        SpawnGeneralClues(story);
     }
     
     public void ChangeToPrivateText(CharacterSpec mySpec)
@@ -92,7 +98,6 @@ public class ClueSpawner : NetworkBehaviour {
                 //assign the hoverable text to what is said in the clue general text
                 clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
                 clueReference.Add(placeholder, clue);
-                //reverseClueReference.Add(clue,placeholder);
             }
             catch(Exception e) {
                 Debug.LogWarning(e.Message);
@@ -114,7 +119,7 @@ public class ClueSpawner : NetworkBehaviour {
         //reverseClueReference.Remove(clue);
         GameObject clue;
         clueReference.TryGetValue(p, out clue);
-        clueReference.Remove(p);
+        //clueReference.Remove(p);
         Destroy(clue);
         Debug.Log("Successful destroy");
     }
@@ -164,6 +169,37 @@ public class ClueSpawner : NetworkBehaviour {
             }
         }
         return null;
+    }
+
+    public void ReplaceClue(string currentClueInScene, string newClue)
+    {
+        Debug.Log("replce enter");
+        //get both placeholders
+        CluePlaceholder currentPlaceholder = GetPlaceholderFromSpecName(currentClueInScene);
+        CluePlaceholder newPlaceholder = GetPlaceholderFromSpecName(newClue);
+        //remove old model
+        RemoveClueModel(currentClueInScene);
+        //place different clue
+        if(newPlaceholder == null )
+        {
+            Debug.Log("Very bad");
+        }
+        if (currentPlaceholder == null)
+        {
+            Debug.Log("Very bad");
+        }
+        GameObject clue = Instantiate(
+                   newPlaceholder.Clue.ModelPrefab,
+                   currentPlaceholder.transform.position,
+                   currentPlaceholder.transform.rotation,
+                   activeClueContainter.transform
+               );
+        newPlaceholder.transform.position = currentPlaceholder.transform.position;
+        newPlaceholder.transform.rotation = currentPlaceholder.transform.rotation;
+        clueReference[newPlaceholder] = clue;
+        Debug.Log("Clue replaced");
+        //change text
+
     }
 
 }
