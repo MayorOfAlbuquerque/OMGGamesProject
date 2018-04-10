@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: be1f761067b7f4216b5ad0c0b897953a
-timeCreated: 1522235069
-=======
-guid: e6de36d328a1e4afc8286e7aa6b7a14f
-timeCreated: 1520716781
->>>>>>> development
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -108,19 +101,20 @@ ModelImporter:
     4300010: Foothold3
     4300012: Foothold4
     4300014: Foothold5
-    4300016: frame1
-    4300018: base_frame
-    4300020: base_frame2
-    4300022: draw4
-    4300024: draw_handle
-    4300026: draw3
+    4300016: LadderBolt1
+    4300018: LadderBolt
+    4300020: frame1
+    4300022: base_frame
+    4300024: base_frame2
+    4300026: draw4
     4300028: draw_handle
-    4300030: bed3
-    4300032: bed4
-    4300034: LadderBolt1
-    4300036: LadderBolt
+    4300030: draw3
+    4300032: draw_handle
+    4300034: bed3
+    4300036: bed4
     4300038: pillow3
     4300040: pillow4
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -128,7 +122,7 @@ ModelImporter:
       name: pasted__blinn1
     second: {fileID: 2100000, guid: 2ef6db444e7804689b6075dc889990ca, type: 2}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -176,7 +170,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 0
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
@@ -198,7 +192,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
