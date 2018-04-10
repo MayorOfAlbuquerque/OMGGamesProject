@@ -62,19 +62,19 @@ public class ClueSpawner : NetworkBehaviour {
                 //if a private clue and if you are the required recipient of each clue spec
                 if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
                 {
-                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
                 }
                 if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
                 {
-                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
                 }
                 if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
                 {
-                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
                 }
                 if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
                 {
-                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
                 }
             } catch(Exception e)
             {
@@ -104,7 +104,7 @@ public class ClueSpawner : NetworkBehaviour {
                     activeClueContainter.transform
                 );
                 //assign the hoverable text to what is said in the clue general text
-                clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
+                clue.GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
                 clueReference.Add(placeholder, clue);
             }
             catch(Exception e) {
@@ -207,7 +207,7 @@ public class ClueSpawner : NetworkBehaviour {
         newPlaceholder.transform.rotation = currentPlaceholder.transform.rotation;
         clueReference[newPlaceholder] = clue;
         //assign general text
-        clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(newPlaceholder.Clue.GeneralDisplayText.ToString());
+        clue.GetComponent<TextOnHover>().ChangeText(newPlaceholder.Clue.GeneralDisplayText.ToString());
         Debug.Log("Clue replaced");
     }
 
