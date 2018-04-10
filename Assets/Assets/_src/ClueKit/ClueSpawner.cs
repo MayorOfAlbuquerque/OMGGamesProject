@@ -5,22 +5,21 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class ClueSpawner : MonoBehaviour {
+public class ClueSpawner : NetworkBehaviour {
 
     //list of characters in the game so corrrect clues can be chosen
     private List<CharacterSpec> charactersAlreadyInGame;
     private GameObject activeClueContainter;
     private Dictionary<CluePlaceholder, GameObject> clueReference;
+    //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
+    CharacterSpec localSpec;
 
-	// Use this for initialization
-	void Start() {
+    // Use this for initialization
+    void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
         charactersAlreadyInGame = new List<CharacterSpec>();
-        Debug.Log("-_____------------------Start-------------------______-");
         SetActiveContatiner();
-        Debug.Log("Active Container _____________-----------------");
-        SpawnGeneralClues();
-        Debug.Log("Spawned Clues-------------------_____________________");
+        //SpawnGeneralClues();
 	}
 
     private void SetActiveContatiner()
@@ -33,66 +32,54 @@ public class ClueSpawner : MonoBehaviour {
     }
 
     //spawn all general clues
-    public void SpawnGeneralClues()
+    public void SpawnGeneralClues(int story)
     {
-        Transform generalClues = transform.GetChild(0);
+        Transform generalClues = transform.GetChild(story-1);
         //for all children of controller
         if (generalClues != null)
         {
             foreach (Transform child in generalClues)
             {
                 SpawnClueInScene(child.GetComponent<CluePlaceholder>());
-                Debug.Log("Clue spawned _________________________");
             }
         }
     }
-    /*
-    //spawn clues for char given and decide which text appears
-    public void SpawnPrivateCluesForChar(CharacterSpec spec)
-    {
-        Debug.Log("spawning clues-----------------------");
-        //if you == char then run spawn as private
-        //check if private clues already place before adding
 
-        if (!charactersAlreadyInGame.Contains(spec))
-        { 
-            //GameObject charCluesToSpawn = GameObject.Find("/PrivateClue1");
-            Transform charCluesToSpawn = transform.GetChild(1);
-            foreach (Transform child in charCluesToSpawn)
-            {
-                //TODO: if local player is spec then spawn private version
-                SpawnClueInScene(child.GetComponent<CluePlaceholder>(), true);
-                Debug.Log(spec.FullName);
-            }
-            charactersAlreadyInGame.Add(spec);
-        }
-        
+    [ClientRpc]
+    public void RpcSpawnGeneralCLues(int story)
+    {
+        SpawnGeneralClues(story);
     }
-    */
+    
     public void ChangeToPrivateText(CharacterSpec mySpec)
     {
-        Debug.Log("Pos 1 +++++++++++++++_--------------------");
+        localSpec = mySpec;
+        Debug.Log("-_-_-_-_-____________________"+localSpec);
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
-            Debug.Log("Pos 1 +++++++++++++++_--------------------");
-            //if a private clue and if you are the required recipient of each clue spec
-            if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+            try
             {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
+                //if a private clue and if you are the required recipient of each clue spec
+                if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+                {
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
+                {
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
+                {
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
+                {
+                    entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
+                }
+            } catch(Exception e)
             {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
-            {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
-            {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
-            }
 
+            }
         }
     }
 
@@ -117,14 +104,117 @@ public class ClueSpawner : MonoBehaviour {
                     activeClueContainter.transform
                 );
                 //assign the hoverable text to what is said in the clue general text
-                clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
+                clue.GetComponent<TextOnHover>().ChangeText(placeholder.Clue.GeneralDisplayText.ToString());
                 clueReference.Add(placeholder, clue);
-            }catch(Exception e) {
+            }
+            catch(Exception e) {
                 Debug.LogWarning(e.Message);
                 Debug.Log("We got an exception bois");
             }
 
         }
     }
-   
+
+    public void RemoveClueServer(string spec)
+    {
+        RemoveClueModel(spec);
+        RpcRemoveClue(spec);
+    }
+    
+    public void RemoveClueModel(string spec)
+    {
+        CluePlaceholder p = GetPlaceholderFromSpecName(spec);
+        //reverseClueReference.Remove(clue);
+        GameObject clue;
+        clueReference.TryGetValue(p, out clue);
+        //clueReference.Remove(p);
+        Destroy(clue);
+        Debug.Log("Successful destroy");
+    }
+
+    [ClientRpc]
+    public void RpcRemoveClue(string spec)
+    {
+        RemoveClueModel(spec);
+    }
+
+    public CluePlaceholder GetCluePlaceholderFromSpec(ClueSpec spec)
+    {
+        foreach (KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
+        {
+            Debug.Log("------------" + entry.Value.ToString());
+            Debug.Log("------------" + entry.Key.Clue.ToString());
+            Debug.Log("------------" + spec.ToString());
+            if (entry.Key.Clue == spec)
+            {
+                return entry.Key;
+            }
+        }
+        Debug.Log("-------- return null");
+        return null;
+    }
+
+
+    public CluePlaceholder GetPlaceholderFromSpecName(string clueName)
+    {
+        foreach (KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
+        {
+            if (entry.Key.Clue.Name == clueName)
+            {
+                return entry.Key;
+            }
+        }
+        return null;
+    }
+
+    public CluePlaceholder GetPlaceholderFromClue(GameObject clue)
+    {
+        foreach (KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
+        {
+            if (entry.Value == clue)
+            {
+                return entry.Key;
+            }
+        }
+        return null;
+    }
+
+    public void ReplaceClue(string currentClueInScene, string newClue)
+    {
+        Debug.Log("replce enter");
+        //get both placeholders
+        CluePlaceholder currentPlaceholder = GetPlaceholderFromSpecName(currentClueInScene);
+        CluePlaceholder newPlaceholder = GetPlaceholderFromSpecName(newClue);
+        //remove old model
+        RemoveClueModel(currentClueInScene);
+        //place different clue
+        if(newPlaceholder == null )
+        {
+            Debug.Log("Very bad");
+        }
+        if (currentPlaceholder == null)
+        {
+            Debug.Log("Very bad");
+        }
+        GameObject clue = Instantiate(
+                   newPlaceholder.Clue.ModelPrefab,
+                   currentPlaceholder.transform.position,
+                   currentPlaceholder.transform.rotation,
+                   activeClueContainter.transform
+               );
+        //set placeholder reference to new position
+        newPlaceholder.transform.position = currentPlaceholder.transform.position;
+        newPlaceholder.transform.rotation = currentPlaceholder.transform.rotation;
+        clueReference[newPlaceholder] = clue;
+        //assign general text
+        clue.GetComponent<TextOnHover>().ChangeText(newPlaceholder.Clue.GeneralDisplayText.ToString());
+        Debug.Log("Clue replaced");
+    }
+
+    public void ReplaceClueText()
+    {
+        Debug.Log("replacing text" + localSpec.ToString());
+        ChangeToPrivateText(localSpec);
+    }
+
 }
