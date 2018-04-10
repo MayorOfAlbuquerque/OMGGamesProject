@@ -118,6 +118,7 @@ public class PlayerInteractionController : NetworkBehaviour {
                 //place new clue model with text
                 clueSpawner.GetComponent<ClueSpawner>().ReplaceClue(specName, currentClue);
                 RpcReplaceClue(specName, currentClue);
+                RpcReplaceText();
             }
             else
             {
@@ -128,7 +129,6 @@ public class PlayerInteractionController : NetworkBehaviour {
                 //remove models on server and clients
                 clueSpawner.GetComponent<ClueSpawner>().RemoveClueModel(specName);
                 RpcRemoveClue(specName);
-                RpcReplaceText();
             }
         }
     }

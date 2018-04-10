@@ -57,24 +57,29 @@ public class ClueSpawner : NetworkBehaviour {
         Debug.Log("-_-_-_-_-____________________"+localSpec);
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
-            //if a private clue and if you are the required recipient of each clue spec
-            if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+            try
             {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
+                //if a private clue and if you are the required recipient of each clue spec
+                if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+                {
+                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
+                {
+                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
+                {
+                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
+                }
+                if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
+                {
+                    entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
+                }
+            } catch(Exception e)
             {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
-            {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
-            }
-            if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
-            {
-                entry.Value.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
-            }
 
+            }
         }
     }
 
@@ -197,15 +202,18 @@ public class ClueSpawner : NetworkBehaviour {
                    currentPlaceholder.transform.rotation,
                    activeClueContainter.transform
                );
+        //set placeholder reference to new position
         newPlaceholder.transform.position = currentPlaceholder.transform.position;
         newPlaceholder.transform.rotation = currentPlaceholder.transform.rotation;
         clueReference[newPlaceholder] = clue;
+        //assign general text
+        clue.gameObject.transform.GetChild(1).GetComponent<TextOnHover>().ChangeText(newPlaceholder.Clue.GeneralDisplayText.ToString());
         Debug.Log("Clue replaced");
-
     }
 
     public void ReplaceClueText()
     {
+        Debug.Log("replacing text" + localSpec.ToString());
         ChangeToPrivateText(localSpec);
     }
 
