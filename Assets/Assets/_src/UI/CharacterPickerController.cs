@@ -9,14 +9,15 @@ public class CharacterPickerController : MonoBehaviour {
     public GameObject CharacterModelView;
     public GameObject PickerModelPrefab;
     private GameObject[] models;
-    public GameSettings Settings;
+    private GameSettings settings;
     public float distanceBetweenItems = 4.0f;
 	// Use this for initialization
 	void Start () {
-        
+
 	}
 
     private void RenderModels() {
+        int selectCharacterId = Settings.gameSettings.CharacterId;
         models = new GameObject[PlayableCharacters.Characters.Count];
         List<CharacterSpec> chars = PlayableCharacters.Characters;
         Vector3 textOffset = new Vector3(-3.0f, 0.3f, 0.0f);
@@ -26,7 +27,7 @@ public class CharacterPickerController : MonoBehaviour {
             models[i] = Instantiate(PickerModelPrefab);
             models[i].transform.position = new Vector3(i * 4.0f - totalWidth * 0.5f, -1.5f, 2.0f);
             var item = models[i].GetComponent<CharacterSelectionItem>();
-            item?.SetCharacter(chars[i], chars[i].Id == Settings.CharacterId);
+            item?.SetCharacter(chars[i], chars[i].Id == selectCharacterId);
             item.characterSelected.AddListener(UpdateItems);
         }
     }

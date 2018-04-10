@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class PlayerClientManager : MonoBehaviour {
 
     public bool joinOnSceneLoad;
-    public GameSettings settings;
+    private GameSettings settings;
     private NetworkClient client;
     private bool joined = false;
 
@@ -16,6 +16,14 @@ public class PlayerClientManager : MonoBehaviour {
         client = NetworkManager.singleton?.client;
         if(joinOnSceneLoad) {
             //JoinServer();
+        }
+        if (Settings.gameSettings != null)
+        {
+            settings = Settings.gameSettings;
+        }
+        else
+        {
+            settings = ScriptableObject.CreateInstance<GameSettings>();
         }
     }
 
@@ -36,12 +44,13 @@ public class PlayerClientManager : MonoBehaviour {
         {
             return;
         }
+        Debug.Log("Player joining server");
         PlayerJoinMessage message = new PlayerJoinMessage(
             client.connection.connectionId,
             settings.CharacterId
         );
         ClientScene.AddPlayer(client.connection, 0, message);
-        //client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
+        client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
         joined = true;
     }
 }

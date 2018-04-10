@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
+[RequireComponent(typeof(PlayerServerManager))]
 public class OMGNetManager : NetworkManager
 {
     public PlayerServerManager playerManager;
@@ -10,15 +11,21 @@ public class OMGNetManager : NetworkManager
     public override void OnStartServer()
     {
         playerManager.RegisterHandlers();
-        playerManager.RegisterPlayerPrefabs();
+
     }
-    
+
     void Start()
     {
         playerManager = GetComponent<PlayerServerManager>();
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
+	public override void OnStartClient(NetworkClient client)
+	{
+        playerManager.RegisterPlayerPrefabs();
+        playerManager.RegisterHandlers();
+	}
+
+	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
         if(extraMessageReader == null) {
             return;
@@ -32,8 +39,7 @@ public class OMGNetManager : NetworkManager
             .FindCharacterSpecById((int)message.characterId);
         GameObject player;
         if (spec != null)
-        {
-           
+        {  
             player = playerManager.InstantiateCharacter(spec, playerPrefab, GetStartPosition());
         }
         else
@@ -54,7 +60,7 @@ public class OMGNetManager : NetworkManager
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        //base.OnClientSceneChanged(conn);
+        base.OnClientSceneChanged(conn);
     }
 }
 
