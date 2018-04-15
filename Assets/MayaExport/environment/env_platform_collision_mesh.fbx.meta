@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 317ebb3c5841d4170a0139d7f71053e2
-timeCreated: 1523373564
+guid: 829780e61b8fa45e5b632c37f79e59b9
+timeCreated: 1523725788
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,13 +10,12 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: platform_collision_mesh
-    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: character_plum_defaultPolygonShader
-    second: {fileID: 2100000, guid: 1f5fe7fdfd0004a048721d2c4bf0f488, type: 2}
+    second: {fileID: 2100000, guid: b1870dca9c15a483eb5d59ec2b0d2f7b, type: 2}
   materials:
     importMaterials: 0
     materialName: 0
@@ -54,22 +53,22 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 12
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
-    normalImportMode: 0
+    normalSmoothAngle: 0
+    normalImportMode: 1
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -88,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
