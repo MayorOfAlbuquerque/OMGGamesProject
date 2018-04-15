@@ -33,25 +33,7 @@ public class CluePickupController : InteractableObjectController, IGvrPointerHov
 
     public override void OnClick(object obj)
     {
-       /* Debug.Log("-------------Object clicked on server");
-        //check if player holds clue
-        Player murderer = obj as Player;
-        ClueSpec currentClue = murderer.GetComponent<Player>().GetHeldClue();
-               
-        //rpc remove model or swap
-        if(currentClue != null)
-        {
-
-        }
-        else
-        {
-            //rpc set player holding clue
-            Debug.Log("Adding new clue to murderer");
-            murderer.SetHeldClue(this.spec);
-            murderer.GetComponent<Player>().RpcSetClue(this.spec);
-            clueSpawner.GetComponent<ClueSpawner>().RpcRemoveClue(this.gameObject);
-            clueSpawner.GetComponent<ClueSpawner>().RemoveClueModel(this.gameObject);
-        }*/
+      
     }
 
 
