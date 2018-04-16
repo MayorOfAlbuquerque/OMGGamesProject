@@ -776,7 +776,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1727,8 +1726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycasterEventMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  maxRaycastHits: 64
+    m_Bits: 288
+  maxRaycastHits: 16
 --- !u!114 &114378952879765100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2235,7 +2234,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1314633268798410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: -0.002854824, y: 0, z: 1}
   m_LocalScale: {x: 0.68278646, y: 0.68278646, z: 0.68278646}
   m_Children:
   - {fileID: 224937892279644832}
@@ -2254,7 +2253,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625721185153884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.13}
+  m_LocalPosition: {x: -0.008995056, y: -0.18500137, z: -0.13}
   m_LocalScale: {x: 0.10765907, y: 0.107659064, z: 0.30037886}
   m_Children: []
   m_Father: {fileID: 224558300950236334}
