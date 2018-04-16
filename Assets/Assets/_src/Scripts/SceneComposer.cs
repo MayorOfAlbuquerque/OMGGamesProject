@@ -7,7 +7,7 @@ using System;
 public class SceneComposer : MonoBehaviour {
 
     [HideInInspector]
-    public List<SceneReference> scenes;
+    public List<SceneReference> scenes = new List<SceneReference>();
 
     [SerializeField]
     public Scene scene;
@@ -20,11 +20,24 @@ public class SceneComposer : MonoBehaviour {
         if(string.IsNullOrEmpty(sceneName)){
             yield return null;
         }
-
-        AsyncOperation operation = SceneManager
-            .LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        while(!operation.isDone) {
-            yield return new WaitForSeconds(0.1f);
+        AsyncOperation operation = null;
+        try
+        {
+            operation = SceneManager
+                .LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        } catch(Exception e){
+            Debug.LogError(e);
+        }
+        if (operation != null)
+        {
+            while (!operation.isDone)
+            {
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            yield return null;
         }
     }
     IEnumerator LoadAllScenes() {
