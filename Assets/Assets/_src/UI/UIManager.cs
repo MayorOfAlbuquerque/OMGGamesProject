@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public Button PickCharacterButton;
 
     public GameObject SettingsPanel;
+    public Toggle SkipTutorialToggle;
     public InputField IpAddress;
     public Dropdown IpAddressDropDown;
     public Button SettingsOkButton;
@@ -36,7 +37,7 @@ public class UIManager : MonoBehaviour {
         HomePanel.SetActive(false);
         SettingsPanel.SetActive(true);
         PickCharacterPanel.SetActive(false);
-        FillSettingsFom();
+        FillSettingsForm();
     }
 
     public void ShowPickCharacterPanel() {
@@ -81,22 +82,35 @@ public class UIManager : MonoBehaviour {
             Debug.LogWarning(e.Message);
         }
     }
-    public void FillSettingsFom()
+    public void FillSettingsForm()
     {
         IpAddress.text = settings.IpAddress;
+        SkipTutorialToggle.isOn = settings.skipTutorial;
     }
     public void SaveSettings() 
     {
         Debug.Log(IpAddress.textComponent.text);
         settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        settings.skipTutorial = SkipTutorialToggle.isOn;
         Debug.Log("Setting ip to: " + settings.IpAddress);
         ShowHomePanel();
         Debug.Log(settings);
     }
 
-    public void StartGame()
+    public void StartGameFromTutorial()
     {
         SceneManager.LoadScene(gameSceneName ?? "introScene");
+    }
+    public void StartGame() {
+        if(settings.skipTutorial) {
+            StartGameOnMultiplayer();
+        } else {
+            StartGameFromTutorial();
+        }
+    }
+    public void StartGameOnMultiplayer() {
+        NetworkManager.singleton.networkAddress = settings.IpAddress;
+        NetworkManager.singleton?.StartClient();
     }
 
     public void StartServer()

@@ -11,7 +11,7 @@ public class GameSettings : ScriptableObject
     public int MusicVolume = 10;
     public int SoundFxVolume = 10;
     public int CharacterId = 1;
-
+    public bool skipTutorial = false;
     public override string ToString()
     {
         return base.ToString() + $"[IpAddress={IpAddress}, MusicVolume={MusicVolume}, SoundFxVolume={SoundFxVolume}, CharacterId={CharacterId}]";

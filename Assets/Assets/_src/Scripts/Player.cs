@@ -12,8 +12,6 @@ public enum Weapon{
 
 
 public class Player : NetworkBehaviour {
-   
-
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
 
