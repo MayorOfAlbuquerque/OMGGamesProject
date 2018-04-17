@@ -33,9 +33,9 @@ public class CluePlaceholder : MonoBehaviour{
         if(previewClue && prefabInstance == null) {
             InstantiateCluePrefab();
             prefabInstance.SetActive(true);
-        } else if(previewClue) {
+        } else if(previewClue && prefabInstance != null) {
             prefabInstance.SetActive(true);
-        } else {
+        } else if(prefabInstance != null){
             prefabInstance.SetActive(false);
         }
     }
