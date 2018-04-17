@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4645035314555168}
+  - component: {fileID: 65428047951451676}
   m_Layer: 0
   m_Name: cp_bedroom_wall_with_door
   m_TagString: Untagged
@@ -124,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1287253117076728}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.387096, y: -5.654756, z: -2.2912066}
+  m_LocalPosition: {x: 5.682623, y: 0.14722514, z: 8.365908}
   m_LocalScale: {x: 1, y: 1, z: 1.2}
   m_Children:
   - {fileID: 4569535702945100}
@@ -255,3 +256,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357173341423824}
   m_Mesh: {fileID: 4300004, guid: 19f58f95db8bc476a9694e930082c197, type: 3}
+--- !u!65 &65428047951451676
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1287253117076728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0863867, y: 2.416788, z: 0.14000893}
+  m_Center: {x: 0.49200583, y: 1.1702275, z: -0.011423429}

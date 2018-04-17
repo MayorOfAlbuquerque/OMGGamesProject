@@ -11,6 +11,7 @@ public class OMGNetManager : NetworkManager
     private string murderer;
     private GameObject clueController;
     private int storyNum, spawnedFlag =0;
+    private Dictionary<String, GameObject> playerSpawnDict;
 
     public override void OnStartServer()
     {
@@ -29,6 +30,26 @@ public class OMGNetManager : NetworkManager
         //get murderer name from story
         string mName = "Ms Scarlett";
         this.murderer = mName;
+    }
+
+    private void AssignSpawns(int storyNum)
+    {
+        playerSpawnDict = new Dictionary<string, GameObject>();
+        //get spawns for this game
+        GameObject spawns = GameObject.Find("Spawns").transform.GetChild(storyNum-1).gameObject;
+        if(spawns != null)
+        {   
+            //loop through spawns and assign to character
+            for(int i = 0; i < 6; i++)
+            {
+                GameObject individualSpawn = spawns.transform.GetChild(i).gameObject;
+                playerSpawnDict.Add(individualSpawn.name, individualSpawn);
+            }  
+        }
+        else
+        {
+            Debug.Log("No spawns found");
+        }
     }
 
     void Start()
@@ -56,8 +77,20 @@ public class OMGNetManager : NetworkManager
         playerManager.RegisterHandlers();
 	}
 
+    private Transform GetPlayerSpawn(String playerName)
+    {
+        GameObject outVal;
+        Debug.Log("______" + playerName);
+        playerSpawnDict.TryGetValue(playerName, out outVal);
+        return outVal.transform;
+    }
+
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader)
     {
+        if(playerSpawnDict == null)
+        {
+            AssignSpawns(storyNum);
+        }
         if(extraMessageReader == null) {
             return;
         }
@@ -71,7 +104,7 @@ public class OMGNetManager : NetworkManager
         GameObject player;
         if (spec != null)
         {  
-            player = playerManager.InstantiateCharacter(spec, playerPrefab, GetStartPosition());
+            player = playerManager.InstantiateCharacter(spec, playerPrefab, GetPlayerSpawn(spec.FullName));
         }
         else
         {
