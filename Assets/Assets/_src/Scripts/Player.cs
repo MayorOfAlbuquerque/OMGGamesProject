@@ -112,7 +112,7 @@ public class Player : NetworkBehaviour {
             }
             if (murderer)
             {
-                GameObject.Find("MurdererText").SetActive(true);
+                GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
