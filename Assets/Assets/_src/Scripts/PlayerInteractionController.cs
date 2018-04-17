@@ -26,10 +26,14 @@ public class PlayerInteractionController : NetworkBehaviour {
     {
         if (Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
         {
-            if (obj.GetComponent<CluePickupController>() != null) {
+            CluePickupController controller = obj.GetComponent<CluePickupController>() ?? obj.GetComponentInParent<CluePickupController>();
+            Debug.Log(obj.name);
+            Debug.Log(result);
+            Debug.Log(controller.ToString());
+            if (controller != null) {
                 Debug.Log("pos1");
-                Debug.Log(obj.GetComponent<CluePickupController>().ToString());
-                CluePlaceholder spec = obj.GetComponent<CluePickupController>().spec;
+                Debug.Log(controller.ToString());
+                CluePlaceholder spec = controller.spec;
                 Debug.Log(spec.ToString() + "-------------------------");
                 CmdPlayerLeftClickClue(spec.Clue.Name.ToString(), thisGameObject);
                 Debug.Log("Left clicked Clue \n");
