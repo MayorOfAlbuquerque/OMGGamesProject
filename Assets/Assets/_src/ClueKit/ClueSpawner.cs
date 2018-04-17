@@ -142,9 +142,6 @@ public class ClueSpawner : NetworkBehaviour {
     {
         foreach (KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
-            Debug.Log("------------" + entry.Value.ToString());
-            Debug.Log("------------" + entry.Key.Clue.ToString());
-            Debug.Log("------------" + spec.ToString());
             if (entry.Key.Clue == spec)
             {
                 return entry.Key;
