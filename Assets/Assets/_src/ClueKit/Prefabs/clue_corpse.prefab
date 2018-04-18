@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 223285150358054368}
   - component: {fileID: 114084006816891146}
   - component: {fileID: 114568606931541948}
+  - component: {fileID: 114978525801094890}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1395,7 +1396,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textHodler: {fileID: 0}
-  timerValue: 50
 --- !u!114 &114568606931541948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1462,6 +1462,38 @@ MonoBehaviour:
     They had a meeting scheduled yesterday evening.
 
 '
+--- !u!114 &114978525801094890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1660922810420966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 250
+    i1: 43
+    i2: 108
+    i3: 111
+    i4: 67
+    i5: 214
+    i6: 196
+    i7: 76
+    i8: 123
+    i9: 9
+    i10: 66
+    i11: 13
+    i12: 191
+    i13: 79
+    i14: 24
+    i15: 159
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!222 &222467386165987458
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1519,7 +1551,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1660922810420966}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.1300011, y: 0, z: 0}
+  m_LocalPosition: {x: 1.1300011, y: 9, z: 0}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children:
   - {fileID: 224779306773933996}
@@ -1528,7 +1560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.1300001, y: 0}
+  m_AnchoredPosition: {x: 1.1300001, y: 9}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224779306773933996
