@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 {
     [SerializeField] GameObject textHodler;                                                       //This is all going to be shit code
-    private int timerValue;
+    [SerializeField] int timerValue;
     private int countdown;
 
     // Use this for initialization
     void Start()
     {
         this.textHodler = transform.GetChild(0).gameObject;
-        timerValue = 100;
     }
 
 

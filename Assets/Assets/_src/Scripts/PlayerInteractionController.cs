@@ -24,14 +24,17 @@ public class PlayerInteractionController : NetworkBehaviour {
     /// <param name="obj">The game object the player is trying to interact with</param> 
     public void HandleOnClickAction(GameObject obj, ref RaycastResult result)
     {
-        Debug.Log("Handle action");
         if (Input.anyKeyDown && !Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) //LMB release
         {
-            CluePickupController controller = obj.GetComponent<CluePickupController>();
-
+            CluePickupController controller = obj.GetComponent<CluePickupController>() ?? obj.GetComponentInParent<CluePickupController>();
+            Debug.Log(obj.name);
+            Debug.Log(result);
+            Debug.Log(controller.ToString());
             if (controller != null) {
+                Debug.Log("pos1");
                 Debug.Log(controller.ToString());
                 CluePlaceholder spec = controller.spec;
+                Debug.Log(spec.ToString() + "-------------------------");
                 CmdPlayerLeftClickClue(spec.Clue.Name.ToString(), thisGameObject);
                 Debug.Log("Left clicked Clue \n");
             }

@@ -77,7 +77,6 @@ GameObject:
   - component: {fileID: 223411857312399850}
   - component: {fileID: 114231310336538658}
   - component: {fileID: 114940213942498390}
-  - component: {fileID: 114235475057479882}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -418,38 +417,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 4
---- !u!114 &114235475057479882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1240882628396604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 193
-    i1: 183
-    i2: 13
-    i3: 230
-    i4: 149
-    i5: 254
-    i6: 132
-    i7: 112
-    i8: 59
-    i9: 50
-    i10: 147
-    i11: 177
-    i12: 103
-    i13: 196
-    i14: 113
-    i15: 178
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &114395662880660750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -521,6 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textHodler: {fileID: 0}
+  timerValue: 50
 --- !u!114 &114865198854288108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -626,7 +594,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1240882628396604}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 224804883552275728}
@@ -635,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224599176702363334
