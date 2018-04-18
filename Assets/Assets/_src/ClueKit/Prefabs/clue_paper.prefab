@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 223939605677235600}
   - component: {fileID: 114876830923203278}
   - component: {fileID: 114980597973693650}
+  - component: {fileID: 114442794962222700}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -235,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textHodler: {fileID: 0}
-  timerValue: 50
 --- !u!114 &114132509568436584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,6 +286,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HelpText: 
   spec: {fileID: 0}
+--- !u!114 &114442794962222700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1554217110378230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 147
+    i1: 32
+    i2: 48
+    i3: 19
+    i4: 80
+    i5: 1
+    i6: 68
+    i7: 71
+    i8: 58
+    i9: 163
+    i10: 56
+    i11: 163
+    i12: 186
+    i13: 186
+    i14: 221
+    i15: 81
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114805725128785586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,7 +471,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554217110378230}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.8600006, y: 0, z: 0}
+  m_LocalPosition: {x: 1.8600006, y: 9, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 224680659680550170}
@@ -448,7 +480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.8600001, y: 0}
+  m_AnchoredPosition: {x: 1.8600001, y: 9}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224680659680550170
