@@ -19,7 +19,7 @@ public class ClueSpawner : NetworkBehaviour {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
         charactersAlreadyInGame = new List<CharacterSpec>();
         SetActiveContatiner();
-        //SpawnGeneralClues();
+        SpawnGeneralClues();
 	}
 
     private void SetActiveContatiner()
@@ -32,9 +32,9 @@ public class ClueSpawner : NetworkBehaviour {
     }
 
     //spawn all general clues
-    public void SpawnGeneralClues(int story)
+    public void SpawnGeneralClues()
     {
-        Transform generalClues = transform.GetChild(story-1);
+        Transform generalClues = transform.GetChild(0);
         //for all children of controller
         if (generalClues != null)
         {
@@ -43,12 +43,6 @@ public class ClueSpawner : NetworkBehaviour {
                 SpawnClueInScene(child.GetComponent<CluePlaceholder>());
             }
         }
-    }
-
-    [ClientRpc]
-    public void RpcSpawnGeneralCLues(int story)
-    {
-        SpawnGeneralClues(story);
     }
     
     public void ChangeToPrivateText(CharacterSpec mySpec)
@@ -78,7 +72,7 @@ public class ClueSpawner : NetworkBehaviour {
                 }
             } catch(Exception e)
             {
-
+                Debug.Log(e);
             }
         }
     }

@@ -96,7 +96,7 @@ public class Player : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcSpawnPrivateClues(CharacterSpec spec, bool murderer)
+    public void RpcSetInformation(CharacterSpec spec, bool murderer)
     {
         this.murderer = murderer;
         this.mySpec = spec;
