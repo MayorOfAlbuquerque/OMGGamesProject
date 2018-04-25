@@ -743,11 +743,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100426203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6742252c89b8142c1afc8f08f9c897d4, type: 3}
+  m_Script: {fileID: 11500000, guid: cbd3b0b692bb146f0b2f045502e18917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scenes:
-  - name: StationEnvironmentV2
+  - {fileID: 2096515908}
+  loadOnStart: 1
 --- !u!1001 &1274827749
 Prefab:
   m_ObjectHideFlags: 0
@@ -1269,3 +1270,16 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2096515908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9628ac6444df4a028ceaa0b4199536e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: StationEnvironmentV2
+  scenePath: 
