@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ClueSpawner : NetworkBehaviour {
 
@@ -13,6 +14,7 @@ public class ClueSpawner : NetworkBehaviour {
     private Dictionary<CluePlaceholder, GameObject> clueReference;
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
     CharacterSpec localSpec;
+    private float R = 0x94, G = 0x00, B = 0x00, A = 0xC0;
 
     // Use this for initialization
     void Start() {
@@ -51,30 +53,51 @@ public class ClueSpawner : NetworkBehaviour {
         Debug.Log("-_-_-_-_-____________________"+localSpec);
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
+            Boolean isPrivate = false; 
             try
             {
                 //if a private clue and if you are the required recipient of each clue spec
                 if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
+                    isPrivate = true;
                 }
                 if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
+                    isPrivate = true;
                 }
                 if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
+                    isPrivate = true;
                 }
                 if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
+                    isPrivate = true;
+                }
+                if (isPrivate)
+                {
+                    ColourPrivatePanel(entry.Value);
                 }
             } catch(Exception e)
             {
                 Debug.Log(e);
             }
         }
+    }
+
+    private void ColourPrivatePanel(GameObject clueObject)
+    {
+        GameObject panel = clueObject.transform.GetChild(0).transform.GetChild(0).gameObject;
+        if (panel != null)
+        {
+            Color myColor = new Color(R, G, B);
+            myColor.a = A;
+            panel.GetComponent<Image>().color = myColor;
+        }
+
     }
 
     //replace placeholder with real clue

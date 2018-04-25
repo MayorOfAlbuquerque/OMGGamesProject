@@ -136,11 +136,6 @@ public class Player : NetworkBehaviour {
         this.heldClue = clue;
     }
 
-    [ClientRpc]
-    public void RpcSpawnClues(int story)
-    {
-        GameObject.Find("ClueController").GetComponent<ClueSpawner>().SpawnGeneralClues(story);
-    } 
 
     [ClientRpc]
     public void RpcSetClue(string clue)
