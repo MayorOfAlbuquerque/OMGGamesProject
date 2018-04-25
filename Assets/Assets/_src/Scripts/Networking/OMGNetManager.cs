@@ -129,11 +129,10 @@ public class OMGNetManager : NetworkManager
         }
     }
 
-
-
-    public override void OnClientSceneChanged(NetworkConnection conn)
-    {
-        base.OnClientSceneChanged(conn);
+    void OnClientClueSceneLoaded() {
+        
+    }
+    void OnClientModelSceneLoaded() {
+        
     }
 }
-

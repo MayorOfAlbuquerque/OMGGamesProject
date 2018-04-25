@@ -43,7 +43,7 @@ public class SceneComposerInspector : Editor {
         var sceneRef = SceneComposer.scenes[index];
 
         EditorGUI.BeginChangeCheck();
-        sceneRef.name = EditorGUI.TextField(new Rect(rect.x + 18, rect.y, rect.width - 18, rect.height), sceneRef.name);
+        sceneRef.sceneName = EditorGUI.TextField(new Rect(rect.x + 18, rect.y, rect.width - 18, rect.height), sceneRef.sceneName);
         if (EditorGUI.EndChangeCheck())
         {
             EditorUtility.SetDirty(target);
