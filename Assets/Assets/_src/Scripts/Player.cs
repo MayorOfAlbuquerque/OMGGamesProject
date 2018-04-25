@@ -110,10 +110,10 @@ public class Player : NetworkBehaviour {
             {
                 clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
             }
-            if (murderer)
-            {
-                GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
-            }
+            //if (murderer)
+//{
+           //     GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
+//}
         }
     }
 
