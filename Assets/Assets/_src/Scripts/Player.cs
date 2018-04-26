@@ -109,6 +109,11 @@ public class Player : NetworkBehaviour {
             if (clueController != null)
             {
                 clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
+                Debug.Log("____________going to spawn clues stuff");
+            }
+            else
+            {
+                Debug.Log("____________bad stuff");
             }
             //if (murderer)
 //{
