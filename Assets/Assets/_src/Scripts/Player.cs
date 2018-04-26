@@ -106,20 +106,29 @@ public class Player : NetworkBehaviour {
             GameObject clueController = GameObject.Find("ClueController");
             Debug.Log("MY NAME == " + spec.FullName.ToString());
             Debug.Log("Am I murderer? " + this.murderer);
-            if (clueController != null)
+            /*if (clueController != null)
             {
-                clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
+                clueController.GetComponent<ClueSpawner>().ChangeToPrivateText();
                 Debug.Log("____________going to spawn clues stuff");
             }
             else
             {
                 Debug.Log("____________bad stuff");
-            }
+            }*/
             //if (murderer)
 //{
            //     GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
 //}
         }
+    }
+
+    public CharacterSpec GetSpecIfLocal()
+    {
+        if(isLocalPlayer)
+        {
+            return mySpec;
+        }
+        return null;
     }
 
     public bool IsMurderer()
