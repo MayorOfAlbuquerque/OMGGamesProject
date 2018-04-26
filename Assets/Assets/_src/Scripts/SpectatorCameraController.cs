@@ -28,16 +28,20 @@ public class SpectatorCameraController : MonoBehaviour
 	{
         targetDirection = transform.localRotation.eulerAngles;
         spectatorCamera = GetComponent<Camera>();
+        following = GameObject.Find("Followed");
         if(spectatorCamera == null) {
             spectatorCamera = Camera.main;
         }
-
         spectatorCamera.transform.position = new Vector3(0, 1.7f, 0);
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+        if(spectatorCamera == null) {
+            return;
+        }
+
         UpdateCameraMode();
         switch(mode) {
             case CameraMovementMode.Free:
@@ -56,8 +60,31 @@ public class SpectatorCameraController : MonoBehaviour
             mode = CameraMovementMode.Follow;
         }
     }
+    /// <summary>
+    /// set game object the camera will follow. Passing in a null will stop
+    /// following.
+    /// </summary>
+    /// <param name="obj">Object.</param>
+    public void SetObjectToFollow(GameObject obj) {
+        following = obj;
+    }
+
+    public GameObject GetGameObjectCurrentlyFollowing() {
+        return following;
+    }
+
+    public void SetCameraMode(CameraMovementMode mode) {
+        this.mode = mode;
+    }
+
     void UpdateFollowCam() {
-        
+        if(following == null) {
+            return;
+        }
+        Vector3 position = following.transform.position;
+        position.y = 1.7f;
+        position.x -= 2.0f;
+        spectatorCamera.transform.position = position;
     }
     void UpdateFreeCam() {
         if (lockCursor)

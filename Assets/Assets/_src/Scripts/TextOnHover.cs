@@ -20,6 +20,9 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     // Update is called once per frame
     void Update()
     {
+        if(textHodler == null || Camera.main == null) {
+            return;
+        }
         //turn off text
         if(textHodler.activeInHierarchy && countdown <= 0)
         {

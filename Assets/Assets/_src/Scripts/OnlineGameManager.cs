@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class OnlineGameManager : MonoBehaviour {
 
+    public GameObject ServerOnly;
     // Use this for initialization
     void Start()
     {
@@ -15,6 +16,11 @@ public class OnlineGameManager : MonoBehaviour {
         GameObject.Find("GvrHeadset")?.SetActive(false);
         GameObject.Find("GvrControllerMain")?.SetActive(false);
         Camera.main.gameObject.isStatic = false;
+
+        if(NetworkManager.singleton == null
+           || NetworkManager.singleton.IsClientConnected()) {
+            ServerOnly?.SetActive(false);
+        }
 #endif
     }
 	// Update is called once per frame
