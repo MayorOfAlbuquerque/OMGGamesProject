@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33747134741456386}
   - component: {fileID: 23959637986261716}
   - component: {fileID: 95506419948213748}
+  - component: {fileID: 65256277613326232}
   m_Layer: 0
   m_Name: carriage_rear_lock
   m_TagString: Untagged
@@ -96,9 +97,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1290818366231514}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.003436, y: -0.6037419, z: 0.40032864}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.35, y: 0.0000014687, z: -1}
+  m_LocalScale: {x: -0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4091640188294482}
   m_Father: {fileID: 0}
@@ -227,6 +228,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1290818366231514}
   m_Mesh: {fileID: 4300000, guid: 42a25aaeda7264ba3b5509636330ec9e, type: 3}
+--- !u!65 &65256277613326232
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290818366231514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 64.1366, y: 238.47824, z: 200}
+  m_Center: {x: 24.165218, y: 119.23912, z: -99.999954}
 --- !u!95 &95506419948213748
 Animator:
   serializedVersion: 3
