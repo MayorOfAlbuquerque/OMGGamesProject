@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Pirate", menuName = "MurderMystery/Character", order = 1)]
+[CreateAssetMenu(fileName = "New Character", menuName = "MurderMystery/Character", order = 1)]
 public class CharacterSpec : ScriptableObject
 {
     [Header("Unique Id")]
@@ -11,8 +11,8 @@ public class CharacterSpec : ScriptableObject
 
     [Header("Specification")]
     public string FullName = "Captain Hook";
-    public string NickName = "Hook";
     public int age = 35;
     public string Bio = "Attack!!!";
-    public GameObject CharacterPrefab = null;
+    public GameObject CharacterModelPrefab = null;
+    public GameObject PlayablePrefab = null;
 }

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class PlayerInputEmitter : MonoBehaviour {
     
 	private PlayerInteractionController playerInteractionController;
-
+    private GameObject currentlyHovered = null;
     // Use this for initialization
     void Start () 
 	{
@@ -16,10 +16,29 @@ public class PlayerInputEmitter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         RaycastResult result = GvrPointerInputModule.CurrentRaycastResult; // Get the Raycast each frame
+        if (result.gameObject == null)
+        {
+            if (currentlyHovered != null)
+            {
+                playerInteractionController.HandleOnHoverExitAction(currentlyHovered, ref result);
+                currentlyHovered = null;
+            }
+            return;
+        }
+        else
+        {
+            if (currentlyHovered != null)
+            {
+                playerInteractionController.HandleOnHoverExitAction(currentlyHovered, ref result);
+            }
+            currentlyHovered = result.gameObject;
+            playerInteractionController.HandleOnHoverEnterAction(currentlyHovered, ref result);
+        }
+
 		if (result.gameObject?.GetComponent<InteractableObjectController>()) // Can we interact with the object?
 		{
 			GameObject obj = result.gameObject as GameObject; //Get the object that the raycast hit
-			playerInteractionController.HandleAction (obj); // If we can, handle the request (This is what the raycasting player does)
+            playerInteractionController.HandleOnClickAction (obj, ref result); // If we can, handle the request (This is what the raycasting player does)
 		}
 	}
 }
