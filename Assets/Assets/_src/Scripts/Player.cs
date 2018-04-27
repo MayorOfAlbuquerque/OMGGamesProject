@@ -96,7 +96,7 @@ public class Player : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcSpawnPrivateClues(CharacterSpec spec, bool murderer)
+    public void RpcSetInformation(CharacterSpec spec, bool murderer)
     {
         this.murderer = murderer;
         this.mySpec = spec;
@@ -109,11 +109,16 @@ public class Player : NetworkBehaviour {
             if (clueController != null)
             {
                 clueController.GetComponent<ClueSpawner>().ChangeToPrivateText(spec);
+                Debug.Log("____________going to spawn clues stuff");
             }
-            if (murderer)
+            else
             {
-                GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
+                Debug.Log("____________bad stuff");
             }
+            //if (murderer)
+//{
+           //     GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
+//}
         }
     }
 
@@ -136,11 +141,6 @@ public class Player : NetworkBehaviour {
         this.heldClue = clue;
     }
 
-    [ClientRpc]
-    public void RpcSpawnClues(int story)
-    {
-        GameObject.Find("ClueController").GetComponent<ClueSpawner>().SpawnGeneralClues(story);
-    } 
 
     [ClientRpc]
     public void RpcSetClue(string clue)
