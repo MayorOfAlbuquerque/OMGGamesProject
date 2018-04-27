@@ -12,19 +12,20 @@ public class ClueSpawner : NetworkBehaviour {
     private Dictionary<CluePlaceholder, GameObject> clueReference;
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
     CharacterSpec localSpec;
-    private float R = 0x94, G = 0x00, B = 0x00, A = 0xC0;
-
+    private float R = 0x85, G = 0x00, B = 0x00, A = 0x93;
     // Use this for initialization
     void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
         SetActiveContatiner();
         SpawnGeneralClues();
+        localSpec = null;
         //get local spec
         GetLocalSpec();
         //change to private text
         ChangeToPrivateText();
 	}
 
+   
     private void SetActiveContatiner()
     {
         this.activeClueContainter = GameObject.Find("ActiveClueContainer");
@@ -37,14 +38,25 @@ public class ClueSpawner : NetworkBehaviour {
     private void GetLocalSpec()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach(GameObject player in players)
+        if(players.Length != 0)
         {
-            CharacterSpec newSpec = player.GetComponent<Player>().GetSpecIfLocal();
-            if (newSpec != null)
+            foreach (GameObject player in players)
             {
-                this.localSpec = newSpec;
-                break;
+                Debug.Log(player.ToString());
+                if(player.GetComponent<Player>() !=null)
+                {
+                    CharacterSpec newSpec = player.GetComponent<Player>().GetSpecIfLocal();
+                    if (newSpec != null)
+                    {
+                        this.localSpec = newSpec;
+                        break;
+                    }
+                }
             }
+        }
+        else
+        {
+            Debug.Log("Clue spawner: no players found");
         }
     }
 
@@ -110,7 +122,6 @@ public class ClueSpawner : NetworkBehaviour {
             myColor.a = A;
             panel.GetComponent<Image>().color = myColor;
         }
-
     }
 
     //replace placeholder with real clue
