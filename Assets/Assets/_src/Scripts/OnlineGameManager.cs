@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class OnlineGameManager : MonoBehaviour {
+public class OnlineGameManager : MonoBehaviour
+{
 
     public GameObject ServerOnly;
     // Use this for initialization
@@ -17,14 +18,17 @@ public class OnlineGameManager : MonoBehaviour {
         GameObject.Find("GvrControllerMain")?.SetActive(false);
         Camera.main.gameObject.isStatic = false;
 
-        if(NetworkManager.singleton == null
-           || NetworkManager.singleton.IsClientConnected()) {
+        if (NetworkManager.singleton == null
+           || NetworkManager.singleton.IsClientConnected())
+        {
             ServerOnly?.SetActive(false);
         }
 #endif
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
+#if !(UNITY_EDITOR)
         if(NetworkManager.singleton == null) {
             return;
         }
@@ -34,5 +38,7 @@ public class OnlineGameManager : MonoBehaviour {
                 StartCoroutine(VRModeManager.SwitchTo2DMode());
             }
         }
+#endif
 	}
+
 }
