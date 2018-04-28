@@ -111,7 +111,7 @@ public class OMGNetManager : NetworkManager
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
-        //rpc call to all clients to spawn clues with list of characters
+        //rpc call to all clients to assign info to prefabs
         if(spec != null)
         {
             SpawnAllServerAndClientClues(player);

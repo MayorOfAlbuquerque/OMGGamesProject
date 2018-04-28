@@ -8,28 +8,55 @@ using UnityEngine.UI;
 
 public class ClueSpawner : NetworkBehaviour {
 
-    //list of characters in the game so corrrect clues can be chosen
-    private List<CharacterSpec> charactersAlreadyInGame;
     private GameObject activeClueContainter;
     private Dictionary<CluePlaceholder, GameObject> clueReference;
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
     CharacterSpec localSpec;
-    private float R = 0x94, G = 0x00, B = 0x00, A = 0xC0;
-
+    private float R = 0x85, G = 0x00, B = 0x00, A = 0x93;
     // Use this for initialization
     void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
-        charactersAlreadyInGame = new List<CharacterSpec>();
         SetActiveContatiner();
         SpawnGeneralClues();
+        localSpec = null;
+        //get local spec
+        GetLocalSpec();
+        //change to private text
+        ChangeToPrivateText();
 	}
 
+   
     private void SetActiveContatiner()
     {
         this.activeClueContainter = GameObject.Find("ActiveClueContainer");
         if(activeClueContainter == null)
         {
             Debug.Log("container is a null");
+        }
+    }
+    //loop through players to find local one and assign spec
+    private void GetLocalSpec()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if(players.Length != 0)
+        {
+            foreach (GameObject player in players)
+            {
+                Debug.Log(player.ToString());
+                if(player.GetComponent<Player>() !=null)
+                {
+                    CharacterSpec newSpec = player.GetComponent<Player>().GetSpecIfLocal();
+                    if (newSpec != null)
+                    {
+                        this.localSpec = newSpec;
+                        break;
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Clue spawner: no players found");
         }
     }
 
@@ -47,32 +74,30 @@ public class ClueSpawner : NetworkBehaviour {
         }
     }
     
-    public void ChangeToPrivateText(CharacterSpec mySpec)
-    {
-        localSpec = mySpec;
-        Debug.Log("-_-_-_-_-____________________"+localSpec);
+    public void ChangeToPrivateText()
+    {   
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
             Boolean isPrivate = false; 
             try
             {
                 //if a private clue and if you are the required recipient of each clue spec
-                if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == mySpec.FullName)
+                if (entry.Key.Clue.PrivateClue && entry.Key.Clue.Character.FullName == localSpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.PrivateDisplayText.ToString());
                     isPrivate = true;
                 }
-                if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == mySpec.FullName)
+                if (entry.Key.Clue.AltPrivateClue1 && entry.Key.Clue.AltCharacter1.FullName == localSpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText1.ToString());
                     isPrivate = true;
                 }
-                if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == mySpec.FullName)
+                if (entry.Key.Clue.AltPrivateClue2 && entry.Key.Clue.AltCharacter2.FullName == localSpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText2.ToString());
                     isPrivate = true;
                 }
-                if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == mySpec.FullName)
+                if (entry.Key.Clue.AltPrivateClue3 && entry.Key.Clue.AltCharacter3.FullName == localSpec.FullName)
                 {
                     entry.Value.GetComponent<TextOnHover>().ChangeText(entry.Key.Clue.AltPrivateDisplayText3.ToString());
                     isPrivate = true;
@@ -97,7 +122,6 @@ public class ClueSpawner : NetworkBehaviour {
             myColor.a = A;
             panel.GetComponent<Image>().color = myColor;
         }
-
     }
 
     //replace placeholder with real clue
@@ -228,7 +252,7 @@ public class ClueSpawner : NetworkBehaviour {
     public void ReplaceClueText()
     {
         Debug.Log("replacing text" + localSpec.ToString());
-        ChangeToPrivateText(localSpec);
+        ChangeToPrivateText();
     }
 
 }
