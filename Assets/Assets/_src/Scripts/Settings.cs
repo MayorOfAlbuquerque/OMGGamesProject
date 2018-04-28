@@ -15,7 +15,7 @@ public class Settings : MonoBehaviour
     {
         get
         {
-            return Instance;
+            return instance;
         }
     }
 

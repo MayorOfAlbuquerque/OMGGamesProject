@@ -476,7 +476,8 @@ GameObject:
   - component: {fileID: 4196907411941900}
   - component: {fileID: 33066645426760866}
   - component: {fileID: 23227736424268376}
-  - component: {fileID: 64881532424463446}
+  - component: {fileID: 65386150947206690}
+  - component: {fileID: 65698497883854052}
   m_Layer: 0
   m_Name: entrance_wall
   m_TagString: Untagged
@@ -2991,20 +2992,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300042, guid: 0351b6457441345828af03e72cd3a701, type: 3}
---- !u!64 &64881532424463446
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1491988520377046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300004, guid: 0351b6457441345828af03e72cd3a701, type: 3}
 --- !u!65 &65150964667051210
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3101,6 +3088,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.70554805, y: 4.283688, z: 2.2220838}
   m_Center: {x: -0.047225937, y: 2.141844, z: 1.1110419}
+--- !u!65 &65386150947206690
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491988520377046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7638698, y: 4.2836885, z: 1.2438283}
+  m_Center: {x: 0, y: 0.00000023841858, z: -1.778086}
 --- !u!65 &65400754142309138
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3209,6 +3208,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999964, y: 0.6000001, z: 1.0159123}
   m_Center: {x: -0.49999988, y: 0.30000004, z: -0.50795674}
+--- !u!65 &65698497883854052
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491988520377046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7638698, y: 4.2836885, z: 1.2307229}
+  m_Center: {x: 0, y: 0.00000023841858, z: 1.7846396}
 --- !u!65 &65716760587673410
 BoxCollider:
   m_ObjectHideFlags: 1
