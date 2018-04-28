@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33346685702336042}
   - component: {fileID: 23691127743405378}
   - component: {fileID: 65048408022409206}
+  - component: {fileID: 65607558734375352}
   m_Layer: 0
   m_Name: f_dining_piano
   m_TagString: Untagged
@@ -118,15 +119,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1386626248012980}
-  m_LocalRotation: {x: -0, y: -0.99618256, z: -0, w: 0.0872945}
-  m_LocalPosition: {x: -12.78, y: 0.714, z: -1.15}
+  m_LocalRotation: {x: -0, y: -0.9999783, z: -0, w: 0.006592047}
+  m_LocalPosition: {x: -12.943, y: 0.714, z: -1.001}
   m_LocalScale: {x: 1.2312427, y: 0.33042818, z: 1.6068667}
   m_Children:
   - {fileID: 4514840258155186}
   - {fileID: 4268407516068344}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -169.98401, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -179.24501, z: 0}
 --- !u!4 &4136407375657930
 Transform:
   m_ObjectHideFlags: 1
@@ -410,5 +411,17 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.013628, y: 1.0067828, z: 0.9545754}
-  m_Center: {x: -0.0062249, y: -0.0033917278, z: 0.022712126}
+  m_Size: {x: 0.39088836, y: 2.6514785, z: 0.93504274}
+  m_Center: {x: 0.3051451, y: -0.82573926, z: 0.012946484}
+--- !u!65 &65607558734375352
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1386626248012980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.613345, y: 1.0067828, z: 0.61149853}
+  m_Center: {x: -0.20636714, y: -0.0033917092, z: -0.1488262}
