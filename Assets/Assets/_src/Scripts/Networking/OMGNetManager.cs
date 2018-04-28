@@ -64,11 +64,9 @@ public class OMGNetManager : NetworkManager
         {
             this.clueController = GameObject.Find("ClueController");
             //server set clues
-            this.clueController.GetComponent<ClueSpawner>().SpawnGeneralClues(storyNum);
+            this.clueController.GetComponent<ClueSpawner>().SpawnGeneralClues();
             spawnedFlag = 1;
         }
-        //RPC spawn player clues
-        player.GetComponent<Player>().RpcSpawnClues(storyNum);
     }
 
     public override void OnStartClient(NetworkClient client)
@@ -113,18 +111,18 @@ public class OMGNetManager : NetworkManager
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
-        //rpc call to all clients to spawn clues with list of characters
+        //rpc call to all clients to assign info to prefabs
         if(spec != null)
         {
             SpawnAllServerAndClientClues(player);
             if (spec.FullName == this.murderer)
             {
-                player.GetComponent<Player>().RpcSpawnPrivateClues(spec, true);
+                player.GetComponent<Player>().RpcSetInformation(spec, true);
                 player.GetComponent<Player>().SetMurderer(true);
             }
             else
             {
-                player.GetComponent<Player>().RpcSpawnPrivateClues(spec, false);
+                player.GetComponent<Player>().RpcSetInformation(spec, false);
             }
         }
     }
