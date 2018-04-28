@@ -17,6 +17,7 @@ public class CharacterPickerController : MonoBehaviour {
 	}
 
     private void RenderModels() {
+        Debug.Log(Settings.gameSettings);
         int selectCharacterId = Settings.gameSettings.CharacterId;
         models = new GameObject[PlayableCharacters.Characters.Count];
         List<CharacterSpec> chars = PlayableCharacters.Characters;
