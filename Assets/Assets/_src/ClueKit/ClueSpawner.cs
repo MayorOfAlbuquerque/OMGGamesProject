@@ -12,6 +12,7 @@ public class ClueSpawner : NetworkBehaviour {
     private Dictionary<CluePlaceholder, GameObject> clueReference;
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
     CharacterSpec localSpec;
+    GameObject beginningTextContainer;
     private float R = 0x85, G = 0x00, B = 0x00, A = 0x93;
     // Use this for initialization
     void Start() {
@@ -19,11 +20,24 @@ public class ClueSpawner : NetworkBehaviour {
         SetActiveContatiner();
         SpawnGeneralClues();
         localSpec = null;
+        beginningTextContainer = GameObject.Find("BeginningText");
         //get local spec
         GetLocalSpec();
         //change to private text
         ChangeToPrivateText();
+        //remove non-local player intro texts
+
 	}
+
+    private void RemoveIntroTexts()
+    {
+        int i = 0;
+        while (beginningTextContainer.transform.GetChild(i) != null)
+        {
+            if()
+        }
+        return;
+    }
 
    
     private void SetActiveContatiner()
