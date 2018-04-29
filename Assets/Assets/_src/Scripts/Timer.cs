@@ -39,11 +39,12 @@ public class Timer : NetworkBehaviour
         */
         if (isLocalPlayer == true)
         {
+            Debug.Log("Local Player True! ");
             int randomInt = (int)Random.Range(0, spawns.Count);
             mySpawn = spawns[randomInt];
         }
 
-        TimerController = (GameObject)FindObjectOfType(typeof(GameObject));
+        TimerController = GameObject.FindGameObjectWithTag("TimerController");
 
         this_timerController = (TimerControllerScript)FindObjectOfType(typeof(TimerControllerScript));
 
@@ -61,7 +62,10 @@ public class Timer : NetworkBehaviour
             {
                 Debug.LogError("TimerController gameobject not found! ");
             }
-            Debug.LogError("TimerControllerScript not found in scene.");
+            if(this_timerController == null)
+            {
+                Debug.Log("Timercontroller script not grabbed from the timerController obj");
+            }
         }
         else
         {
@@ -78,7 +82,26 @@ public class Timer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this_timerController == null)
+        {
+            this_timerController = (TimerControllerScript)FindObjectOfType(typeof(TimerControllerScript));
+            if(this_timerController == null)
+            {
+                TimerController = GameObject.FindGameObjectWithTag("TimerController");
+                if (TimerController == null)
+                {
+                    Debug.Log("TimerController not found in update. Cannot grab this_timerController then");
+                }
+                else
+                {
+                    this_timerController = TimerController.GetComponent<TimerControllerScript>();
+                }
+            }
+        }
+        if(this_timerController == null)
+        {
+            Debug.Log("Tried to grab the object, in update, it's not present anywhere in scene");
+        }
     }
 
     public void ShowCompleted(bool myTimerFinished)
