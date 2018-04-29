@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 114903973000518396}
   - component: {fileID: 114036629887950924}
   - component: {fileID: 114667860726122956}
+  - component: {fileID: 114358469086481638}
   - component: {fileID: 114014134628095828}
   m_Layer: 0
   m_Name: GreenPlayerPrefab
@@ -1680,6 +1681,20 @@ MonoBehaviour:
     i15: 218
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114358469086481638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1694470347434358}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawn1: {fileID: 0}
+  Spawn2: {fileID: 0}
+  Spawn3: {fileID: 0}
 --- !u!114 &114509133899124838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1713,6 +1728,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114903973000518396}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114358469086481638}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -1829,6 +1855,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114594357152006884}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114581647226254696
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,6 +10,7 @@ public class Timer : NetworkBehaviour
     bool haveReg = false;
     private Vector3 myNewPosition;
 
+
     [SerializeField]
     private GameObject Spawn1;
 
@@ -19,12 +20,15 @@ public class Timer : NetworkBehaviour
     [SerializeField]
     private GameObject Spawn3;
 
+
     private List<Vector3> spawns = new List<Vector3>();
 
     Vector3 mySpawn = new Vector3();
 
     void Start()
     {
+
+        Debug.Log("----- Start function for Timers! -------");
         /*
         
         // Spawns commented out until read to put the spawns into the game 
@@ -37,7 +41,6 @@ public class Timer : NetworkBehaviour
         {
             int randomInt = (int)Random.Range(0, spawns.Count);
             mySpawn = spawns[randomInt];
-            Debug.Log("My Spawn in " + mySpawn);
         }
 
         TimerController = (GameObject)FindObjectOfType(typeof(GameObject));
@@ -56,15 +59,17 @@ public class Timer : NetworkBehaviour
             }
             else
             {
-                Debug.Log("TimerController gameobject not found! ");
+                Debug.LogError("TimerController gameobject not found! ");
             }
-            Debug.Log("TimerControllerScript not found in scene.");
+            Debug.LogError("TimerControllerScript not found in scene.");
         }
         else
         {
+            Debug.Log("Found the timercontroller! ");
             if (isLocalPlayer) {
+                Debug.Log("Local player is now registering! ");
                 CmdRegisterThisPlayer(this.gameObject);
-            } //this_timerController.RegisterPlayer(this.gameObject);
+          }
         }
 
     }
@@ -92,6 +97,7 @@ public class Timer : NetworkBehaviour
     [Command]
     public void CmdRegisterThisPlayer(GameObject this_gameObj)
     {
+       Debug.Log("Player " + this_gameObj + "is registering to the timers!  ");
        this_timerController.RegisterPlayer(this_gameObj);
     }
 

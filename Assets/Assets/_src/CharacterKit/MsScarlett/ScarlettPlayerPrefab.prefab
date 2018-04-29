@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 54273820009097302}
   - component: {fileID: 82736141450411304}
   - component: {fileID: 114759305016279602}
+  - component: {fileID: 114276532497559038}
   - component: {fileID: 114813723538411746}
   - component: {fileID: 114914576300595114}
   - component: {fileID: 114907397295811516}
@@ -1727,6 +1728,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextComponent: {fileID: 114925006492607650}
+--- !u!114 &114276532497559038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451668507514628}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawn1: {fileID: 0}
+  Spawn2: {fileID: 0}
+  Spawn3: {fileID: 0}
 --- !u!114 &114322217216441256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1912,6 +1927,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114322217216441256}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114670229805864580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2003,6 +2019,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114564422048118236}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114276532497559038}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
