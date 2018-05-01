@@ -12,7 +12,7 @@ public class InfinitTerrainDriver : MonoBehaviour {
     /// <summary>
     /// Set this object to train.
     /// </summary>
-    public GameObject relativeToObject;
+    public Transform relativeToObject;
 
     /// <summary>
     /// Maximum speed the train can reach in m/s
@@ -47,7 +47,9 @@ public class InfinitTerrainDriver : MonoBehaviour {
     /// </summary>
     private int currentTerrainIndex = 0;
 
+    private Vector3 initialOffset;
 
+    [SerializeField]
     private Vector3 direction = new Vector3(0.0f, 0.0f, 1.0f);
     // Use this for initialization
     void Start()
@@ -56,10 +58,11 @@ public class InfinitTerrainDriver : MonoBehaviour {
         {
             maxSpeed = MIN_MAX_SPEED;
         }
+        initialOffset = relativeToObject.position - terrains[currentTerrainIndex].transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         UpdateSpeedAndPosition(ref currentSpeed,
                                maxSpeed,
@@ -74,15 +77,15 @@ public class InfinitTerrainDriver : MonoBehaviour {
     /// </summary>
     /// <param name="relativeCenter">Relative center.</param>
     /// <param name="terrains">Terrains.</param>
-    public void WrapTerrainTiles(GameObject relativeCenter, GameObject[] terrains) {
+    public void WrapTerrainTiles(Transform relativeCenter, GameObject[] terrains) {
         GameObject currentTerrain = terrains[currentTerrainIndex];
         Vector3 displacement = currentTerrain.transform.position
-                                         - relativeCenter.transform.position;
+                                             - relativeCenter.position + initialOffset;
         // check if train is past terrain tile;
         // if past terrain, wrap it around to the beginning
         if (Vector3.Dot(displacement, direction) >= 0.0f) {
             Debug.Log("wrapping");
-            currentTerrain.transform.position -= direction * 256.0f * (2);
+            currentTerrain.transform.position -= direction * 250.0f * terrains.Length;
             currentTerrainIndex++;
             currentTerrainIndex = currentTerrainIndex % terrains.Length;
         }
