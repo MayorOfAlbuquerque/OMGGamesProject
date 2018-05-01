@@ -31,16 +31,18 @@ public class ClueSpawner : NetworkBehaviour {
 
     private void RemoveIntroTexts()
     {
-        int i = 0;
-        while (beginningTextContainer.transform.GetChild(i) != null)
+        if (localSpec != null)
         {
-            Debug.Log("-------name = " + beginningTextContainer.transform.GetChild(i).name);
-            Debug.Log("_____spec name = " + localSpec.FullName);
-            if(beginningTextContainer.transform.GetChild(i).name == localSpec.FullName)
+            int i = 0;
+            while (beginningTextContainer.transform.GetChild(i) != null)
             {
-                beginningTextContainer.transform.GetChild(i).gameObject.SetActive(false);
+                if (beginningTextContainer.transform.GetChild(i).name != localSpec.FullName)
+                {
+                    beginningTextContainer.transform.GetChild(i).gameObject.SetActive(false);
+                    Debug.Log("Box set false");
+                }
+                i++;
             }
-            i++;
         }
         return;
     }
