@@ -149,4 +149,30 @@ public class TimerControllerScript : MonoBehaviour {
         shouldTimerStart = false;
     }
 
+    public void ResetTimers()
+    {
+        taskLength = 30; //The specified job time
+        isFirstTimerDone = false;
+        secondTimerLength = 120;
+        shouldTimerStart = false;
+        remainingTime = 10; //Remaining job time
+        complete = false;
+        serverBlockTimer = false;
+
+
+    }
+
+    public void SetFirstTimer(int timerSeconds)
+    {
+        taskLength = timerSeconds;
+    }
+
+    public void SetSecondTimer(int timerSeconds)
+    {
+        secondTimerLength = timerSeconds;
+    }
+   
+   
 }
+
+
