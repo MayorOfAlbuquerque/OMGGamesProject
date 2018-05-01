@@ -65,18 +65,22 @@ public class TimerControllerScript : MonoBehaviour {
                 remainingTime = remainingTime - Time.deltaTime;
                 Debug.Log(" ########### Timing down ######### " + remainingTime);
             }
-            else if (remainingTime <= 0.0f)
+            if (remainingTime <= 0.0f)
             { //Check the server for completed timer
                 if(isFirstTimerDone == true)
                 {
+                    Debug.Log("------------- TIMER 2 ENDED -------------");
                     complete = true;
-                    remainingTime = secondTimerLength;
+                    
                     BroadcastEndTimerSecond();
                     ForceTimerStop();
+                    return;
                 }
-                isFirstTimerDone = true;
-                BroadcastEndTimer();
 
+                isFirstTimerDone = true;
+                Debug.Log("------------ TIMER 2 STARTING ---------------");
+                remainingTime = secondTimerLength;
+                BroadcastEndTimer();
             }
         }
         else if(shouldTimerStart == false)
