@@ -11,38 +11,12 @@ public class Timer : NetworkBehaviour
     private Vector3 myNewPosition;
 
 
-    [SerializeField]
-    private GameObject Spawn1;
-
-    [SerializeField]
-    private GameObject Spawn2;
-
-    [SerializeField]
-    private GameObject Spawn3;
-
-
-    private List<Vector3> spawns = new List<Vector3>();
-
-    Vector3 mySpawn = new Vector3();
-
     void Start()
     {
 
         Debug.Log("----- Start function for Timers! -------");
-        /*
-        
-        // Spawns commented out until read to put the spawns into the game 
-        spawns.Add(Spawn1.transform.position);
-        spawns.Add(Spawn2.transform.position);
-        spawns.Add(Spawn3.transform.position);
-
-        */
-        if (isLocalPlayer == true)
-        {
-            Debug.Log("Local Player True! ");
-            int randomInt = (int)Random.Range(0, spawns.Count);
-            mySpawn = spawns[randomInt];
-        }
+       
+       
 
         TimerController = GameObject.FindGameObjectWithTag("TimerController");
 
@@ -89,16 +63,15 @@ public class Timer : NetworkBehaviour
         }
     }
 
-    public void ShowCompleted(bool myTimerFinished)
+    public void ShowCompleted(bool myTimerFinished, Vector3 TeleportPosition)
     {
         // Uncomment this when you're willing to move! 
         
-        /*
         this.gameObject.GetComponent<CharacterController>().enabled = false;
-        this.gameObject.transform.position = mySpawn;
+        this.gameObject.transform.position = TeleportPosition;
         this.gameObject.GetComponent<CharacterController>().enabled = true;     
-        */
-
+        
+        
         
     }
     
@@ -111,14 +84,14 @@ public class Timer : NetworkBehaviour
 
 
     [ClientRpc]
-    public void RpcEndTimer()
+    public void RpcEndTimer(Vector3 TeleportPosition)
     {
-        ShowCompleted(true);
+        ShowCompleted(true, TeleportPosition);
     }
 
-    public void EndTimer()
+    public void EndTimer(Vector3 TeleportPosition)
     {
-        RpcEndTimer();
+        RpcEndTimer(TeleportPosition);
     }
 
     public void PlayerForceTimerStart()

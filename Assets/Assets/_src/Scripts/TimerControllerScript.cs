@@ -27,6 +27,19 @@ public class TimerControllerScript : MonoBehaviour {
     [SerializeField]
     public int viewNumberOfConnectedPlayers = 0;
 
+
+    [SerializeField]
+    public GameObject spawnOne;
+
+    [SerializeField]
+    public GameObject spawnTwo;
+
+    [SerializeField]
+    public GameObject spawnThree;
+
+
+    private int lastOneGiven = 1;
+
     // Use this for initialization
     void Start () {
         remainingTime = taskLength;
@@ -64,7 +77,23 @@ public class TimerControllerScript : MonoBehaviour {
     {
         foreach (GameObject player in playerList)
         {
-            player.GetComponent<Timer>().EndTimer();
+            Vector3 spawnToGive;
+            if(lastOneGiven == 1)
+            {
+                spawnToGive = spawnTwo.transform.position;
+                lastOneGiven = 2;
+            }
+            else if(lastOneGiven == 2)
+            {
+                spawnToGive = spawnThree.transform.position;
+                lastOneGiven = 3;
+            }
+            else
+            {
+                spawnToGive = spawnOne.transform.position;
+                lastOneGiven = 1;
+            }
+            player.GetComponent<Timer>().EndTimer(spawnToGive);
         }
     }
 
