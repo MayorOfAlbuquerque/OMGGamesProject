@@ -10,6 +10,9 @@ public class Timer : NetworkBehaviour
     bool haveReg = false;
     private Vector3 myNewPosition;
 
+    [SerializeField]
+    OverlayFader my_fader;
+
 
     void Start()
     {
@@ -22,6 +25,12 @@ public class Timer : NetworkBehaviour
 
         this_timerController = (TimerControllerScript)FindObjectOfType(typeof(TimerControllerScript));
 
+        
+
+        if(my_fader == null)
+        {
+            Debug.Log("Fader not found!");
+        }  
         if (TimerController == null)
         {
             Debug.Log("TimerController gameobject not found! ");
@@ -50,6 +59,8 @@ public class Timer : NetworkBehaviour
           }
         }
 
+
+
     }
 
 
@@ -69,10 +80,16 @@ public class Timer : NetworkBehaviour
         
         this.gameObject.GetComponent<CharacterController>().enabled = false;
         this.gameObject.transform.position = TeleportPosition;
-        this.gameObject.GetComponent<CharacterController>().enabled = true;     
+        my_fader.FadeToBlack();
         
+
         
-        
+    }
+
+    public void ShowCompletedSecond()
+    {
+        my_fader.FadeToClear();
+        this.gameObject.GetComponent<CharacterController>().enabled = true;
     }
     
     [Command]
@@ -89,9 +106,21 @@ public class Timer : NetworkBehaviour
         ShowCompleted(true, TeleportPosition);
     }
 
+    [ClientRpc]
+    public void RpcEndTimerSecond()
+    {
+        ShowCompletedSecond();
+    }
+
     public void EndTimer(Vector3 TeleportPosition)
     {
         RpcEndTimer(TeleportPosition);
+    }
+
+    public void EndTimerSecond()
+    {
+        RpcEndTimerSecond();
+
     }
 
     public void PlayerForceTimerStart()

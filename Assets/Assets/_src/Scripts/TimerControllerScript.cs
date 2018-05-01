@@ -13,6 +13,11 @@ public class TimerControllerScript : MonoBehaviour {
     [SerializeField]
     public float taskLength = 30; //The specified job time
 
+    bool isFirstTimerDone = false;
+
+    [SerializeField]
+    public float secondTimerLength = 120;
+
     [SerializeField] //Toggle to pause and unpause the timer
     public bool shouldTimerStart = false;
 
@@ -62,9 +67,16 @@ public class TimerControllerScript : MonoBehaviour {
             }
             else if (remainingTime <= 0.0f)
             { //Check the server for completed timer
-                complete = true;
-                ForceTimerStop();
+                if(isFirstTimerDone == true)
+                {
+                    complete = true;
+                    remainingTime = secondTimerLength;
+                    BroadcastEndTimerSecond();
+                    ForceTimerStop();
+                }
+                isFirstTimerDone = true;
                 BroadcastEndTimer();
+
             }
         }
         else if(shouldTimerStart == false)
@@ -94,6 +106,15 @@ public class TimerControllerScript : MonoBehaviour {
                 lastOneGiven = 1;
             }
             player.GetComponent<Timer>().EndTimer(spawnToGive);
+        }
+    }
+
+
+    public void BroadcastEndTimerSecond()
+    {
+        foreach (GameObject player in playerList)
+        {
+            player.GetComponent<Timer>().EndTimerSecond();
         }
     }
 
