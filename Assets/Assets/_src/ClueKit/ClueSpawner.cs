@@ -35,9 +35,10 @@ public class ClueSpawner : NetworkBehaviour {
         while (beginningTextContainer.transform.GetChild(i) != null)
         {
             Debug.Log("-------name = " + beginningTextContainer.transform.GetChild(i).name);
+            Debug.Log("_____spec name = " + localSpec.FullName);
             if(beginningTextContainer.transform.GetChild(i).name == localSpec.FullName)
             {
-                beginningTextContainer.transform.GetChild(i).gameObject.SetActive(true);
+                beginningTextContainer.transform.GetChild(i).gameObject.SetActive(false);
             }
             i++;
         }
