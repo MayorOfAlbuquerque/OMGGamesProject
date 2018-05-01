@@ -26,7 +26,7 @@ public class ClueSpawner : NetworkBehaviour {
         //change to private text
         ChangeToPrivateText();
         //remove non-local player intro texts
-
+        RemoveIntroTexts();
 	}
 
     private void RemoveIntroTexts()
@@ -34,7 +34,12 @@ public class ClueSpawner : NetworkBehaviour {
         int i = 0;
         while (beginningTextContainer.transform.GetChild(i) != null)
         {
-            if()
+            Debug.Log("-------name = " + beginningTextContainer.transform.GetChild(i).name);
+            if(beginningTextContainer.transform.GetChild(i).name == localSpec.FullName)
+            {
+                beginningTextContainer.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            i++;
         }
         return;
     }
