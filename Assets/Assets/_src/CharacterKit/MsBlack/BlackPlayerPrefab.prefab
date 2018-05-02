@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 114552561785415834}
   - component: {fileID: 114127919350223322}
   - component: {fileID: 114574603034004578}
+  - component: {fileID: 114578630184848620}
   - component: {fileID: 114608915393946840}
   m_Layer: 0
   m_Name: BlackPlayerPrefab
@@ -1646,6 +1647,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114619075540867642}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114078484280133280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1874,6 +1876,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TextComponent: {fileID: 114646528290324442}
+--- !u!114 &114578630184848620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062986180693804}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114054622180135842}
 --- !u!114 &114608915393946840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1990,6 +2004,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114552561785415834}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114578630184848620}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:

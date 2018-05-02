@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 114738392052540580}
   - component: {fileID: 114046910532027742}
   - component: {fileID: 114351637312339428}
+  - component: {fileID: 114349845339004274}
   - component: {fileID: 114105058030023062}
   m_Layer: 0
   m_Name: PlumPlayerPrefab
@@ -3163,6 +3164,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114349845339004274}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -3253,6 +3265,18 @@ MonoBehaviour:
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   speed: 0
+--- !u!114 &114349845339004274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529473393138238}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114495733208153550}
 --- !u!114 &114351637312339428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3329,6 +3353,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114902671453361976}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114529929831881522
 MonoBehaviour:
   m_ObjectHideFlags: 1

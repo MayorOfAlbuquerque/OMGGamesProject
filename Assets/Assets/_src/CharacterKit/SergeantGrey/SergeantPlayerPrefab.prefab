@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 114938425291585102}
   - component: {fileID: 114593142630943468}
   - component: {fileID: 114115491639353864}
+  - component: {fileID: 114358463564606762}
   - component: {fileID: 114691387278902380}
   m_Layer: 0
   m_Name: SergeantPlayerPrefab
@@ -1511,6 +1512,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114358463564606762}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -1640,6 +1652,19 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114914088670815742}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114358463564606762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822624017283470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114271111292608648}
 --- !u!114 &114367658089473130
 MonoBehaviour:
   m_ObjectHideFlags: 1

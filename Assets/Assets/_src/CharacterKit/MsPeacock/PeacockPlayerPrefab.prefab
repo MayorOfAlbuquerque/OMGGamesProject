@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 114441419648546500}
   - component: {fileID: 114599387836229970}
   - component: {fileID: 114498886130930228}
+  - component: {fileID: 114462540804306750}
   - component: {fileID: 114558042232306828}
   m_Layer: 0
   m_Name: PeacockPlayerPrefab
@@ -1980,6 +1981,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114462540804306750}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -2081,6 +2093,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37806a656f9621e4f8899d6bf9f9847a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114462540804306750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567035540014882}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114630394598385768}
 --- !u!114 &114498886130930228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2144,6 +2168,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114906619908445040}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114711092420022210
 MonoBehaviour:
   m_ObjectHideFlags: 1
