@@ -154,8 +154,8 @@ public class TimerControllerScript : MonoBehaviour {
         taskLength = 30; //The specified job time
         isFirstTimerDone = false;
         secondTimerLength = 120;
-        shouldTimerStart = false;
-        remainingTime = 10; //Remaining job time
+        shouldTimerStart = true;
+        remainingTime = 30; //Remaining job time
         complete = false;
         serverBlockTimer = false;
 
@@ -165,14 +165,40 @@ public class TimerControllerScript : MonoBehaviour {
     public void SetFirstTimer(int timerSeconds)
     {
         taskLength = timerSeconds;
+        remainingTime = taskLength;
     }
 
     public void SetSecondTimer(int timerSeconds)
     {
         secondTimerLength = timerSeconds;
+        if (isFirstTimerDone)
+        {
+            remainingTime = timerSeconds;
+        }
+        
     }
-   
-   
+
+    public float GetFirstTimer()
+    {
+        return remainingTime;
+    }
+
+    public float GetSecondTimer()
+    {
+        if(isFirstTimerDone == true)
+        {
+            return remainingTime;
+        }
+        return secondTimerLength;
+    }
+
+    public void ServerForceStop()
+    {
+        serverBlockTimer = !serverBlockTimer;
+    }
+
+
+
 }
 
 
