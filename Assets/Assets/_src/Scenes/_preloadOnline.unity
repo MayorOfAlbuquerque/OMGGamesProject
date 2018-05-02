@@ -50,7 +50,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -179,7 +179,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: View Player 1
+  m_Text: Follow Random Player
 --- !u!222 &168627125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -283,6 +283,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d6172a2068ea0440a5b605222367d35, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &448215922
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742280242176322, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 92f0b894a529346f58aa7278925ddd69, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &605811824
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,18 +392,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1140468581160574, guid: 2fbfda99e3d7f423fbe08e8c1d6f1cb5, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114385140644260940, guid: 2fbfda99e3d7f423fbe08e8c1d6f1cb5,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2fbfda99e3d7f423fbe08e8c1d6f1cb5, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &700900931 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114385140644260940, guid: 2fbfda99e3d7f423fbe08e8c1d6f1cb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 700900930}
+  m_Script: {fileID: 11500000, guid: 07293609eec064103b48dc4ba09cc219, type: 3}
 --- !u!1 &1085358710
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +575,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1915839468}
-        m_MethodName: CameraFollowPlayer
-        m_Mode: 3
+        m_MethodName: CameraFollowRandomPlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -581,6 +620,63 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1096310843}
+--- !u!1 &1110843700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1110843701}
+  - component: {fileID: 1110843702}
+  m_Layer: 0
+  m_Name: StoryClientManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110843701
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110843700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.645, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1110843702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1110843700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4986daeb78e4548b68da641e5511f16e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableStories: {fileID: 11400000, guid: 1dd5837b27a404c3d869dbabee44e54e, type: 2}
+  OnLoadStory:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 700900931}
+        m_MethodName: LoadStoryScenes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: StoryLoadEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1001 &1135845053
 Prefab:
   m_ObjectHideFlags: 0
@@ -751,7 +847,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1915839463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 389, y: 213, z: 0}
+  m_LocalPosition: {x: 623, y: 303, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1937100916}

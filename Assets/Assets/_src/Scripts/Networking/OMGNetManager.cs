@@ -8,6 +8,7 @@ using UnityEngine.Networking;
 public class OMGNetManager : NetworkManager
 {
     public PlayerServerManager playerManager;
+    public StoryServerManager storyServerManager;
     private string murderer;
     private GameObject clueController;
     private int storyNum, spawnedFlag =0;
@@ -16,27 +17,21 @@ public class OMGNetManager : NetworkManager
     public override void OnStartServer()
     {
         playerManager.RegisterHandlers();
-        this.storyNum = SelectStory();
+        storyServerManager?.ChooseStory();
+        storyNum = storyServerManager?.CurrentStory.StoryId ?? 0;
+        ChooseMurderer();
     }
-    //choose story with random int
-    private int SelectStory()
+
+    private void ChooseMurderer()
     {
-        return UnityEngine.Random.Range(1, 1);
-    }
-    
-    //TODO:
-    private void ChooseMurderer(int storyNum)
-    {
-        //get murderer name from story
-        string mName = "Ms Scarlett";
-        this.murderer = mName;
+        this.murderer = storyServerManager?.CurrentStory?.Murderer?.FullName;
     }
 
     private void AssignSpawns(int storyNum)
     {
         playerSpawnDict = new Dictionary<string, GameObject>();
         //get spawns for this game
-        GameObject spawns = GameObject.Find("Spawns").transform.GetChild(storyNum-1).gameObject;
+        GameObject spawns = GameObject.Find("Spawns").transform.GetChild(0).gameObject;
         if(spawns != null)
         {   
             //loop through spawns and assign to character
@@ -55,7 +50,7 @@ public class OMGNetManager : NetworkManager
     void Start()
     {
         playerManager = GetComponent<PlayerServerManager>();
-        ChooseMurderer(storyNum);
+        ChooseMurderer();
     }
 
     private void SpawnAllServerAndClientClues(GameObject player)
@@ -96,6 +91,9 @@ public class OMGNetManager : NetworkManager
         if(message == null) {
             return;
         }
+        if(playerManager.IsPlayerJoined(message.characterId)) {
+            return;
+        }
         playerManager.AddCharacter((int)message.characterId);
         CharacterSpec spec = playerManager
             .FindCharacterSpecById((int)message.characterId);
@@ -110,7 +108,7 @@ public class OMGNetManager : NetworkManager
             player.transform.position = GetStartPosition().position;
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
-
+        Debug.Log("network server adding player");
         //rpc call to all clients to assign info to prefabs
         if(spec != null)
         {
