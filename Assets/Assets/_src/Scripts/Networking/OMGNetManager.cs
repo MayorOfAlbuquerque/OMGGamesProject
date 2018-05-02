@@ -43,7 +43,7 @@ public class OMGNetManager : NetworkManager
             for(int i = 0; i < 6; i++)
             {
                 GameObject individualSpawn = spawns.transform.GetChild(i).gameObject;
-                playerSpawnDict.Add(individualSpawn.name, individualSpawn);
+                playerSpawnDict.Add(individualSpawn.gameObject.name, individualSpawn);
             }  
         }
         else
