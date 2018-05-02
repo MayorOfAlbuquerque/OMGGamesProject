@@ -63,7 +63,7 @@ public class TimerControllerScript : MonoBehaviour {
             if (remainingTime > 0.0f )
             { //Check the server for completed timer
                 remainingTime = remainingTime - Time.deltaTime;
-                Debug.Log(" ########### Timing down ######### " + remainingTime);
+                Debug.Log(" ########### Timing down ######### ");
             }
             if (remainingTime <= 0.0f)
             { //Check the server for completed timer
