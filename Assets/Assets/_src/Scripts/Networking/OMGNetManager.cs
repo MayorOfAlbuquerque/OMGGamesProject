@@ -43,7 +43,7 @@ public class OMGNetManager : NetworkManager
             for(int i = 0; i < 6; i++)
             {
                 GameObject individualSpawn = spawns.transform.GetChild(i).gameObject;
-                playerSpawnDict.Add(individualSpawn.name, individualSpawn);
+                playerSpawnDict.Add(individualSpawn.gameObject.name, individualSpawn);
             }  
         }
         else
@@ -111,7 +111,7 @@ public class OMGNetManager : NetworkManager
         }
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 
-        //rpc call to all clients to spawn clues with list of characters
+        //rpc call to all clients to assign info to prefabs
         if(spec != null)
         {
             SpawnAllServerAndClientClues(player);

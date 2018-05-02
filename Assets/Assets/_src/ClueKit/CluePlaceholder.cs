@@ -25,6 +25,7 @@ public class CluePlaceholder : MonoBehaviour{
         {
             prefabInstance = Instantiate(Clue.ModelPrefab);
             prefabInstance.transform.position = transform.position;
+            prefabInstance.transform.rotation = transform.rotation;
             prefabInstance.transform.parent = transform;
             prefabInstance.SetActive(false);
         }
