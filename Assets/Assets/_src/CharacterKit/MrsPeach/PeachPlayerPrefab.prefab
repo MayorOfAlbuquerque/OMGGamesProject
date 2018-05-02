@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 114004363291652422}
   - component: {fileID: 114707885437595178}
   - component: {fileID: 114031679820017166}
+  - component: {fileID: 114769394605388394}
   - component: {fileID: 114610576913314700}
   m_Layer: 0
   m_Name: PeachPlayerPrefab
@@ -1774,6 +1775,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114825234496436542}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114415091648443890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1828,6 +1830,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114004363291652422}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114769394605388394}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -2005,6 +2018,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxRaycastHits: 16
+--- !u!114 &114769394605388394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081006973632678}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114238749697926008}
 --- !u!114 &114825234496436542
 MonoBehaviour:
   m_ObjectHideFlags: 1
