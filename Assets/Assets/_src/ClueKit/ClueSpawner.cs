@@ -13,7 +13,7 @@ public class ClueSpawner : NetworkBehaviour {
     //private Dictionary<GameObject, CluePlaceholder> reverseClueReference;
     CharacterSpec localSpec;
     GameObject beginningTextContainer;
-    private float R = 0x85, G = 0x00, B = 0x00, A = 0x93;
+    private float R = 0.718f, G = 0.0f, B = 0.0f, A = 0.5f;
     // Use this for initialization
     void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();

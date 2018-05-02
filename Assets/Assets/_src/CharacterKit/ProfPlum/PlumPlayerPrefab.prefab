@@ -541,6 +541,7 @@ GameObject:
   - component: {fileID: 114738392052540580}
   - component: {fileID: 114046910532027742}
   - component: {fileID: 114351637312339428}
+  - component: {fileID: 114349845339004274}
   - component: {fileID: 114105058030023062}
   m_Layer: 0
   m_Name: PlumPlayerPrefab
@@ -1610,7 +1611,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1529473393138238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.960576, y: -2.2442282e-17, z: 1.0107105}
+  m_LocalPosition: {x: -1.0864727, y: -1.1020629e-17, z: 0.49632502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4003882811850074}
@@ -2266,7 +2267,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 120
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3085,11 +3086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086fd8b1ba79434889d62a734ff30bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beacon1: {fileID: 1020141112706716, guid: 9bb5a931f88fe4ec8b21bf59092467b5, type: 2}
-  Beacon2: {fileID: 1950565705648830, guid: 209386f4a7a18de468d2e32d87f76d3c, type: 2}
-  Beacon3: {fileID: 1020141112706716, guid: fde3f001f6b0c4c279fe07f6dbbfc661, type: 2}
-  Beacon4: {fileID: 1439328191824346, guid: 000a937c127135f4b8c228b2689dc1e8, type: 2}
-  Beacon5: {fileID: 1020141112706716, guid: 75d926caf5cce4f6f9d3edeb5ba9f900, type: 2}
 --- !u!114 &114079136905465070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3153,6 +3149,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114738392052540580}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114349845339004274}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -3253,6 +3260,18 @@ MonoBehaviour:
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   speed: 0
+--- !u!114 &114349845339004274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529473393138238}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114495733208153550}
 --- !u!114 &114351637312339428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3329,6 +3348,7 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114902671453361976}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114529929831881522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3576,7 +3596,7 @@ CharacterController:
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.15
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!222 &222540703491912974

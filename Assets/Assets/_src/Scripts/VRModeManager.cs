@@ -13,6 +13,10 @@ public class VRModeManager : MonoBehaviour {
 	}
 
     public static IEnumerator SwitchToVRMode(string deviceName) {
+        if(XRSettings.enabled 
+           && XRSettings.loadedDeviceName.Equals(deviceName)) {
+            yield break;
+        }
         string device = string.IsNullOrEmpty(deviceName) 
                               ? "cardboard" 
                               : deviceName;

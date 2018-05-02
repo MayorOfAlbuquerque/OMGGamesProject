@@ -40,7 +40,9 @@ public class PlayerServerManager : MonoBehaviour {
         }
         charactersPlaying[id] = spec;
     }
-
+    public bool IsPlayerJoined(int id) {
+        return charactersPlaying.ContainsKey(id);
+    }
     public Dictionary<int, CharacterSpec> CharactersPlaying() {
         return charactersPlaying;
     }
