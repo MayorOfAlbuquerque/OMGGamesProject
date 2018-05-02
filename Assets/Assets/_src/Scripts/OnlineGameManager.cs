@@ -13,15 +13,17 @@ public class OnlineGameManager : MonoBehaviour
         // turn off gvr emulator when running the game in editor or on desktop,
         // need this to spectator cam to work.
 #if UNITY_EDITOR || UNITY_STANDALONE
-        GameObject.Find("GvrEditorEmulator")?.SetActive(false);
-        GameObject.Find("GvrHeadset")?.SetActive(false);
-        GameObject.Find("GvrControllerMain")?.SetActive(false);
-        Camera.main.gameObject.isStatic = false;
-
-        if (NetworkManager.singleton == null
-           || NetworkManager.singleton.IsClientConnected())
+        if (NetworkServer.active)
         {
-            ServerOnly?.SetActive(false);
+            GameObject.Find("GvrEditorEmulator")?.SetActive(false);
+            GameObject.Find("GvrHeadset")?.SetActive(false);
+            GameObject.Find("GvrControllerMain")?.SetActive(false);
+            Camera.main.gameObject.isStatic = false;
+            ServerOnly?.SetActive(true);
+        }
+        if (NetworkServer.active)
+        {
+            ServerOnly?.SetActive(true);
         }
 #endif
     }

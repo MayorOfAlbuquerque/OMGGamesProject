@@ -701,7 +701,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 120
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1854,11 +1854,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086fd8b1ba79434889d62a734ff30bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beacon1: {fileID: 1020141112706716, guid: 9bb5a931f88fe4ec8b21bf59092467b5, type: 2}
-  Beacon2: {fileID: 1950565705648830, guid: 209386f4a7a18de468d2e32d87f76d3c, type: 2}
-  Beacon3: {fileID: 1020141112706716, guid: fde3f001f6b0c4c279fe07f6dbbfc661, type: 2}
-  Beacon4: {fileID: 1439328191824346, guid: 000a937c127135f4b8c228b2689dc1e8, type: 2}
-  Beacon5: {fileID: 1020141112706716, guid: 75d926caf5cce4f6f9d3edeb5ba9f900, type: 2}
 --- !u!114 &114691387278902380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2035,7 +2030,7 @@ CharacterController:
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.15
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!222 &222167818205688620
