@@ -2,16 +2,20 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class StoryScenesComposer : MonoBehaviour
 {
-    public Story story;
+    public Story defaultStory;
+    public Story customStory;
     public bool loadOnStart;
 	// Use this for initialization
 	void Start()
 	{
-        if(loadOnStart) {
-            LoadStoryScenes(story);   
+        
+        // non networked
+        if(loadOnStart && NetworkManager.singleton == null){
+            LoadStoryScenes(defaultStory);
         }
 	}
 
@@ -24,5 +28,12 @@ public class StoryScenesComposer : MonoBehaviour
         }
         IEnumerable<string> scenes = story.scenes.Select(reference => reference.sceneName);
         StartCoroutine(SceneLoader.LoadAllScenes(scenes));
+    }
+
+    public void LoadCustomStoryScenes() {
+        if (customStory != null)
+        {
+            LoadStoryScenes(customStory);
+        }
     }
 }

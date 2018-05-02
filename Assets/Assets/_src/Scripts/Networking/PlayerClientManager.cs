@@ -14,16 +14,17 @@ public class PlayerClientManager : MonoBehaviour {
     public void Start()
     {
         client = NetworkManager.singleton?.client;
-        if(joinOnSceneLoad) {
-            //JoinServer();
-        }
         if (Settings.gameSettings != null)
         {
-            settings = Settings.gameSettings;
+            settings = Settings.Instance._settings;
         }
         else
         {
             settings = ScriptableObject.CreateInstance<GameSettings>();
+        }
+        if (joinOnSceneLoad)
+        {
+            JoinServer();
         }
     }
 
@@ -35,22 +36,24 @@ public class PlayerClientManager : MonoBehaviour {
 
     void Update()
     {
-        JoinServer();    
+        //JoinServer();
     }
 
     public void JoinServer()
     {
+        
         if (joined || client == null)
         {
             return;
         }
+        joined = true;
         Debug.Log("Player joining server");
+        Debug.Log(settings);
         PlayerJoinMessage message = new PlayerJoinMessage(
-            client.connection.connectionId,
+            1,
             settings.CharacterId
         );
         ClientScene.AddPlayer(client.connection, 0, message);
-        client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
-        joined = true;
+        //client.Send(PlayerJoinMessage.MESSAGE_TYPE, message);
     }
 }
