@@ -14,7 +14,10 @@ public class VotingControllerScript : MonoBehaviour {
     Dictionary<GameObject, int> playerVotes = new Dictionary<GameObject, int>(); 
 
 	//Number of votes for player with id i  in listOfPlayerVotes[i]
-	int[] listOfPlayerVotes = new int[10]; 
+	int[] listOfPlayerVotes = new int[10];
+
+    [SerializeField]
+    int murdererId = 0;
     
 
     private void Start() {
@@ -46,7 +49,7 @@ public class VotingControllerScript : MonoBehaviour {
     	/*  this is the placeholder if you want players to know if THEY voted correctly */
         foreach (GameObject player in playersList){
             Debug.Log("Calling End game for player : " + player);
-			player.GetComponent<PlayerVotingSystem>().EndGame();
+			player.GetComponent<PlayerVotingSystem>().EndGame(murdererId);
         }
     }
 

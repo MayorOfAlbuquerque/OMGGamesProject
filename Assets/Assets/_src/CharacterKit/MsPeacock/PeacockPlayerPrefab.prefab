@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 114599387836229970}
   - component: {fileID: 114498886130930228}
   - component: {fileID: 114462540804306750}
+  - component: {fileID: 114715366730284940}
   - component: {fileID: 114558042232306828}
   m_Layer: 0
   m_Name: PeacockPlayerPrefab
@@ -1992,6 +1993,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114715366730284940}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -2175,6 +2187,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976997d955447481da6ddbc8841d5188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114715366730284940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567035540014882}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ada579364ea947b0113ed0ce1cbd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MurdererID: 0
+  fader: {fileID: 114630394598385768}
 --- !u!114 &114742984194003808
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,14 +10,15 @@ public class PlayerVotingSystem : NetworkBehaviour {
     int numOfConnectedPlayers; //Number of connected players - Updated server side
 	int votedId; //Who the player playing the attached game object has voted for
 
-    [SerializeField]
-    public int MurdererID = 0; //What is the correct answer
 
 	//Bookeeping variables
     bool haveIVoted;
 
 	[SerializeField]
 	public OverlayFader fader; //Fader for game end - Green=win; Red=Lose
+
+    [SerializeField]
+    public VotingControllerScript this_Voting; 
 
 	//Initialise what we need
 	private void Start(){
@@ -28,7 +29,11 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	//Run on the server side version of VotingControllerScript, totals number of votes, ends the game etc.
     [Command]
     void CmdUpdateVote(int uniquePlayerId) {
-        VotingControllerScript this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+       this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+        if(this_Voting == null)
+        {
+            Debug.Log("VOTING SCRIPT NOT FOUND! ");
+        }
         numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
         this_Voting.PlayerAddVote(uniquePlayerId, this.gameObject, numOfConnectedPlayers); //Monobehavior script existing on the server
     }
@@ -45,11 +50,11 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
 	//Each player checks the murdererId against who they voted for and fades accordingly
 	[ClientRpc]
-	void RpcCheckWin()
+	void RpcCheckWin(int murdererId)
 	{
-		Debug.Log ("Is Murderer ID correct ----> " + MurdererID);
+		Debug.Log ("Is Murderer ID correct ----> " + murdererId);
 		Debug.Log("Check win...");
-		if (votedId == MurdererID){ //Just using local values here since we have them anway, why bother going through the server
+		if (votedId == murdererId){ //Just using local values here since we have them anway, why bother going through the server
 			fader.FadeToGreen();
 			Debug.Log("Fading to green");
 		}
@@ -60,9 +65,9 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	}
 
 	//Calls the RPC so each player can check if they won the game, avoids having to use targetRpc's
-	public void EndGame(){
+	public void EndGame(int murdererId){
         Debug.Log("player " + this.gameObject + " is calling endgame ");
-		RpcCheckWin();
+		RpcCheckWin(murdererId);
 	}
 
 }

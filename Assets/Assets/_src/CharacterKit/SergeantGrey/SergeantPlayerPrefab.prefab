@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 114593142630943468}
   - component: {fileID: 114115491639353864}
   - component: {fileID: 114358463564606762}
+  - component: {fileID: 114300266612901634}
   - component: {fileID: 114691387278902380}
   m_Layer: 0
   m_Name: SergeantPlayerPrefab
@@ -1653,6 +1654,19 @@ MonoBehaviour:
   image: {fileID: 114914088670815742}
   attachToMainCamera: 0
   targetColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114300266612901634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822624017283470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ada579364ea947b0113ed0ce1cbd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MurdererID: 0
+  fader: {fileID: 0}
 --- !u!114 &114358463564606762
 MonoBehaviour:
   m_ObjectHideFlags: 1
