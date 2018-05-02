@@ -21,10 +21,9 @@ public class OnlineGameManager : MonoBehaviour
             Camera.main.gameObject.isStatic = false;
             ServerOnly?.SetActive(true);
         }
-        if (NetworkManager.singleton == null
-            || NetworkClient.active)
+        if (NetworkServer.active)
         {
-            ServerOnly?.SetActive(false);
+            ServerOnly?.SetActive(true);
         }
 #endif
     }
