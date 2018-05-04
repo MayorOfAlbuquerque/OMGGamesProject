@@ -27,6 +27,29 @@ public class VotingControllerScript : MonoBehaviour {
 		numberOfPlayersConnected = 0;
 	}
 
+    private bool HighestMurderer()
+    {
+        int maxId = 0;
+        int maxVal = -10;
+        for (int i =0; i < listOfPlayerVotes.Length; i++)
+        {
+            if(listOfPlayerVotes[i] >= maxVal)
+            {
+                maxVal = listOfPlayerVotes[i];
+                maxId = i;
+            }
+        }
+
+        Debug.Log("------ MOST VOTED PLAYER : " + maxId);
+
+        if(maxId == murdererId)
+        {
+            return true;
+        }
+        return false;
+
+    }
+
     /* Function to allow the players to add votes. Also keeps track of gameobjects.
      * This is always called from a command, run on the server */
     public void PlayerAddVote(int uniqueId, GameObject thisPlayer, int player_numberOfConnects) {
@@ -46,10 +69,12 @@ public class VotingControllerScript : MonoBehaviour {
 		
 	/* Ends the game, fades out the players */
 	void VotingEnded() {
+        bool isMurdererMajority = HighestMurderer();
+        
     	/*  this is the placeholder if you want players to know if THEY voted correctly */
         foreach (GameObject player in playersList){
             Debug.Log("Calling End game for player : " + player);
-			player.GetComponent<PlayerVotingSystem>().EndGame(murdererId);
+			player.GetComponent<PlayerVotingSystem>().EndGame(isMurdererMajority);
         }
     }
 

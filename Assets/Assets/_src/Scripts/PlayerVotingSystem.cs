@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -50,24 +51,42 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
 	//Each player checks the murdererId against who they voted for and fades accordingly
 	[ClientRpc]
-	void RpcCheckWin(int murdererId)
+	void RpcCheckWin(bool didPlayersWin)
 	{
-		Debug.Log ("Is Murderer ID correct ----> " + murdererId);
 		Debug.Log("Check win...");
-		if (votedId == murdererId){ //Just using local values here since we have them anway, why bother going through the server
-			fader.FadeToGreen();
-			Debug.Log("Fading to green");
-		}
+		if (didPlayersWin){ //Just using local values here since we have them anway, why bother going through the server
+                       
+            //fader.FadeToGreen();
+            Debug.Log("Fading to green");
+            this.gameObject.GetComponent<CharacterController>().enabled = false;
+            ExecuteEvents.Execute<IHelpTextDisplay>(
+           this.gameObject,
+           null,
+           (x, y) =>
+           {
+               x.Show("The Players have won!");
+           });
+        }
 		else{
-			fader.FadeToRed();
+
+            //fader.FadeToRed();
+            this.gameObject.GetComponent<CharacterController>().enabled = false;
+            ExecuteEvents.Execute<IHelpTextDisplay>(
+           this.gameObject,
+           null,
+           (x, y) =>
+           {
+               x.Show("The Murderer has Won!");
+           });
+
 			Debug.Log("Fading to red");
 		}
 	}
 
 	//Calls the RPC so each player can check if they won the game, avoids having to use targetRpc's
-	public void EndGame(int murdererId){
+	public void EndGame(bool didPlayersWin){
         Debug.Log("player " + this.gameObject + " is calling endgame ");
-		RpcCheckWin(murdererId);
+		RpcCheckWin(didPlayersWin);
 	}
 
 }
