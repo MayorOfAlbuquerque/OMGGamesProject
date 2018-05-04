@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -10,14 +11,15 @@ public class PlayerVotingSystem : NetworkBehaviour {
     int numOfConnectedPlayers; //Number of connected players - Updated server side
 	int votedId; //Who the player playing the attached game object has voted for
 
-    [SerializeField]
-    public int MurdererID = 0; //What is the correct answer
 
 	//Bookeeping variables
     bool haveIVoted;
 
 	[SerializeField]
 	public OverlayFader fader; //Fader for game end - Green=win; Red=Lose
+
+    [SerializeField]
+    public VotingControllerScript this_Voting; 
 
 	//Initialise what we need
 	private void Start(){
@@ -28,7 +30,11 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	//Run on the server side version of VotingControllerScript, totals number of votes, ends the game etc.
     [Command]
     void CmdUpdateVote(int uniquePlayerId) {
-        VotingControllerScript this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+       this_Voting = (VotingControllerScript) FindObjectOfType(typeof(VotingControllerScript));
+        if(this_Voting == null)
+        {
+            Debug.Log("VOTING SCRIPT NOT FOUND! ");
+        }
         numOfConnectedPlayers = NetworkManager.singleton.numPlayers;
         this_Voting.PlayerAddVote(uniquePlayerId, this.gameObject, numOfConnectedPlayers); //Monobehavior script existing on the server
     }
@@ -45,24 +51,42 @@ public class PlayerVotingSystem : NetworkBehaviour {
 
 	//Each player checks the murdererId against who they voted for and fades accordingly
 	[ClientRpc]
-	void RpcCheckWin()
+	void RpcCheckWin(bool didPlayersWin)
 	{
-		Debug.Log ("Is Murderer ID correct ----> " + MurdererID);
 		Debug.Log("Check win...");
-		if (votedId == MurdererID){ //Just using local values here since we have them anway, why bother going through the server
-			fader.FadeToGreen();
-			Debug.Log("Fading to green");
-		}
+		if (didPlayersWin){ //Just using local values here since we have them anway, why bother going through the server
+                       
+            //fader.FadeToGreen();
+            Debug.Log("Fading to green");
+            this.gameObject.GetComponent<CharacterController>().enabled = false;
+            ExecuteEvents.Execute<IHelpTextDisplay>(
+           this.gameObject,
+           null,
+           (x, y) =>
+           {
+               x.Show("The Players have won!");
+           });
+        }
 		else{
-			fader.FadeToRed();
+
+            //fader.FadeToRed();
+            this.gameObject.GetComponent<CharacterController>().enabled = false;
+            ExecuteEvents.Execute<IHelpTextDisplay>(
+           this.gameObject,
+           null,
+           (x, y) =>
+           {
+               x.Show("The Murderer has Won!");
+           });
+
 			Debug.Log("Fading to red");
 		}
 	}
 
 	//Calls the RPC so each player can check if they won the game, avoids having to use targetRpc's
-	public void EndGame(){
+	public void EndGame(bool didPlayersWin){
         Debug.Log("player " + this.gameObject + " is calling endgame ");
-		RpcCheckWin();
+		RpcCheckWin(didPlayersWin);
 	}
 
 }

@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 114914576300595114}
   - component: {fileID: 114907397295811516}
   - component: {fileID: 114564422048118236}
+  - component: {fileID: 114530270462583488}
   - component: {fileID: 114220384347897318}
   - component: {fileID: 114272861271390896}
   - component: {fileID: 114231918075219328}
@@ -1791,6 +1792,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976997d955447481da6ddbc8841d5188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114530270462583488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451668507514628}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ada579364ea947b0113ed0ce1cbd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 114629334066716414}
+  this_Voting: {fileID: 0}
 --- !u!114 &114564422048118236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2033,6 +2047,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114530270462583488}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -2135,7 +2160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8014706, g: 0.8014706, b: 0.8014706, a: 0.603}
+  m_Color: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 0.9019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
