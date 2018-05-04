@@ -29,7 +29,7 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	//Run on the server side version of VotingControllerScript, totals number of votes, ends the game etc.
     [Command]
     void CmdUpdateVote(int uniquePlayerId) {
-       this_Voting = (VotingControllerScript)FindObjectOfType(typeof(VotingControllerScript));
+       this_Voting = (VotingControllerScript) FindObjectOfType(typeof(VotingControllerScript));
         if(this_Voting == null)
         {
             Debug.Log("VOTING SCRIPT NOT FOUND! ");
