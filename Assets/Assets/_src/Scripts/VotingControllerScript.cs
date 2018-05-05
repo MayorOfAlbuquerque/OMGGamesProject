@@ -14,7 +14,10 @@ public class VotingControllerScript : MonoBehaviour {
     Dictionary<GameObject, int> playerVotes = new Dictionary<GameObject, int>(); 
 
 	//Number of votes for player with id i  in listOfPlayerVotes[i]
-	int[] listOfPlayerVotes = new int[10]; 
+	int[] listOfPlayerVotes = new int[10];
+
+    [SerializeField]
+    int murdererId = 0;
     
 
     private void Start() {
@@ -23,6 +26,29 @@ public class VotingControllerScript : MonoBehaviour {
         }
 		numberOfPlayersConnected = 0;
 	}
+
+    private bool HighestMurderer()
+    {
+        int maxId = 0;
+        int maxVal = -10;
+        for (int i =0; i < listOfPlayerVotes.Length; i++)
+        {
+            if(listOfPlayerVotes[i] >= maxVal)
+            {
+                maxVal = listOfPlayerVotes[i];
+                maxId = i;
+            }
+        }
+
+        Debug.Log("------ MOST VOTED PLAYER : " + maxId);
+
+        if(maxId == murdererId)
+        {
+            return true;
+        }
+        return false;
+
+    }
 
     /* Function to allow the players to add votes. Also keeps track of gameobjects.
      * This is always called from a command, run on the server */
@@ -43,10 +69,12 @@ public class VotingControllerScript : MonoBehaviour {
 		
 	/* Ends the game, fades out the players */
 	void VotingEnded() {
+        bool isMurdererMajority = HighestMurderer();
+        
     	/*  this is the placeholder if you want players to know if THEY voted correctly */
         foreach (GameObject player in playersList){
             Debug.Log("Calling End game for player : " + player);
-			player.GetComponent<PlayerVotingSystem>().EndGame();
+			player.GetComponent<PlayerVotingSystem>().EndGame(isMurdererMajority);
         }
     }
 
