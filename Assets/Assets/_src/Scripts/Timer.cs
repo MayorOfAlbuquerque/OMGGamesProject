@@ -8,7 +8,8 @@ public class Timer : NetworkBehaviour
     TimerControllerScript this_timerController;
     GameObject TimerController;
     bool haveReg = false;
-    private Vector3 myNewPosition;
+    [SerializeField]
+    Vector3 myNewPosition;
 
     [SerializeField]
     OverlayFader my_fader;

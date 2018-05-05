@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TimerControllerScript : MonoBehaviour {
 
-	List<GameObject> playerList = new List<GameObject>();
+    [SerializeField]
+    List<GameObject> playerList = new List<GameObject>();
  
 
     [SerializeField]

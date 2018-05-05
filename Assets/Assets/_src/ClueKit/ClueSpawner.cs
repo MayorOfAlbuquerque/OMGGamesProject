@@ -45,6 +45,10 @@ public class ClueSpawner : NetworkBehaviour {
                 RemoveIntroTexts();
             }
         }
+        else
+        {
+            netManager = GameObject.Find("NetManager").GetComponent<OMGNetManager>();
+        }
     }
 
 
