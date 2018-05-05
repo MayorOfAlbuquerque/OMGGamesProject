@@ -38,7 +38,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
             }
         }
         //Makes text face wrong way so text must be contained within seperate unity object where it is reversed 180
-        textHodler.transform.LookAt(Camera.main.transform);
+        Camera.main.transform.LookAt(textHodler.transform);
     }
 
     //while looking at object reset timer value to max
