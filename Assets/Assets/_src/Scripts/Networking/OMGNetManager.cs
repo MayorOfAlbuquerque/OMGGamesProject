@@ -14,7 +14,7 @@ public class OMGNetManager : NetworkManager
     private int storyNum, spawnedFlag =0;
     private Dictionary<String, GameObject> playerSpawnDict;
     public bool isServer = false;
-
+    public Dictionary<int, int> connectionIdCharacterId = new Dictionary<int, int>();
     public override void OnStartServer()
     {
         isServer = true;
@@ -72,7 +72,17 @@ public class OMGNetManager : NetworkManager
         playerManager.RegisterHandlers();
 	}
 
-    private Transform GetPlayerSpawn(String playerName)
+	public override void OnServerDisconnect(NetworkConnection conn)
+	{
+        Debug.Log("Player disconnected from server: connection ID:" + conn.connectionId);
+        base.OnServerDisconnect(conn);
+        if(connectionIdCharacterId.ContainsKey(conn.connectionId)){
+            int characterId = connectionIdCharacterId[conn.connectionId];
+            connectionIdCharacterId.Remove(conn.connectionId);
+            playerManager?.RemoveCharacter(characterId);
+        }
+	}
+	private Transform GetPlayerSpawn(String playerName)
     {
         GameObject outVal;
         Debug.Log("______" + playerName);
@@ -96,6 +106,7 @@ public class OMGNetManager : NetworkManager
         if(playerManager.IsPlayerJoined(message.characterId)) {
             return;
         }
+        connectionIdCharacterId.Add(conn.connectionId, (int)message.characterId);
         playerManager.AddCharacter((int)message.characterId);
         CharacterSpec spec = playerManager
             .FindCharacterSpecById((int)message.characterId);
@@ -125,12 +136,5 @@ public class OMGNetManager : NetworkManager
                 player.GetComponent<Player>().RpcSetInformation(spec, false);
             }
         }
-    }
-
-    void OnClientClueSceneLoaded() {
-        
-    }
-    void OnClientModelSceneLoaded() {
-        
     }
 }
