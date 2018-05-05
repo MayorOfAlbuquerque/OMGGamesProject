@@ -14,6 +14,7 @@ public class ClueSpawner : NetworkBehaviour {
     CharacterSpec localSpec;
     GameObject beginningTextContainer;
     private float R = 0.718f, G = 0.0f, B = 0.0f, A = 0.5f;
+    private OMGNetManager netManager;
     // Use this for initialization
     void Start() {
         clueReference = new Dictionary<CluePlaceholder, GameObject>();
@@ -21,13 +22,28 @@ public class ClueSpawner : NetworkBehaviour {
         SpawnGeneralClues();
         localSpec = null;
         beginningTextContainer = GameObject.Find("BeginningText");
-        //get local spec
+        netManager = GameObject.Find("NetManager").GetComponent<OMGNetManager>();
+        /*//get local spec
         GetLocalSpec();
         //change to private text
         ChangeToPrivateText();
         //remove non-local player intro texts
-        RemoveIntroTexts();
+        RemoveIntroTexts();*/
 	}
+
+    private void Update()
+    {
+        if(!netManager.isServer && localSpec == null)
+        {
+            //get local spec
+            GetLocalSpec();
+            //change to private text
+            ChangeToPrivateText();
+            //remove non-local player intro texts
+            RemoveIntroTexts();
+        }
+    }
+
 
     private void RemoveIntroTexts()
     {
@@ -59,13 +75,15 @@ public class ClueSpawner : NetworkBehaviour {
     //loop through players to find local one and assign spec
     private void GetLocalSpec()
     {
+       
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if(players.Length != 0)
+        Debug.Log("Players length" + players.Length);
+        if (players.Length != 0)
         {
             foreach (GameObject player in players)
             {
                 Debug.Log(player.ToString());
-                if(player.GetComponent<Player>() !=null)
+                if (player.GetComponent<Player>() != null)
                 {
                     CharacterSpec newSpec = player.GetComponent<Player>().GetSpecIfLocal();
                     if (newSpec != null)
@@ -80,6 +98,7 @@ public class ClueSpawner : NetworkBehaviour {
         {
             Debug.Log("Clue spawner: no players found");
         }
+        
     }
 
     //spawn all general clues
