@@ -57,10 +57,7 @@ public class TimerSpy : NetworkBehaviour
     void GetTimerUpdate()
     {
         currentSecondsLeftTimerOne = my_target.GetFirstTimer();
-        if (currentSecondsLeftTimerOne <= 0)
-        {
-            currentSecondsLeftTimerTwo = my_target.GetSecondTimer();
-        }
+        currentSecondsLeftTimerTwo = my_target.GetSecondTimer();
 
     }
 
@@ -84,6 +81,11 @@ public class TimerSpy : NetworkBehaviour
         my_target.ResetTimers();
     }
 
+    bool IsTimerOneDone()
+    {
+        return my_target.IsTimerOneDone();
+    }
+
     public void SetTimerOne()
     {
         bool isNumeric = timerSet.text.All(char.IsDigit);
@@ -102,6 +104,10 @@ public class TimerSpy : NetworkBehaviour
             int this_time = Convert.ToInt32(timerSet.text);
             my_target.SetSecondTimer(this_time);
         }
-       
+    }
+
+    public void ForceTimerStart()
+    {
+        my_target.ForceTimerStart();
     }
 }

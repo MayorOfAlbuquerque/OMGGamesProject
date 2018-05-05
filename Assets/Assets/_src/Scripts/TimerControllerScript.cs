@@ -63,6 +63,10 @@ public class TimerControllerScript : MonoBehaviour {
             if (remainingTime > 0.0f )
             { //Check the server for completed timer
                 remainingTime = remainingTime - Time.deltaTime;
+                if (isFirstTimerDone)
+                {
+                    secondTimerLength -= Time.deltaTime;
+                }
                 Debug.Log(" ########### Timing down ######### ");
             }
             if (remainingTime <= 0.0f)
@@ -80,6 +84,7 @@ public class TimerControllerScript : MonoBehaviour {
                 isFirstTimerDone = true;
                 Debug.Log("------------ TIMER 2 STARTING ---------------");
                 remainingTime = secondTimerLength;
+                secondTimerLength = 0;
                 BroadcastEndTimer();
             }
         }
@@ -120,6 +125,12 @@ public class TimerControllerScript : MonoBehaviour {
         {
             player.GetComponent<Timer>().EndTimerSecond();
         }
+    }
+
+
+    public bool IsTimerOneDone()
+    {
+        return isFirstTimerDone;
     }
 
 
