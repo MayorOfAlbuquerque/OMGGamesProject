@@ -33,14 +33,17 @@ public class ClueSpawner : NetworkBehaviour {
 
     private void Update()
     {
-        if(!netManager.isServer && localSpec == null)
+        if(netManager != null)
         {
-            //get local spec
-            GetLocalSpec();
-            //change to private text
-            ChangeToPrivateText();
-            //remove non-local player intro texts
-            RemoveIntroTexts();
+            if (!netManager.isServer && localSpec == null)
+            {
+                //get local spec
+                GetLocalSpec();
+                //change to private text
+                ChangeToPrivateText();
+                //remove non-local player intro texts
+                RemoveIntroTexts();
+            }
         }
     }
 
