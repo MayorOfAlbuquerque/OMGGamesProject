@@ -86,6 +86,19 @@ public class Timer : NetworkBehaviour
         
     }
 
+    public void TurnOffBeaconMovement()
+    {
+        BeaconMoveScript beaconScript = (BeaconMoveScript)GetComponent<BeaconMoveScript>();
+        if (beaconScript == null)
+        {
+            Debug.LogError("Beacon Script not found! \n");
+        }
+        else
+        {
+            beaconScript.StopSearch();
+        }
+    }
+
     public void ShowCompletedSecond()
     {
         my_fader.FadeToClear();
@@ -114,7 +127,9 @@ public class Timer : NetworkBehaviour
 
     public void EndTimer(Vector3 TeleportPosition)
     {
+        TurnOffBeaconMovement();    
         RpcEndTimer(TeleportPosition);
+
     }
 
     public void EndTimerSecond()
