@@ -13,9 +13,11 @@ public class OMGNetManager : NetworkManager
     private GameObject clueController;
     private int storyNum, spawnedFlag =0;
     private Dictionary<String, GameObject> playerSpawnDict;
+    public bool isServer = false;
 
     public override void OnStartServer()
     {
+        isServer = true;
         playerManager.RegisterHandlers();
         storyServerManager?.ChooseStory();
         storyNum = storyServerManager?.CurrentStory.StoryId ?? 0;
