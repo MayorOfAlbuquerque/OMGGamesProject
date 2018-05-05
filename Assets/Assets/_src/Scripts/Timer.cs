@@ -89,7 +89,7 @@ public class Timer : NetworkBehaviour
 
     public void TurnOffBeaconMovement()
     {
-        BeaconMoveScript beaconScript = (BeaconMoveScript)GetComponent<BeaconMoveScript>();
+        BeaconMoveScript beaconScript = this.gameObject.GetComponent<BeaconMoveScript>();
         if (beaconScript == null)
         {
             Debug.LogError("Beacon Script not found! \n");
@@ -102,6 +102,7 @@ public class Timer : NetworkBehaviour
 
     public void ShowCompletedSecond()
     {
+        TurnOffBeaconMovement();
         my_fader.FadeToClear();
         this.gameObject.GetComponent<CharacterController>().enabled = true;
     }
@@ -128,7 +129,7 @@ public class Timer : NetworkBehaviour
 
     public void EndTimer(Vector3 TeleportPosition)
     {
-        TurnOffBeaconMovement();    
+       
         RpcEndTimer(TeleportPosition);
 
     }

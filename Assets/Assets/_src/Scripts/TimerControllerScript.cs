@@ -99,24 +99,32 @@ public class TimerControllerScript : MonoBehaviour {
     {
         foreach (GameObject player in playerList)
         {
-            Vector3 spawnToGive;
-            if(lastOneGiven == 1)
+            try {
+
+                Vector3 spawnToGive;
+                if (lastOneGiven == 1)
+                {
+                    spawnToGive = spawnTwo.transform.position;
+                    lastOneGiven = 2;
+                }
+                else if (lastOneGiven == 2)
+                {
+                    spawnToGive = spawnThree.transform.position;
+                    lastOneGiven = 3;
+                }
+                else
+                {
+                    spawnToGive = spawnOne.transform.position;
+                    lastOneGiven = 1;
+                }
+                player.GetComponent<Timer>().EndTimer(spawnToGive);
+             }
+            catch (System.Exception e)
             {
-                spawnToGive = spawnTwo.transform.position;
-                lastOneGiven = 2;
+                Debug.Log(e);
             }
-            else if(lastOneGiven == 2)
-            {
-                spawnToGive = spawnThree.transform.position;
-                lastOneGiven = 3;
-            }
-            else
-            {
-                spawnToGive = spawnOne.transform.position;
-                lastOneGiven = 1;
-            }
-            player.GetComponent<Timer>().EndTimer(spawnToGive);
         }
+
     }
 
 
@@ -124,7 +132,14 @@ public class TimerControllerScript : MonoBehaviour {
     {
         foreach (GameObject player in playerList)
         {
-            player.GetComponent<Timer>().EndTimerSecond();
+            try
+            {
+                player.GetComponent<Timer>().EndTimerSecond();
+            }
+            catch(System.Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 
