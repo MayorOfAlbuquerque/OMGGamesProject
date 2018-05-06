@@ -64,7 +64,9 @@ GameObject:
   - component: {fileID: 114004363291652422}
   - component: {fileID: 114707885437595178}
   - component: {fileID: 114031679820017166}
-  - component: {fileID: 114610576913314700}
+  - component: {fileID: 114769394605388394}
+  - component: {fileID: 114349129645673908}
+  - component: {fileID: 114985816207291544}
   m_Layer: 0
   m_Name: PeachPlayerPrefab
   m_TagString: Player
@@ -193,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1373972293608822
 GameObject:
   m_ObjectHideFlags: 1
@@ -288,6 +290,7 @@ GameObject:
   - component: {fileID: 33775969656169766}
   - component: {fileID: 23642785430683406}
   - component: {fileID: 95111228089837960}
+  - component: {fileID: 114949849392957896}
   m_Layer: 0
   m_Name: PeachModel
   m_TagString: Untagged
@@ -506,7 +509,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1081006973632678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1059332, y: -1.743901e-17, z: 0.78538316}
+  m_LocalPosition: {x: -1.46, y: -1.743901e-17, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4841754363157942}
@@ -589,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1435004491300292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.084, y: 1.557, z: 0.968}
+  m_LocalPosition: {x: 0.084, y: 1.608, z: 0.042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4619382321888286}
@@ -603,7 +606,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253277090648450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4162439307279310}
@@ -674,7 +677,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1459552233663580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.084, y: 0.0065200664, z: 0.835}
+  m_LocalPosition: {x: 0.084, y: 0.0065200664, z: -0.039000005}
   m_LocalScale: {x: 0.007657312, y: 0.007657312, z: 0.007657312}
   m_Children:
   - {fileID: 4495981821571494}
@@ -729,7 +732,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 20
+  far clip plane: 120
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1704,7 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8014706, g: 0.8014706, b: 0.8014706, a: 0.603}
+  m_Color: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 0.9019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1774,6 +1777,20 @@ MonoBehaviour:
   duration: 2
   image: {fileID: 114825234496436542}
   attachToMainCamera: 0
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &114349129645673908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081006973632678}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ada579364ea947b0113ed0ce1cbd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 114238749697926008}
+  this_Voting: {fileID: 0}
 --- !u!114 &114415091648443890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,6 +1855,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114769394605388394}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114349129645673908}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onToggleRemote:
@@ -1881,7 +1920,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114949849392957896}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -1904,17 +1943,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114707885437595178}
-        m_MethodName: set_enabled
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -1960,25 +1988,6 @@ MonoBehaviour:
     i15: 149
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114610576913314700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1081006973632678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
-  m_ChildIndex: 0
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_MovementThreshold: 0.001
-  m_InterpolateRotation: 0.5
-  m_InterpolateMovement: 0.5
 --- !u!114 &114707885437595178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1990,11 +1999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086fd8b1ba79434889d62a734ff30bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Beacon1: {fileID: 1020141112706716, guid: 9bb5a931f88fe4ec8b21bf59092467b5, type: 2}
-  Beacon2: {fileID: 1950565705648830, guid: 209386f4a7a18de468d2e32d87f76d3c, type: 2}
-  Beacon3: {fileID: 1020141112706716, guid: fde3f001f6b0c4c279fe07f6dbbfc661, type: 2}
-  Beacon4: {fileID: 1439328191824346, guid: 000a937c127135f4b8c228b2689dc1e8, type: 2}
-  Beacon5: {fileID: 1020141112706716, guid: 75d926caf5cce4f6f9d3edeb5ba9f900, type: 2}
 --- !u!114 &114750127949937466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2010,6 +2014,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxRaycastHits: 16
+--- !u!114 &114769394605388394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081006973632678}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_fader: {fileID: 114238749697926008}
 --- !u!114 &114825234496436542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2037,6 +2053,36 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114949849392957896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459552233663580}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2178f465abb464f8cab6a96251ceae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114985816207291544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1081006973632678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4841754363157942}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!124 &124963748822720526
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2058,7 +2104,7 @@ CharacterController:
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.15
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!222 &222054452282484472
