@@ -7,7 +7,7 @@ public class BeaconMoveScript : MonoBehaviour
 {
     AndroidJavaClass jc;
     string javaMessage;
-    private GameObject Beacon1;
+	private GameObject Beacon1;
     private GameObject Beacon2;
     private GameObject Beacon3;
 	private GameObject Beacon4;
@@ -90,8 +90,21 @@ public class BeaconMoveScript : MonoBehaviour
                 return;
             }
 
-            GameObject beacon = beaconAndIds[javaMessage];
-            GameObject carriage = carriageBeaconId[javaMessage];
+			GameObject beacon;
+			if(beaconAndIds.ContainsKey(javaMessage)){
+				beacon = beaconAndIds[javaMessage];
+			}
+			else{
+				beacon = null;
+			}
+
+			GameObject carriage; 
+			if(carriageBeaconId.ContainsKey(javaMessage)){
+				carriage = carriageBeaconId[javaMessage];
+			}
+			else{
+				carriage = null;
+			}
 
             if (beacon == null || carriage == null)
             {
