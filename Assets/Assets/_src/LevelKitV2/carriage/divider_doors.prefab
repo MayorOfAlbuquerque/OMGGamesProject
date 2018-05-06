@@ -19,10 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4404538888421090}
-  - component: {fileID: 320876650083739768}
   - component: {fileID: 135625754549325136}
-  - component: {fileID: 114493331346095380}
-  - component: {fileID: 114121493752045756}
   m_Layer: 0
   m_Name: divider_doors
   m_TagString: Untagged
@@ -163,6 +160,7 @@ GameObject:
   - component: {fileID: 23990900159989662}
   - component: {fileID: 95540641780445094}
   - component: {fileID: 65512375745044966}
+  - component: {fileID: 114988435850075694}
   m_Layer: 0
   m_Name: door1
   m_TagString: Untagged
@@ -182,6 +180,7 @@ GameObject:
   - component: {fileID: 23744587548088122}
   - component: {fileID: 95520410976249450}
   - component: {fileID: 65124399710294170}
+  - component: {fileID: 114316416946174466}
   m_Layer: 0
   m_Name: door2
   m_TagString: Untagged
@@ -252,7 +251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060195250487916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.748, y: 0, z: -2.0023}
+  m_LocalPosition: {x: -7.62, y: 0, z: -2.0023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4521515798036738}
@@ -851,12 +850,12 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114121493752045756
+--- !u!114 &114316416946174466
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060195250487916}
+  m_GameObject: {fileID: 1623665299703322}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
@@ -883,18 +882,38 @@ MonoBehaviour:
     i15: 40
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114493331346095380
+--- !u!114 &114988435850075694
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060195250487916}
+  m_GameObject: {fileID: 1466191151077220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca07faee447e47afa8ca1ea6b9c9a1d, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  director: {fileID: 320876650083739768}
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 83
+    i1: 106
+    i2: 186
+    i3: 194
+    i4: 220
+    i5: 76
+    i6: 84
+    i7: 52
+    i8: 234
+    i9: 49
+    i10: 127
+    i11: 50
+    i12: 128
+    i13: 138
+    i14: 237
+    i15: 40
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!135 &135625754549325136
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -907,27 +926,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!320 &320876650083739768
-PlayableDirector:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1060195250487916}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 9b9406da0da144572bd8e5eca3cfb04e, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 0}
-    value: {fileID: 1466191151077220}
-  - key: {fileID: 0}
-    value: {fileID: 1623665299703322}
-  - key: {fileID: 114506978128781880, guid: 9b9406da0da144572bd8e5eca3cfb04e, type: 2}
-    value: {fileID: 1466191151077220}
-  - key: {fileID: 114527715067460802, guid: 9b9406da0da144572bd8e5eca3cfb04e, type: 2}
-    value: {fileID: 1623665299703322}
-  m_ExposedReferences:
-    m_References: []

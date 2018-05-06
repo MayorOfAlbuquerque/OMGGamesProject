@@ -7,7 +7,7 @@ public class BeaconMoveScript : MonoBehaviour
 {
     AndroidJavaClass jc;
     string javaMessage;
-    private GameObject Beacon1;
+	private GameObject Beacon1;
     private GameObject Beacon2;
     private GameObject Beacon3;
 	private GameObject Beacon4;
@@ -25,6 +25,8 @@ public class BeaconMoveScript : MonoBehaviour
 	private GameObject bed2;
 	private GameObject kitchen;
 	private GameObject dining;
+
+    public bool shouldSearch = true;
 
     // Use this for initialization
     void Start()
@@ -68,7 +70,7 @@ public class BeaconMoveScript : MonoBehaviour
 
     }
     // Update is called once per frame
-	/* B1 = Kitchen 
+    /* B1 = Kitchen 
 	   B2 = Dining
 	   B3 = Bed1
 	   B4 = Library/lounge
@@ -77,30 +79,63 @@ public class BeaconMoveScript : MonoBehaviour
     void Update()
     {
 
+        if (shouldSearch)
+        {
+
+
 #if UNITY_ANDROID
-        javaMessage = jc.GetStatic<string> ("intentMessage");
-		if(lastReceived == javaMessage){
-			return;
-		}
+            javaMessage = jc.GetStatic<string>("intentMessage");
+            if (lastReceived == javaMessage)
+            {
+                return;
+            }
 
-		GameObject beacon = beaconAndIds[javaMessage];
-		GameObject carriage = carriageBeaconId[javaMessage];
-
-		if(beacon == null || carriage == null){
-			return;
-		}
-
-		carriage.SetActive(true);
-		this.gameObject.GetComponent<CharacterController> ().enabled = false;
-		this.gameObject.transform.position = beacon.transform.position;
-		this.gameObject.GetComponent<CharacterController> ().enabled = true;
-			
-		foreach(var entry in carriageBeaconId){
-			if(entry.Key != javaMessage){
-				entry.Value.SetActive(false);
+			GameObject beacon;
+			if(beaconAndIds.ContainsKey(javaMessage)){
+				beacon = beaconAndIds[javaMessage];
 			}
-		}
-		lastReceived = javaMessage;
+			else{
+				beacon = null;
+			}
+
+			GameObject carriage; 
+			if(carriageBeaconId.ContainsKey(javaMessage)){
+				carriage = carriageBeaconId[javaMessage];
+			}
+			else{
+				carriage = null;
+			}
+
+            if (beacon == null || carriage == null)
+            {
+                return;
+            }
+
+            carriage.SetActive(true);
+            this.gameObject.GetComponent<CharacterController>().enabled = false;
+            this.gameObject.transform.position = beacon.transform.position;
+            this.gameObject.GetComponent<CharacterController>().enabled = true;
+
+            foreach (var entry in carriageBeaconId)
+            {
+                if (entry.Key != javaMessage)
+                {
+                    entry.Value.SetActive(false);
+                }
+            }
+            lastReceived = javaMessage;
 #endif
-	}
+        }
+    }
+
+
+    public void EnableSearch()
+    {
+        shouldSearch = true;
+    }
+
+    public void StopSearch()
+    {
+        shouldSearch = false;
+    }
 }

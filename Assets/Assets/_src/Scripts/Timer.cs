@@ -8,7 +8,8 @@ public class Timer : NetworkBehaviour
     TimerControllerScript this_timerController;
     GameObject TimerController;
     bool haveReg = false;
-    private Vector3 myNewPosition;
+    [SerializeField]
+    Vector3 myNewPosition;
 
     [SerializeField]
     OverlayFader my_fader;
@@ -86,8 +87,22 @@ public class Timer : NetworkBehaviour
         
     }
 
+    public void TurnOffBeaconMovement()
+    {
+        BeaconMoveScript beaconScript = this.gameObject.GetComponent<BeaconMoveScript>();
+        if (beaconScript == null)
+        {
+            Debug.LogError("Beacon Script not found! \n");
+        }
+        else
+        {
+            beaconScript.StopSearch();
+        }
+    }
+
     public void ShowCompletedSecond()
     {
+        TurnOffBeaconMovement();
         my_fader.FadeToClear();
         this.gameObject.GetComponent<CharacterController>().enabled = true;
     }
@@ -114,7 +129,9 @@ public class Timer : NetworkBehaviour
 
     public void EndTimer(Vector3 TeleportPosition)
     {
+       
         RpcEndTimer(TeleportPosition);
+
     }
 
     public void EndTimerSecond()
