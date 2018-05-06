@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074, b: 0.35872698, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -280,6 +280,7 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   playerManager: {fileID: 398843899}
   storyServerManager: {fileID: 398843902}
+  isServer: 0
 --- !u!4 &398843901
 Transform:
   m_ObjectHideFlags: 0
@@ -306,4 +307,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playableStories: {fileID: 11400000, guid: 1dd5837b27a404c3d869dbabee44e54e, type: 2}
   testingMode: 1
-  testingStory: {fileID: 11400000, guid: 2b267b038a3984adc8d77e2a32bcd0c7, type: 2}
+  testingStory: {fileID: 11400000, guid: 49af3a6834c9a44b0be2ab2a285d174b, type: 2}
