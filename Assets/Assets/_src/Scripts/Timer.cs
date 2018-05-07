@@ -77,8 +77,8 @@ public class Timer : NetworkBehaviour
 
     public void ShowCompleted(bool myTimerFinished, Vector3 TeleportPosition)
     {
-        // Uncomment this when you're willing to move! 
-        
+
+        TurnOffBeaconMovement();
         this.gameObject.GetComponent<CharacterController>().enabled = false;
         this.gameObject.transform.position = TeleportPosition;
         my_fader.FadeToBlack();
@@ -102,7 +102,7 @@ public class Timer : NetworkBehaviour
 
     public void ShowCompletedSecond()
     {
-        TurnOffBeaconMovement();
+ 
         my_fader.FadeToClear();
         this.gameObject.GetComponent<CharacterController>().enabled = true;
     }
