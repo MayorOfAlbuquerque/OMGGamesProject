@@ -12,7 +12,6 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	int votedId; //Who the player playing the attached game object has voted for
 
 
-	//Bookeeping variables
     bool haveIVoted;
 
 	[SerializeField]
@@ -21,15 +20,15 @@ public class PlayerVotingSystem : NetworkBehaviour {
     [SerializeField]
     public VotingControllerScript this_Voting; 
 
-	//Initialise what we need
-	private void Start(){
+	private void Start()
+    {
 		//fader = GameObject.Find ("BlackOverlay")?.GetComponent<OverlayFader>();
 		haveIVoted = false;
 	}
  
-	//Run on the server side version of VotingControllerScript, totals number of votes, ends the game etc.
     [Command]
-    void CmdUpdateVote(int uniquePlayerId) {
+    void CmdUpdateVote(int uniquePlayerId)
+    {
        this_Voting = (VotingControllerScript) FindObjectOfType(typeof(VotingControllerScript));
         if(this_Voting == null)
         {
@@ -39,9 +38,10 @@ public class PlayerVotingSystem : NetworkBehaviour {
         this_Voting.PlayerAddVote(uniquePlayerId, this.gameObject, numOfConnectedPlayers); //Monobehavior script existing on the server
     }
     
-	//Method called when player enters a voting box
-    public void VoteForPlayer(int uniquePlayerId) {
-       if(haveIVoted == false) {
+    public void VoteForPlayer(int uniquePlayerId)
+    {
+       if(haveIVoted == false)
+        {
 			votedId = uniquePlayerId; //update the local player
 			CmdUpdateVote(uniquePlayerId); //Server side bookeeping
             haveIVoted = true; //Update the local player
@@ -49,12 +49,12 @@ public class PlayerVotingSystem : NetworkBehaviour {
        Debug.Log("Player voted for unique id : "+uniquePlayerId);
     }
 
-	//Each player checks the murdererId against who they voted for and fades accordingly
 	[ClientRpc]
 	void RpcCheckWin(bool didPlayersWin)
 	{
 		Debug.Log("Check win...");
-		if (didPlayersWin){ //Just using local values here since we have them anway, why bother going through the server
+		if (didPlayersWin)
+        { 
                        
             //fader.FadeToGreen();
             Debug.Log("Fading to green");
@@ -64,10 +64,11 @@ public class PlayerVotingSystem : NetworkBehaviour {
            null,
            (x, y) =>
            {
-               x.Show("The Players have won!");
+               x.Show("The Innocent Players have won!");
            });
         }
-		else{
+		else
+        {
 
             //fader.FadeToRed();
             this.gameObject.GetComponent<CharacterController>().enabled = false;
@@ -84,7 +85,8 @@ public class PlayerVotingSystem : NetworkBehaviour {
 	}
 
 	//Calls the RPC so each player can check if they won the game, avoids having to use targetRpc's
-	public void EndGame(bool didPlayersWin){
+	public void EndGame(bool didPlayersWin)
+    {
         Debug.Log("player " + this.gameObject + " is calling endgame ");
 		RpcCheckWin(didPlayersWin);
 	}
