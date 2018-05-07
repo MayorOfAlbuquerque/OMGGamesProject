@@ -20,25 +20,26 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
     // Update is called once per frame
     void Update()
     {
-        if(textHodler == null || Camera.main == null) {
+        if (textHodler == null || Camera.main == null)
+        {
             return;
         }
         //turn off text
-        if(textHodler.activeInHierarchy && countdown <= 0)
+        if (textHodler.activeInHierarchy && countdown <= 0)
         {
             textHodler.SetActive(false);
         }
         //turn on/leave text on
-        else if(countdown > 0 )
+        else if (countdown > 0)
         {
             countdown--;
-            if(!textHodler.activeInHierarchy)
+            if (!textHodler.activeInHierarchy)
             {
                 textHodler.SetActive(true);
             }
         }
         //Makes text face wrong way so text must be contained within seperate unity object where it is reversed 180
-        Camera.main.transform.LookAt(textHodler.transform);
+        textHodler.transform.LookAt(Camera.main.transform);
     }
 
     //while looking at object reset timer value to max
@@ -51,7 +52,7 @@ public class TextOnHover : MonoBehaviour, IGvrPointerHoverHandler
 
     public void ChangeText(string newText)
     {
-        if(textHodler == null)
+        if (textHodler == null)
         {
             this.textHodler = transform.GetChild(0).gameObject;
         }
