@@ -22,49 +22,26 @@ public class ClueSpawner : NetworkBehaviour {
         SpawnGeneralClues();
         localSpec = null;
         beginningTextContainer = GameObject.Find("BeginningText");
-        netManager = GameObject.Find("NetManager").GetComponent<OMGNetManager>();
-        /*//get local spec
+        netManager = NetworkManager.singleton as OMGNetManager;
+        //get local spec
         GetLocalSpec();
         //change to private text
         ChangeToPrivateText();
         //remove non-local player intro texts
-        RemoveIntroTexts();*/
+        RemoveIntroTexts();
 	}
-
-    private void Update()
-    {
-        if(netManager != null)
-        {
-            if (!netManager.isServer && localSpec == null)
-            {
-                //get local spec
-                GetLocalSpec();
-                //change to private text
-                ChangeToPrivateText();
-                //remove non-local player intro texts
-                RemoveIntroTexts();
-            }
-        }
-        else
-        {
-            netManager = GameObject.Find("NetManager").GetComponent<OMGNetManager>();
-        }
-    }
-
 
     private void RemoveIntroTexts()
     {
         if (localSpec != null)
         {
-            int i = 0;
-            while (beginningTextContainer.transform.GetChild(i) != null)
+            foreach(Transform child in beginningTextContainer.transform)
             {
-                if (beginningTextContainer.transform.GetChild(i).name != localSpec.FullName)
+                if (child.name != localSpec.FullName)
                 {
-                    beginningTextContainer.transform.GetChild(i).gameObject.SetActive(false);
+                    child.gameObject?.SetActive(false);
                     Debug.Log("Box set false");
                 }
-                i++;
             }
         }
         return;
@@ -82,30 +59,8 @@ public class ClueSpawner : NetworkBehaviour {
     //loop through players to find local one and assign spec
     private void GetLocalSpec()
     {
-       
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Players length" + players.Length);
-        if (players.Length != 0)
-        {
-            foreach (GameObject player in players)
-            {
-                Debug.Log(player.ToString());
-                if (player.GetComponent<Player>() != null)
-                {
-                    CharacterSpec newSpec = player.GetComponent<Player>().GetSpecIfLocal();
-                    if (newSpec != null)
-                    {
-                        this.localSpec = newSpec;
-                        break;
-                    }
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Clue spawner: no players found");
-        }
-        
+        int characterId = Settings.gameSettings.CharacterId;
+        localSpec = netManager?.playerManager.list.GetCharacterById(characterId);
     }
 
     //spawn all general clues
@@ -124,6 +79,9 @@ public class ClueSpawner : NetworkBehaviour {
     
     public void ChangeToPrivateText()
     {   
+        if(localSpec == null) {
+            return;
+        }
         foreach(KeyValuePair<CluePlaceholder, GameObject> entry in clueReference)
         {
             Boolean isPrivate = false; 
