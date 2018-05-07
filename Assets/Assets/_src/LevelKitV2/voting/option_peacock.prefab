@@ -19,12 +19,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4130589873088588}
+  - component: {fileID: 65005071604247512}
+  - component: {fileID: 65551802855558550}
   m_Layer: 0
   m_Name: option_peacock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1779689769252210
 GameObject:
@@ -41,7 +43,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1889543455018392
 GameObject:
@@ -58,7 +60,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4130589873088588
 Transform:
@@ -183,3 +185,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1889543455018392}
   m_Mesh: {fileID: 4300000, guid: a05d9b75373d74d5296a724af60efdce, type: 3}
+--- !u!65 &65005071604247512
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132758054613394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.58417577, y: 4.852681, z: 0.6142795}
+  m_Center: {x: -0.20791121, y: 2.3136475, z: 0.1928604}
+--- !u!65 &65551802855558550
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1132758054613394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5349523, y: 4.723764, z: 0.5959943}
+  m_Center: {x: -2.6857717, y: 2.2546294, z: 0.20200317}
