@@ -1920,7 +1920,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114949849392957896}
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -1956,6 +1956,7 @@ MonoBehaviour:
     m_TypeName: Player+ToggleEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   speed: 0
+  listOfCharacters: {fileID: 11400000, guid: 72265f53b797d4176a7e9f05011f7df2, type: 2}
 --- !u!114 &114590496231361094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1999,6 +2000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a086fd8b1ba79434889d62a734ff30bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldSearch: 1
 --- !u!114 &114750127949937466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2025,6 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265952f3bb77b654b9725016851d6b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myNewPosition: {x: 0, y: 0, z: 0}
   my_fader: {fileID: 114238749697926008}
 --- !u!114 &114825234496436542
 MonoBehaviour:

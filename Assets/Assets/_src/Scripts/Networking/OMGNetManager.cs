@@ -128,12 +128,12 @@ public class OMGNetManager : NetworkManager
             SpawnAllServerAndClientClues(player);
             if (spec.FullName == this.murderer)
             {
-                player.GetComponent<Player>().RpcSetInformation(spec, true);
+                player.GetComponent<Player>().RpcSetInformation((int)message.characterId , true);
                 player.GetComponent<Player>().SetMurderer(true);
             }
             else
             {
-                player.GetComponent<Player>().RpcSetInformation(spec, false);
+                player.GetComponent<Player>().RpcSetInformation((int)message.characterId, false);
             }
         }
     }

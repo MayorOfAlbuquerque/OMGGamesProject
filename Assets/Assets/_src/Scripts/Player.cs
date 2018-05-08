@@ -23,7 +23,7 @@ public class Player : NetworkBehaviour {
     private bool murderer = false;
     private string heldClue = null;
     private CharacterSpec mySpec;
-
+    public CharacterList listOfCharacters;
     private void Start()
     {
         mainCamera = Camera.main.gameObject;
@@ -96,15 +96,18 @@ public class Player : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcSetInformation(CharacterSpec spec, bool murderer)
+    public void RpcSetInformation(int characterId, bool murderer)
     {
         this.murderer = murderer;
-        this.mySpec = spec;
+        this.mySpec = listOfCharacters.GetCharacterById(characterId);
+        if(mySpec == null ){
+            return;
+        }
         if (isLocalPlayer)
         {
             //Call all client's clue spawners with list of current players
             GameObject clueController = GameObject.Find("ClueController");
-            Debug.Log("MY NAME == " + spec.FullName.ToString());
+            Debug.Log("MY NAME == " + mySpec.FullName.ToString());
             Debug.Log("Am I murderer? " + this.murderer);
             /*if (clueController != null)
             {
