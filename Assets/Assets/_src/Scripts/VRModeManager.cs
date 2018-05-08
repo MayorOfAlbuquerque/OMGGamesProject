@@ -9,20 +9,24 @@ public class VRModeManager : MonoBehaviour {
     public string deviceName;
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(SwitchToVRMode());
+        StartCoroutine(SwitchToVRMode(deviceName));
 	}
 
-    public IEnumerator SwitchToVRMode() {
+    public static IEnumerator SwitchToVRMode(string deviceName) {
+        if(XRSettings.enabled 
+           && XRSettings.loadedDeviceName.Equals(deviceName)) {
+            yield break;
+        }
         string device = string.IsNullOrEmpty(deviceName) 
                               ? "cardboard" 
                               : deviceName;
-        
+        yield return new WaitForSeconds(0.5f);
         XRSettings.LoadDeviceByName(device);
         yield return null;
         XRSettings.enabled = true;
     }
 
-    public IEnumerator SwitchTo2DMode() {
+    public static IEnumerator SwitchTo2DMode() {
         XRSettings.LoadDeviceByName("");
         yield return null;
         XRSettings.enabled = false;

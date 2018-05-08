@@ -12,11 +12,6 @@ public enum Weapon{
 
 
 public class Player : NetworkBehaviour {
-
-    private Weapon weapon;
-    private GameObject weaponModel;
-    [SerializeField] int health;
-
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
 
@@ -25,14 +20,33 @@ public class Player : NetworkBehaviour {
     [SerializeField] ToggleEvent onToggleLocal;
     GameObject mainCamera;
     public float speed;
-
+    private bool murderer = false;
+    private string heldClue = null;
+    private CharacterSpec mySpec;
+    public CharacterList listOfCharacters;
     private void Start()
-        {
-            mainCamera = Camera.main.gameObject;
-            EnablePlayer();
-            this.weapon = Weapon.NONE;
-        }
+    {
+        mainCamera = Camera.main.gameObject;
+        EnablePlayer();
+        HideModelIfLocal();
+    }
 
+    private void HideModelIfLocal()
+    {
+        if(!isLocalPlayer) 
+        {
+            return;
+        }
+        MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+        foreach(var meshRenderer in renderers) 
+        {
+            if (!meshRenderer.gameObject.name.Equals("GvrReticlePointer"))
+            {
+                meshRenderer.receiveShadows = false;
+                meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            }
+        }
+    }
         private void EnablePlayer()
         {
             onToggleShared.Invoke(true);
@@ -61,95 +75,6 @@ public class Player : NetworkBehaviour {
             }
         }
 
-    public void ChangeHealth(int change) //---------------------------------------TODO
-    {
-        this.health = health + change;
-        Debug.Log("Health changed");
-        if(this.health <= 0)
-        {
-
-            //remove player model so player is invisible
-            this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-
-            //kill player
-            //Make Ghost
-            //set killable script to false
-        }
-    }
-    
-
-    [ClientRpc]
-    public void RpcRemovePlayerHealth()
-    {
-        ChangeHealth(-100);
-    }
-
-  
-  //Need to be certain about things working with the new methods before deleting this
-//     /*
-// 	 * Wrapper function for the open door command
-// 	*/
-//     public void PlayerOpenDoor(GameObject door)
-// 	{
-// 		CmdOpenDoor (door);
-// 	}
-
-// 	/*
-// 	 * Wrapper function for the close door command
-// 	*/
-// 	public void PlayerCloseDoor(GameObject door)
-// 	{
-// 		CmdCloseDoor (door);
-// 	}
-
-// 	/*
-// 	 * Forces the server to open the door, this calls the RPC so animation is synced for all clients
-// 	*/
-// 	[Command]
-// 	public void CmdOpenDoor(GameObject door){
-// 		door.GetComponent<DoorController>().RpcOpenDoor (); //Synchronise this change for all other clients
-// 	}
-		
-
-// 	/*
-// 	 * Forces the server to close the door, this calls the RPC so animation is synced for all clients
-// 	*/
-// 	[Command]
-// 	public void CmdCloseDoor(GameObject door){
-// 		door.GetComponent<DoorController>().RpcCloseDoor ();
-// 	}
-
-    public Weapon GetPlayerCurrentWeapon()
-    {
-        return this.weapon;
-    }
-
-
-    [Command]
-    public void CmdChangeSpawnWeapon(GameObject spawner, Weapon weapon)
-    {
-        Debug.Log("INSERVER: cmdchangespawnweapon. weapon = " + weapon); // == NONE on server when called
-        spawner.GetComponent<PickupController>().RpcSetSpawnWeaponModel(weapon);
-    }
-
-    
-    public void SetPlayerWeapon(Weapon weapon)
-    {
-        this.weapon = weapon;
-        RpcNetworkWeaponAppearence(weapon, this.gameObject);
-    }
-
-    [ClientRpc]
-    public void RpcNetworkWeaponAppearence(Weapon newWeapon, GameObject player)
-    {
-        this.weapon = newWeapon;
-        if (weapon != Weapon.NONE)
-        {
-            Destroy(weaponModel);
-        }
-		weaponModel = Instantiate (Resources.Load (weapon.ToString (), typeof(GameObject))) as GameObject;
-        weaponModel.transform.SetParent(player.transform.GetChild(0).gameObject.transform.GetChild(0).transform, false);
-    }
 
     public void OpenDoor(GameObject thisDoor)
     {
@@ -170,4 +95,68 @@ public class Player : NetworkBehaviour {
         thisDoor.gameObject.GetComponent<AnimationTrigger>().PlayAnimation();
     }
 
+    [ClientRpc]
+    public void RpcSetInformation(int characterId, bool murderer)
+    {
+        this.murderer = murderer;
+        this.mySpec = listOfCharacters.GetCharacterById(characterId);
+        if(mySpec == null ){
+            return;
+        }
+        if (isLocalPlayer)
+        {
+            //Call all client's clue spawners with list of current players
+            GameObject clueController = GameObject.Find("ClueController");
+            Debug.Log("MY NAME == " + mySpec.FullName.ToString());
+            Debug.Log("Am I murderer? " + this.murderer);
+            /*if (clueController != null)
+            {
+                clueController.GetComponent<ClueSpawner>().ChangeToPrivateText();
+                Debug.Log("____________going to spawn clues stuff");
+            }
+            else
+            {
+                Debug.Log("____________bad stuff");
+            }*/
+            //if (murderer)
+//{
+           //     GameObject.Find("MT").transform.GetChild(0).gameObject.SetActive(true);
+//}
+        }
+    }
+
+    public CharacterSpec GetSpecIfLocal()
+    {
+        if(isLocalPlayer)
+        {
+            return mySpec;
+        }
+        return null;
+    }
+
+    public bool IsMurderer()
+    {
+        return this.murderer;
+    }
+    public void SetMurderer(bool m)
+    {
+        this.murderer = m;
+    }
+
+    public string GetHeldClue()
+    {
+        return heldClue;
+    }
+
+    public void SetHeldClue(string clue)
+    {
+        this.heldClue = clue;
+    }
+
+
+    [ClientRpc]
+    public void RpcSetClue(string clue)
+    {
+        SetHeldClue(clue);
+    }
 }

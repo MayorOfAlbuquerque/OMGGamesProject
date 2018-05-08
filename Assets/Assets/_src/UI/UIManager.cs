@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class UIManager : MonoBehaviour {
 
@@ -12,13 +14,18 @@ public class UIManager : MonoBehaviour {
     public Button PickCharacterButton;
 
     public GameObject SettingsPanel;
+    public Toggle SkipTutorialToggle;
     public InputField IpAddress;
+    public Dropdown IpAddressDropDown;
     public Button SettingsOkButton;
 
     public GameObject PickCharacterPanel;
     public Button pickCharacterOkButton;
 
-    public GameSettings Settings;
+    private GameSettings settings;
+
+    [SerializeField]
+    private string gameSceneName;
 
     public void ShowHomePanel() {
         HomePanel.SetActive(true);
@@ -30,7 +37,7 @@ public class UIManager : MonoBehaviour {
         HomePanel.SetActive(false);
         SettingsPanel.SetActive(true);
         PickCharacterPanel.SetActive(false);
-        FillSettingsFom();
+        FillSettingsForm();
     }
 
     public void ShowPickCharacterPanel() {
@@ -41,25 +48,73 @@ public class UIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ShowHomePanel();
+
 	}
 
-    public void handleCharacterSelection(int id) {
-        Debug.Log("saving character choice.");
-        Settings.CharacterId = id;
+	private void OnEnable()
+	{
+        if (Settings.gameSettings != null)
+        {
+            settings = Settings.gameSettings;
+        }
+        else
+        {
+            settings = ScriptableObject.CreateInstance<GameSettings>();
+        }
+	}
+	public void handleDropdownSelection(int optionId) {
+        if(IpAddressDropDown == null) {
+            return;
+        }
+
+        Dropdown.OptionData data = IpAddressDropDown.options[optionId];
+        IpAddress.text = data.text;
+        IpAddress.textComponent.text = data.text;
     }
-    public void FillSettingsFom()
+
+    public void handleCharacterSelection(int id) {
+        Debug.Log("saving character choice:" + id);
+        Debug.Log(settings);
+        try
+        {
+            Settings.gameSettings.CharacterId = id;
+        }catch(Exception e) {
+            Debug.LogWarning(e.Message);
+        }
+    }
+    public void FillSettingsForm()
     {
-        IpAddress.text = Settings.IpAddress;
+        IpAddress.text = settings.IpAddress;
+        SkipTutorialToggle.isOn = settings.skipTutorial;
     }
     public void SaveSettings() 
     {
         Debug.Log(IpAddress.textComponent.text);
-        Settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        settings.IpAddress = IpAddress.textComponent.text ?? "localhost";
+        settings.skipTutorial = SkipTutorialToggle.isOn;
+        Debug.Log("Setting ip to: " + settings.IpAddress);
         ShowHomePanel();
+        Debug.Log(settings);
     }
 
-    public void StartGame()
+    public void StartGameFromTutorial()
     {
-        SceneManager.LoadScene("introScene");
+        SceneManager.LoadScene(gameSceneName ?? "introScene");
+    }
+    public void StartGame() {
+        if(settings.skipTutorial) {
+            StartGameOnMultiplayer();
+        } else {
+            StartGameFromTutorial();
+        }
+    }
+    public void StartGameOnMultiplayer() {
+        NetworkManager.singleton.networkAddress = settings.IpAddress;
+        NetworkManager.singleton?.StartClient();
+    }
+
+    public void StartServer()
+    {
+        NetworkManager.singleton.StartServer();
     }
 }
