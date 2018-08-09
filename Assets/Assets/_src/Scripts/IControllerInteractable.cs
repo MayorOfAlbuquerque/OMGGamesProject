@@ -11,6 +11,4 @@ public interface IControllerInteractable {
     void OnClick();
     void OnKeyDown(KeyCode code);
     void OnKeyUp(KeyCode code);
-    void OnHoverEnter();
-    void OnHoverExit();
 }

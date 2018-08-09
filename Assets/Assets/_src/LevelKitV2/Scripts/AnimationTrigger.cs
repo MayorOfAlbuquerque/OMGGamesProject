@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class AnimationTrigger : MonoBehaviour {
+public class AnimationTrigger : NetworkBehaviour {
     public PlayableDirector director;
 
     private void OnTriggerEnter(Collider other)
